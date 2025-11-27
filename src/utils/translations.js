@@ -166,7 +166,7 @@ export const translations = {
       arvrDeveloper: "Lập Trình Viên AR/VR",
       unityDeveloper: "Lập Trình Viên Unity",
       softwareEngineer: "Kỹ Sư Phần Mềm",
-      generativeAIEngineer: "Kỹ Sư AI Trí Tuệ Nhân Tạo",
+      generativeAIEngineer: "Kỹ Sư Trí Tuệ Nhân Tạo",
     },
   },
   ja: {
