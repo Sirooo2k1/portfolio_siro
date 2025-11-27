@@ -1042,9 +1042,9 @@ export const blogPosts = [
       ja: "料理が人生の一部になったとき",
     },
     subtitleByLanguage: {
-      en: "A Recipe for Life",
-      vi: "Công Thức Cho Cuộc Sống",
-      ja: "人生のレシピ",
+      en: "The Simple Joy of Cooking",
+      vi: "Niềm Vui Đơn Giản Từ Việc Nấu Ăn",
+      ja: "料理のシンプルな喜び",
     },
     categoryByLanguage: {
       en: "Cooking",
@@ -1052,9 +1052,27 @@ export const blogPosts = [
       ja: "料理",
     },
     contentByLanguage: {
-      en: [],
-      vi: [],
-      ja: [],
+      en: [
+        "When Cooking Became Part of My Life",
+        "",
+        "The Simple Joy of Cooking",
+        "",
+        "Content coming soon...",
+      ],
+      vi: [
+        "Khi Nấu Ăn Trở Thành Một Phần Cuộc Sống Của Mình",
+        "",
+        "Niềm Vui Đơn Giản Từ Việc Nấu Ăn",
+        "",
+        "Nội dung đang được cập nhật...",
+      ],
+      ja: [
+        "料理が人生の一部になったとき",
+        "",
+        "料理のシンプルな喜び",
+        "",
+        "コンテンツはまもなく公開されます...",
+      ],
     },
   },
   {
@@ -1081,9 +1099,27 @@ export const blogPosts = [
       ja: "探索と旅行",
     },
     contentByLanguage: {
-      en: [],
-      vi: [],
-      ja: [],
+      en: [
+        "Exploring the World",
+        "",
+        "Unforgettable Journeys",
+        "",
+        "Content coming soon...",
+      ],
+      vi: [
+        "Khám Phá Thế Giới",
+        "",
+        "Những Chuyến Đi Đáng Nhớ",
+        "",
+        "Nội dung đang được cập nhật...",
+      ],
+      ja: [
+        "世界を探索する",
+        "",
+        "忘れられない旅",
+        "",
+        "コンテンツはまもなく公開されます...",
+      ],
     },
   },
 ];
