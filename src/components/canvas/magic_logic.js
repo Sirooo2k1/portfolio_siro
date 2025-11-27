@@ -122,7 +122,7 @@ class Environment {
 
     this.renderer.setPixelRatio( Math.min( window.devicePixelRatio, 2));
 
-    this.renderer.outputEncoding = THREE.sRGBEncoding;
+    this.renderer.outputColorSpace = THREE.SRGBColorSpace;
 
 	this.renderer.setClearAlpha(0);
     this.container.appendChild( this.renderer.domElement );
