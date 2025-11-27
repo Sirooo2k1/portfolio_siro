@@ -376,14 +376,14 @@ const Experience = () => {
           </h2>
         </motion.div>
 
-        {/* KIRA Branding Section */}
+        {/* SIRO Branding Section */}
         <motion.div 
           variants={textVariant()}
           className="flex flex-col items-center mt-8 mb-12"
         >
-          {/* KIRA Text */}
+          {/* SIRO Text */}
           <h3 className="text-black text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold uppercase tracking-wide mb-3 md:mb-4 lg:mb-5 xl:mb-6">
-            KIRA
+            SIRO
           </h3>
           
           {/* Decorative Line with Diamond */}

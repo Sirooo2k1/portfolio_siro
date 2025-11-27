@@ -41,12 +41,13 @@ const LanguageSwitcher = () => {
       {/* Dropdown Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center gap-2 px-4 py-2 bg-white border border-[#E2DCD4] rounded-lg shadow-sm hover:shadow-md transition-all duration-200 hover:border-[#F2E8C6] min-w-[140px] justify-between"
+        className="flex items-center gap-2 px-4 py-2 bg-white border-2 border-[#D1D5DB] rounded-lg shadow-md hover:shadow-lg transition-all duration-200 hover:border-[#9CA3AF] min-w-[140px] justify-between"
         aria-label="Select language"
+        style={{ boxShadow: '0 2px 8px rgba(0, 0, 0, 0.1)' }}
       >
         <div className="flex items-center gap-2">
-          <span className="text-lg">{currentLanguage.flag}</span>
-          <span className="text-[#374151] font-medium text-sm">{currentLanguage.fullName}</span>
+          <span className="text-xl leading-none">{currentLanguage.flag}</span>
+          <span className="text-[#1F2937] font-semibold text-sm">{currentLanguage.fullName}</span>
         </div>
         <svg
           className={`w-4 h-4 text-[#6B7280] transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`}
@@ -65,7 +66,7 @@ const LanguageSwitcher = () => {
 
       {/* Dropdown Menu */}
       {isOpen && (
-        <div className="absolute top-full left-0 mt-2 w-full bg-white border border-[#E2DCD4] rounded-lg shadow-lg z-50 overflow-hidden">
+        <div className="absolute top-full left-0 mt-2 w-full bg-white border-2 border-[#D1D5DB] rounded-lg shadow-xl z-50 overflow-hidden" style={{ boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)' }}>
           {languages.map((lang) => (
             <button
               key={lang.code}
@@ -73,11 +74,11 @@ const LanguageSwitcher = () => {
               className={`w-full px-4 py-3 flex items-center gap-3 text-left transition-colors ${
                 language === lang.code
                   ? 'bg-[#F2E8C6] text-[#5B21B6] font-semibold'
-                  : 'text-[#374151] hover:bg-[#FAFCC6]'
+                  : 'text-[#1F2937] hover:bg-[#F9FAFB]'
               }`}
             >
-              <span className="text-lg">{lang.flag}</span>
-              <span className="text-sm">{lang.fullName}</span>
+              <span className="text-xl leading-none">{lang.flag}</span>
+              <span className="text-sm font-medium">{lang.fullName}</span>
               {language === lang.code && (
                 <svg
                   className="w-4 h-4 ml-auto"

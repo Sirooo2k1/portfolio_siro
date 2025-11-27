@@ -64,12 +64,26 @@ const Contact = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    
+    // Validate form
+    if (!form.name.trim() || !form.email.trim() || !form.message.trim()) {
+      alert(t('contact.validation', language) || "Vui lòng điền đầy đủ thông tin.");
+      return;
+    }
+
+    // Validate email format
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(form.email)) {
+      alert(t('contact.invalidEmail', language) || "Email không hợp lệ. Vui lòng kiểm tra lại.");
+      return;
+    }
+
     setLoading(true);
 
-    emailjs
-      .send(
+    try {
+      const result = await emailjs.send(
         "REDACTED_EMAILJS_SERVICE_ID",
         "REDACTED_EMAILJS_TEMPLATE_ID",
         {
@@ -80,25 +94,33 @@ const Contact = () => {
           message: form.message,
         },
         "REDACTED_EMAILJS_PUBLIC_KEY"
-      )
-      .then(
-        () => {
-          setLoading(false);
-          alert(t('contact.success', language));
-
-          setForm({
-            name: "",
-            email: "",
-            message: "",
-          });
-        },
-        (error) => {
-          setLoading(false);
-          console.error(error);
-
-          alert(t('contact.error', language));
-        }
       );
+
+      setLoading(false);
+      console.log("EmailJS Success:", result);
+      alert(t('contact.success', language));
+
+      setForm({
+        name: "",
+        email: "",
+        message: "",
+      });
+    } catch (error) {
+      setLoading(false);
+      console.error("EmailJS Error Details:", {
+        text: error.text,
+        status: error.status,
+        message: error.message,
+        fullError: error
+      });
+
+      // Show more detailed error message
+      let errorMessage = t('contact.error', language);
+      if (error.text) {
+        errorMessage += `\n\nChi tiết lỗi: ${error.text}`;
+      }
+      alert(errorMessage);
+    }
   };
 
   return (

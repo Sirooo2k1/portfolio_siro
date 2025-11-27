@@ -35,6 +35,8 @@ export const translations = {
       sending: "Sending...",
       success: "Thank you! I will get back to you as soon as possible.",
       error: "Ahh, something went wrong. Please try again. Or email directly me at REDACTED_EMAIL.",
+      validation: "Please fill in all fields.",
+      invalidEmail: "Invalid email address. Please check again.",
     },
     // Experience/Blog
     experience: {
@@ -118,6 +120,8 @@ export const translations = {
       sending: "Đang gửi...",
       success: "Cảm ơn bạn! Mình sẽ phản hồi sớm nhất có thể.",
       error: "Ồ, có lỗi xảy ra. Vui lòng thử lại. Hoặc gửi email trực tiếp cho mình tại REDACTED_EMAIL.",
+      validation: "Vui lòng điền đầy đủ thông tin.",
+      invalidEmail: "Email không hợp lệ. Vui lòng kiểm tra lại.",
     },
     // Experience/Blog
     experience: {
@@ -201,6 +205,8 @@ export const translations = {
       sending: "送信中...",
       success: "ありがとうございます！できるだけ早く返信いたします。",
       error: "申し訳ございませんが、エラーが発生しました。もう一度お試しください。または、REDACTED_EMAIL に直接メールをお送りください。",
+      validation: "すべての項目を入力してください。",
+      invalidEmail: "メールアドレスが無効です。もう一度確認してください。",
     },
     // Experience/Blog
     experience: {

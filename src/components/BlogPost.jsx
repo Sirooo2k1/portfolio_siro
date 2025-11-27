@@ -197,12 +197,12 @@ const BlogPost = () => {
 
                 // Regular paragraph
                 return (
-                  <p
-                    key={index}
+                <p
+                  key={index}
                     className="text-text-dark text-sm md:text-base lg:text-[17px] xl:text-[18px] leading-[1.75] tracking-normal mb-3 md:mb-4"
-                  >
+                >
                     {cleanParagraph}
-                  </p>
+                </p>
                 );
               })}
             </div>
