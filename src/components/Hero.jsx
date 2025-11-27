@@ -56,28 +56,28 @@ const Hero = () => {
       
       <MagicCanvas />
 
-      <div className='absolute xs:bottom-10 bottom-32 w-full flex justify-center items-center flex-col z-10'>
+      <div className='absolute xs:bottom-10 bottom-32 md:bottom-10 w-full flex justify-center items-center flex-col z-10 px-4 md:px-0'>
 
-        <div className="w-fit mx-auto flex items-center justify-center gap-6 bg-tertiary lg:px-7 lg:py-3 px-4 py-2 rounded-xl lg:mt-10 mt-5 max-[350px]:hidden select-none">
-          <p className='text-black font-semibold'>{heroText.tryClicking}</p>
+        <div className="w-fit mx-auto flex items-center justify-center gap-3 md:gap-6 bg-tertiary px-3 py-1.5 md:px-4 md:py-2 lg:px-7 lg:py-3 rounded-lg md:rounded-xl lg:mt-10 mt-4 md:mt-5 max-[350px]:hidden select-none">
+          <p className='text-black font-semibold text-xs md:text-base'>{heroText.tryClicking}</p>
         </div>
 
 
-        <a href='#about' className="w-fit mx-auto flex items-center justify-center gap-6 bg-tertiary lg:px-7 lg:py-3 px-4 py-2 rounded-xl lg:mt-10 mt-5 cursor-pointer max-[350px]:hidden select-none">
-          <div className='w-[35px] h-[64px] rounded-3xl border-4 border-secondary flex justify-center items-start p-2'>
+        <a href='#about' className="w-fit mx-auto flex items-center justify-center gap-3 md:gap-6 bg-tertiary px-3 py-1.5 md:px-4 md:py-2 lg:px-7 lg:py-3 rounded-lg md:rounded-xl lg:mt-10 mt-3 md:mt-5 cursor-pointer max-[350px]:hidden select-none">
+          <div className='w-[28px] h-[50px] md:w-[35px] md:h-[64px] rounded-3xl border-3 md:border-4 border-secondary flex justify-center items-start p-1.5 md:p-2'>
             <motion.div
               animate={{
-                y: [0, 24, 0],
+                y: [0, 20, 0],
               }}
               transition={{
                 duration: 1.5,
                 repeat: Infinity,
                 repeatType: "loop",
               }}
-              className='w-3 h-3 rounded-full bg-secondary mb-1'
+              className='w-2.5 h-2.5 md:w-3 md:h-3 rounded-full bg-secondary mb-1'
             />
           </div>
-          <p className='text-black font-semibold'>{heroText.scrollDown}</p>
+          <p className='text-black font-semibold text-xs md:text-base'>{heroText.scrollDown}</p>
         </a>
       </div>
     </section>

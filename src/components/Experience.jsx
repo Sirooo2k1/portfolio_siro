@@ -116,20 +116,20 @@ const ExperienceCard = ({ experience, index }) => {
         }
       >
         <div className='text-center'>
-          <h3 className='text-black text-[24px] font-bold'>{localizedTitle}</h3>
+          <h3 className='text-black text-base md:text-lg lg:text-xl xl:text-[24px] font-bold'>{localizedTitle}</h3>
           <p
-            className='text-black text-[16px] font-semibold'
+            className='text-black text-xs md:text-sm lg:text-base xl:text-[16px] font-semibold'
             style={{ margin: 0 }}
           >
             {localizedCompanyName}
           </p>
         </div>
   
-        <ul className='mt-5 list-none space-y-2'>
+        <ul className='mt-3 md:mt-4 lg:mt-5 list-none space-y-1 md:space-y-1.5 lg:space-y-2'>
           {localizedPoints.map((point, index) => (
             <li
               key={`experience-point-${index}`}
-              className='text-text-dark text-[15px] leading-relaxed tracking-wide mx-auto'
+              className='text-text-dark text-xs md:text-sm lg:text-[14.5px] xl:text-[15px] leading-relaxed tracking-wide mx-auto'
               style={{ 
                 textIndent: index === 0 ? '1.5rem' : '0',
                 maxWidth: 'fit-content',
@@ -155,10 +155,10 @@ const ExperienceCard = ({ experience, index }) => {
           const slug = blogSlugMap[experience.company_name];
           
           return slug ? (
-            <div className='mt-6 flex justify-center'>
+            <div className='mt-3 md:mt-4 lg:mt-5 xl:mt-6 flex justify-center'>
               <Link
                 to={`/blog/${slug}`}
-                className='flex items-center gap-2 px-6 py-3 bg-[#F3F0EB] hover:bg-[#E8E3DC] transition-colors rounded-lg text-black font-semibold text-sm uppercase tracking-wide'
+                className='flex items-center gap-1.5 md:gap-2 px-3 py-1.5 md:px-4 md:py-2 lg:px-5 lg:py-2.5 xl:px-6 xl:py-3 bg-[#F3F0EB] hover:bg-[#E8E3DC] transition-colors rounded-lg text-black font-semibold text-[10px] md:text-xs lg:text-sm uppercase tracking-wide'
               >
                 <span>{t('experience.readMore', language)}</span>
                 <span className='text-black text-lg'>➞</span>
@@ -183,57 +183,23 @@ const Experience = () => {
     setIsMounted(true);
     
     const checkDesktop = () => {
-      setIsDesktop(window.innerWidth >= 600);
+      const newIsDesktop = window.innerWidth >= 600;
+      setIsDesktop(newIsDesktop);
+      // Reset isReady immediately when resizing to ensure content shows right away
+      setIsReady(true);
     };
     
+    // Check immediately
     checkDesktop();
+    
+    // Set ready immediately for initial render
+    setIsReady(true);
+    
+    // Listen for resize
     window.addEventListener('resize', checkDesktop);
-    
-    // Ensure DOM and styles are fully loaded before rendering timeline
-    const initializeTimeline = () => {
-      // Strategy 1: If DOM is already complete
-      if (document.readyState === 'complete') {
-        // Double RAF to ensure styles are applied and layout is calculated
-        requestAnimationFrame(() => {
-          requestAnimationFrame(() => {
-            setIsReady(true);
-          });
-        });
-        return;
-      }
-      
-      // Strategy 2: Wait for window load event
-      const handleLoad = () => {
-        requestAnimationFrame(() => {
-          requestAnimationFrame(() => {
-            setIsReady(true);
-          });
-        });
-      };
-      
-      if (document.readyState === 'loading') {
-        window.addEventListener('load', handleLoad, { once: true });
-      } else {
-        // DOMContentLoaded already fired
-        handleLoad();
-      }
-      
-      // Strategy 3: Fallback timeout (max 300ms)
-      const fallback = setTimeout(() => {
-        setIsReady(true);
-      }, 300);
-      
-      return () => {
-        window.removeEventListener('load', handleLoad);
-        clearTimeout(fallback);
-      };
-    };
-    
-    const cleanup = initializeTimeline();
     
     return () => {
       window.removeEventListener('resize', checkDesktop);
-      if (cleanup) cleanup();
     };
   }, []);
 
@@ -256,7 +222,7 @@ const Experience = () => {
           className="flex flex-col items-center mt-8 mb-12"
         >
           {/* KIRA Text */}
-          <h3 className="text-black text-4xl md:text-5xl font-bold uppercase tracking-wide mb-6">
+          <h3 className="text-black text-3xl sm:text-4xl md:text-5xl font-bold uppercase tracking-wide mb-4 sm:mb-5 md:mb-6">
             SIRO
           </h3>
           
@@ -271,7 +237,7 @@ const Experience = () => {
           </div>
 
           {/* SIRO PROGRAMMING Text */}
-          <p className="text-black text-sm md:text-base font-lora uppercase tracking-wide mb-8">
+          <p className="text-black text-[10px] md:text-xs lg:text-sm xl:text-base font-lora uppercase tracking-wide mb-4 md:mb-5 lg:mb-6 xl:mb-7 2xl:mb-8">
             SIRO PROGRAMMING
           </p>
 
@@ -374,7 +340,7 @@ const Experience = () => {
             variants={textVariant()}
             className="mt-8 max-w-2xl mx-auto px-4"
           >
-            <p className="text-black text-base md:text-lg font-lora leading-relaxed text-center italic">
+            <p className="text-black text-xs md:text-sm lg:text-base xl:text-lg font-lora leading-relaxed text-center italic px-2">
               {t('experience.welcome', language)} <span className="font-semibold">{t('experience.happyReading', language)}</span>
             </p>
           </motion.div>
@@ -416,7 +382,7 @@ const Experience = () => {
           className="flex flex-col items-center mt-8 mb-12"
         >
           {/* KIRA Text */}
-          <h3 className="text-black text-4xl md:text-5xl font-bold uppercase tracking-wide mb-6">
+          <h3 className="text-black text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold uppercase tracking-wide mb-3 md:mb-4 lg:mb-5 xl:mb-6">
             KIRA
           </h3>
           
@@ -431,7 +397,7 @@ const Experience = () => {
           </div>
 
           {/* SIRO PROGRAMMING Text */}
-          <p className="text-black text-sm md:text-base font-lora uppercase tracking-wide mb-8">
+          <p className="text-black text-[10px] md:text-xs lg:text-sm xl:text-base font-lora uppercase tracking-wide mb-4 md:mb-5 lg:mb-6 xl:mb-7 2xl:mb-8">
             SIRO PROGRAMMING
           </p>
 
@@ -534,7 +500,7 @@ const Experience = () => {
             variants={textVariant()}
             className="mt-8 max-w-2xl mx-auto px-4"
           >
-            <p className="text-black text-base md:text-lg font-lora leading-relaxed text-center italic">
+            <p className="text-black text-xs md:text-sm lg:text-base xl:text-lg font-lora leading-relaxed text-center italic px-2">
               {t('experience.welcome', language)} <span className="font-semibold">{t('experience.happyReading', language)}</span>
             </p>
           </motion.div>

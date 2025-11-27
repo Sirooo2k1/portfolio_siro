@@ -1,114 +1,100 @@
 export const textVariant = (delay) => {
-  const isDesktop = window.innerWidth >= 600;
-  if (isDesktop) {
-    return {
-      hidden: {
-        y: -50,
-        opacity: 0,
+  // Always return variants - let Framer Motion handle animations
+  // Slightly optimized for smoother animations
+  return {
+    hidden: {
+      y: -50,
+      opacity: 0,
+    },
+    show: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        type: "spring",
+        duration: 0.9,
+        delay: delay ? delay * 0.7 : 0,
+        stiffness: 100,
+        damping: 10,
       },
-      show: {
-        y: 0,
-        opacity: 1,
-        transition: {
-          type: "spring",
-          duration: 1.25,
-          delay: delay,
-        },
-      },
-    };
-  } else {
-    return "";
-  }
+    },
+  };
 };
 
 export const fadeIn = (direction, type, delay, duration) => {
-  const isDesktop = window.innerWidth >= 600;
-  if (isDesktop) {
-    return {
-      hidden: {
-        x: direction === "left" ? 100 : direction === "right" ? -100 : 0,
-        y: direction === "up" ? 100 : direction === "down" ? -100 : 0,
-        opacity: 0,
+  // Always return variants - let Framer Motion handle animations
+  // Slightly optimized for smoother animations
+  return {
+    hidden: {
+      x: direction === "left" ? 100 : direction === "right" ? -100 : 0,
+      y: direction === "up" ? 100 : direction === "down" ? -100 : 0,
+      opacity: 0,
+    },
+    show: {
+      x: 0,
+      y: 0,
+      opacity: 1,
+      transition: {
+        type: type,
+        delay: delay ? delay * 0.7 : 0,
+        duration: duration ? duration * 0.8 : 0.6,
+        ease: [0.25, 0.1, 0.25, 1],
       },
-      show: {
-        x: 0,
-        y: 0,
-        opacity: 1,
-        transition: {
-          type: type,
-          delay: delay,
-          duration: duration,
-          ease: "easeOut",
-        },
-      },
-    };
-  } else {
-    return "";
-  }
-  
+    },
+  };
 };
 
 export const zoomIn = (delay, duration) => {
-  const isDesktop = window.innerWidth >= 600;
-  if (isDesktop) {
-    return {
-      hidden: {
-        scale: 0,
-        opacity: 0,
+  // Always return variants - let Framer Motion handle animations
+  // Slightly optimized for smoother animations
+  return {
+    hidden: {
+      scale: 0,
+      opacity: 0,
+    },
+    show: {
+      scale: 1,
+      opacity: 1,
+      transition: {
+        type: "tween",
+        delay: delay ? delay * 0.7 : 0,
+        duration: duration ? duration * 0.8 : 0.6,
+        ease: [0.25, 0.1, 0.25, 1],
       },
-      show: {
-        scale: 1,
-        opacity: 1,
-        transition: {
-          type: "tween",
-          delay: delay,
-          duration: duration,
-          ease: "easeOut",
-        },
-      },
-    };
-  } else {
-    return "";
-  }
+    },
+  };
 };
 
 export const slideIn = (direction, type, delay, duration) => {
-  const isDesktop = window.innerWidth >= 600;
-  if (isDesktop) {
-    return {
-      hidden: {
-        x: direction === "left" ? "-100%" : direction === "right" ? "100%" : 0,
-        y: direction === "up" ? "100%" : direction === "down" ? "100%" : 0,
+  // Always return variants - let Framer Motion handle animations
+  // Slightly optimized for smoother animations
+  return {
+    hidden: {
+      x: direction === "left" ? "-100%" : direction === "right" ? "100%" : 0,
+      y: direction === "up" ? "100%" : direction === "down" ? "100%" : 0,
+    },
+    show: {
+      x: 0,
+      y: 0,
+      transition: {
+        type: type,
+        delay: delay ? delay * 0.7 : 0,
+        duration: duration ? duration * 0.8 : 0.6,
+        ease: [0.25, 0.1, 0.25, 1],
       },
-      show: {
-        x: 0,
-        y: 0,
-        transition: {
-          type: type,
-          delay: delay,
-          duration: duration,
-          ease: "easeOut",
-        },
-      },
-    };
-  } else {
-    return "";
-  }
+    },
+  };
 };
 
 export const staggerContainer = (staggerChildren, delayChildren) => {
-  const isDesktop = window.innerWidth >= 600;
-  if (isDesktop) {
-    return {
-      hidden: {},
-      show: {
-        transition: {
-          staggerChildren: staggerChildren,
-          delayChildren: delayChildren || 0,
-        },
+  // Always return variants - let Framer Motion handle animations
+  // Slightly optimized for smoother animations
+  return {
+    hidden: {},
+    show: {
+      transition: {
+        staggerChildren: staggerChildren ? staggerChildren * 0.7 : 0.2,
+        delayChildren: delayChildren ? delayChildren * 0.7 : 0,
       },
-    };
-  } else {
-    return "";
-  }
+    },
+  };
 };
