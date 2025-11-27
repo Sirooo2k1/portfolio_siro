@@ -26,19 +26,19 @@ const Contact = () => {
         trigger: contactRef.current,
         start: "top 80%",
         end: "+=00 60%",
-        scrub: true,
+        scrub: 0.8,
         pinSpacing: false,
         onEnter: () => {
           setCurrentBG('#FAFCC6');
           gsap.to(textRef.current, {
             color: '#282828',
-            duration: 1
+            duration: 0.6
           })
         },
         onLeaveBack: () => {
           setCurrentBG('#FAFCC6');
           gsap.to(textRef.current, {
-            duration: 1
+            duration: 0.6
           })
         }
       }
@@ -104,57 +104,57 @@ const Contact = () => {
   return (
     <div
       ref={contactRef}
-      className={`xl:mt-12 flex xl:flex-row flex-col-reverse gap-10 overflow-hidden`}
+      className={`mt-8 md:mt-10 lg:mt-12 xl:mt-12 flex xl:flex-row flex-col-reverse gap-6 md:gap-8 lg:gap-10 overflow-hidden`}
     >
       <motion.div
         ref={textRef}
         variants={slideIn("left", "tween", 0.2, 1)}
-        className='flex-[0.75] bg-cream-200 p-10 rounded-[40px] border border-cream-300 text-black'
+        className='flex-[0.75] bg-cream-200 p-6 md:p-8 lg:p-10 rounded-3xl md:rounded-[35px] lg:rounded-[40px] border border-cream-300 text-black'
       >
         <h3 className={`${styles.sectionHeadText} text-black text-center`}>{t('contact.title', language)}</h3>
 
         <form
           ref={formRef}
           onSubmit={handleSubmit}
-          className='mt-12 flex flex-col gap-8'
+          className='mt-8 md:mt-10 lg:mt-12 flex flex-col gap-6 md:gap-7 lg:gap-8'
         >
           <label className='flex flex-col'>
-            <span className='text-black font-semibold mb-4'>{t('contact.yourName', language)}</span>
+            <span className='text-black font-semibold mb-3 md:mb-4 text-sm md:text-base'>{t('contact.yourName', language)}</span>
             <input
               type='text'
               name='name'
               value={form.name}
               onChange={handleChange}
               placeholder={t('contact.namePlaceholder', language)}
-              className='bg-white py-4 px-6 placeholder:text-text-light text-black rounded-xl outline-none border border-cream-300 focus:border-[#F2E8C6] transition-colors font-medium'
+              className='bg-white py-3 px-4 md:py-4 md:px-6 placeholder:text-text-light text-black rounded-lg md:rounded-xl outline-none border border-cream-300 focus:border-[#F2E8C6] transition-colors font-medium text-sm md:text-base'
             />
           </label>
           <label className='flex flex-col'>
-            <span className='text-black font-semibold mb-4'>{t('contact.yourEmail', language)}</span>
+            <span className='text-black font-semibold mb-3 md:mb-4 text-sm md:text-base'>{t('contact.yourEmail', language)}</span>
             <input
               type='email'
               name='email'
               value={form.email}
               onChange={handleChange}
               placeholder={t('contact.emailPlaceholder', language)}
-              className='bg-white py-4 px-6 placeholder:text-text-light text-black rounded-xl outline-none border border-cream-300 focus:border-[#F2E8C6] transition-colors font-medium'
+              className='bg-white py-3 px-4 md:py-4 md:px-6 placeholder:text-text-light text-black rounded-lg md:rounded-xl outline-none border border-cream-300 focus:border-[#F2E8C6] transition-colors font-medium text-sm md:text-base'
             />
           </label>
           <label className='flex flex-col'>
-            <span className='text-black font-semibold mb-4'>{t('contact.yourMessage', language)}</span>
+            <span className='text-black font-semibold mb-3 md:mb-4 text-sm md:text-base'>{t('contact.yourMessage', language)}</span>
             <textarea
-              rows={7}
+              rows={6}
               name='message'
               value={form.message}
               onChange={handleChange}
               placeholder={t('contact.messagePlaceholder', language)}
-              className='bg-white py-4 px-6 placeholder:text-text-light text-black rounded-xl outline-none border border-cream-300 focus:border-[#F2E8C6] transition-colors font-medium resize-none'
+              className='bg-white py-3 px-4 md:py-4 md:px-6 placeholder:text-text-light text-black rounded-lg md:rounded-xl outline-none border border-cream-300 focus:border-[#F2E8C6] transition-colors font-medium resize-none text-sm md:text-base'
             />
           </label>
 
           <button
             type='submit'
-            className='bg-[#F2E8C6] hover:bg-[#EADCB0] transition-colors py-3 px-8 rounded-2xl outline-none w-fit text-[#5B21B6] font-bold shadow-md shadow-primary'
+            className='bg-[#F2E8C6] hover:bg-[#EADCB0] transition-colors py-2.5 px-6 md:py-3 md:px-8 rounded-xl md:rounded-2xl outline-none w-full md:w-fit text-[#5B21B6] font-bold shadow-md shadow-primary text-sm md:text-base'
           >
             {loading ? t('contact.sending', language) : t('contact.send', language)}
           </button>
@@ -163,7 +163,7 @@ const Contact = () => {
 
       <motion.div
         variants={slideIn("right", "tween", 0.2, 1)}
-        className='xl:flex-1 xl:h-auto md:h-[550px] h-[350px]'
+        className='xl:flex-1 xl:h-auto h-[280px] md:h-[450px] lg:h-[550px]'
       >
         <RobotCanvas />
       </motion.div>

@@ -54,10 +54,11 @@ const App = () => {
 
               {showBackToTop && (
                 <button
-                  className="fixed bottom-4 right-4 p-3 rounded-full bg-[#374151] text-white shadow-lg cursor-pointer backToTop transition-colors hover:bg-[#1f2937]"
+                  className="fixed bottom-4 right-4 md:bottom-5 md:right-5 lg:bottom-6 lg:right-6 p-2.5 md:p-3 rounded-full bg-[#374151] text-white shadow-lg cursor-pointer backToTop transition-colors hover:bg-[#1f2937] z-50"
                   onClick={handleBackToTop}
+                  aria-label="Back to top"
                 >
-                  <BsArrowUp />
+                  <BsArrowUp className="w-4 h-4 md:w-5 md:h-5" />
                 </button>
               )}
             </>

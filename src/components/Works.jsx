@@ -68,8 +68,8 @@ const ProjectCard = ({
   const localizedDescription = project?.descriptionByLanguage?.[language] || description;
   
   return (
-    <div className="bg-cream-200 p-5 rounded-3xl sm:w-[360px] w-full h-full min-h-[360px] flex flex-col justify-between shadow-md border border-cream-300">
-      <div className="relative w-full h-[230px]">
+    <div className="bg-cream-200 p-4 md:p-5 rounded-2xl md:rounded-3xl w-full sm:w-[360px] h-full min-h-[340px] md:min-h-[360px] flex flex-col justify-between shadow-md border border-cream-300">
+      <div className="relative w-full h-[200px] md:h-[230px]">
         {name === "Personal Portfolio" ? (
           <div className="w-full h-full rounded-2xl overflow-hidden bg-white">
             <div 
@@ -242,14 +242,14 @@ const ProjectCard = ({
         )}
       </div>
 
-      <div className="mt-3.5 flex-1 flex flex-col">
-        <h3 className="text-black font-bold text-[22px] leading-tight mb-2">{localizedName}</h3>
-        <p className="text-text-medium text-[13.5px] leading-[1.6] line-clamp-4 break-words" style={{ wordBreak: 'break-word', overflowWrap: 'break-word' }}>{localizedDescription}</p>
+      <div className="mt-3 md:mt-3.5 flex-1 flex flex-col">
+        <h3 className="text-black font-bold text-lg md:text-xl lg:text-[22px] leading-tight mb-2">{localizedName}</h3>
+        <p className="text-text-medium text-xs md:text-sm lg:text-[13.5px] leading-[1.6] break-words" style={{ wordBreak: 'break-word', overflowWrap: 'break-word' }}>{localizedDescription}</p>
       </div>
 
-      <div className="mt-2.5 flex flex-wrap gap-2">
+      <div className="mt-2 md:mt-2.5 flex flex-wrap gap-1.5 md:gap-2">
         {tags.map((tag) => (
-          <p key={`${name}-${tag.name}`} className={`text-[13px] ${tag.color}`}>
+          <p key={`${name}-${tag.name}`} className={`text-xs md:text-[12px] lg:text-[13px] ${tag.color}`}>
             #{tag.name}
           </p>
         ))}
@@ -288,7 +288,7 @@ const Works = () => {
       <div className="w-full flex">
         <motion.p
           variants={fadeIn("", "", 0.1, 1)}
-          className="mt-3 text-black text-[17px] max-w-3xl leading-[30px]"
+          className="mt-3 text-black text-sm md:text-base lg:text-[17px] max-w-3xl leading-relaxed md:leading-[28px] lg:leading-[30px]"
         >
           {t('works.description', language)}{" "}
           <a
@@ -302,7 +302,7 @@ const Works = () => {
         </motion.p>
       </div>
 
-      <div className="mt-20 flex flex-wrap gap-7">
+      <div className="mt-12 md:mt-16 lg:mt-20 flex flex-wrap gap-4 md:gap-6 lg:gap-7 justify-center md:justify-start">
         {projects.map((project, index) => (
           //   <div>
           //   {isDesktop ? (

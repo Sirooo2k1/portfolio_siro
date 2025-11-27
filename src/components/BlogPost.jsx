@@ -66,10 +66,10 @@ const BlogPost = () => {
     <div className="min-h-screen bg-[#FAFCC6]">
       {/* Header */}
       <div className="bg-white border-b border-[#F2E8C6] sticky top-0 z-10">
-        <div className="max-w-4xl mx-auto px-6 py-4">
+        <div className="max-w-4xl mx-auto px-4 md:px-5 lg:px-6 py-3 md:py-3.5 lg:py-4">
           <button
             onClick={() => navigate("/")}
-            className="text-[#6B7280] hover:text-[#374151] transition-colors flex items-center gap-2"
+            className="text-[#6B7280] hover:text-[#374151] transition-colors flex items-center gap-2 text-sm md:text-base"
           >
             <svg
               width="20"
@@ -92,26 +92,26 @@ const BlogPost = () => {
       </div>
 
       {/* Content */}
-      <div className="max-w-4xl mx-auto px-6 py-12">
+      <div className="max-w-4xl mx-auto px-4 md:px-5 lg:px-6 py-8 md:py-10 lg:py-12">
         <motion.article
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="bg-white rounded-lg shadow-lg p-8 md:p-12"
+          className="bg-white rounded-lg shadow-lg p-6 md:p-8 lg:p-10 xl:p-12"
         >
           {/* Title */}
-          <h1 className="text-4xl md:text-5xl font-bold text-black mb-4 text-center">
+          <h1 className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-black mb-3 md:mb-4 text-center">
             {title}
           </h1>
 
           {/* Subtitle */}
-          <p className="text-xl md:text-2xl text-black font-semibold mb-8 text-center">
+          <p className="text-lg md:text-xl lg:text-xl xl:text-2xl text-black font-semibold mb-6 md:mb-7 lg:mb-8 text-center">
             {subtitle}
           </p>
 
           {/* Category */}
-          <div className="flex justify-center mb-8">
-            <span className="px-6 py-2 rounded-full bg-[#F2E8C6] text-[#5B21B6] font-semibold text-sm">
+          <div className="flex justify-center mb-6 md:mb-7 lg:mb-8">
+            <span className="px-4 md:px-5 lg:px-6 py-1.5 md:py-2 rounded-full bg-[#F2E8C6] text-[#5B21B6] font-semibold text-xs md:text-sm">
               {category}
             </span>
           </div>
@@ -154,7 +154,7 @@ const BlogPost = () => {
                   return (
                     <h2
                       key={index}
-                      className="text-2xl md:text-3xl font-bold text-black mb-6 mt-8 first:mt-0"
+                      className="text-xl md:text-2xl lg:text-2xl xl:text-3xl font-bold text-black mb-4 md:mb-5 lg:mb-6 mt-6 md:mt-7 lg:mt-8 first:mt-0"
                     >
                       {cleanParagraph}
                     </h2>
@@ -165,7 +165,7 @@ const BlogPost = () => {
                   return (
                     <h3
                       key={index}
-                      className="text-xl md:text-2xl font-bold text-black mb-4 mt-6"
+                      className="text-lg md:text-xl lg:text-xl xl:text-2xl font-bold text-black mb-3 md:mb-4 mt-5 md:mt-6"
                     >
                       {cleanParagraph}
                     </h3>
@@ -176,7 +176,7 @@ const BlogPost = () => {
                   return (
                     <h3
                       key={index}
-                      className="text-xl md:text-2xl font-bold text-black mb-4 mt-6"
+                      className="text-lg md:text-xl lg:text-xl xl:text-2xl font-bold text-black mb-3 md:mb-4 mt-4 md:mt-5 lg:mt-6"
                     >
                       {cleanParagraph}
                     </h3>
@@ -186,8 +186,8 @@ const BlogPost = () => {
                 if (isBulletPoint) {
                   const bulletText = cleanParagraph.replace(/^[\*–\-]\s*/, "");
                   return (
-                    <div key={index} className="mb-2 ml-6">
-                      <p className="text-text-dark text-[17px] md:text-[18px] leading-[1.75] tracking-normal">
+                    <div key={index} className="mb-2 ml-4 md:ml-5 lg:ml-6">
+                      <p className="text-text-dark text-sm md:text-base lg:text-[17px] xl:text-[18px] leading-[1.75] tracking-normal">
                         <span className="mr-2 font-semibold">–</span>
                         {bulletText}
                       </p>
@@ -199,7 +199,7 @@ const BlogPost = () => {
                 return (
                   <p
                     key={index}
-                    className="text-text-dark text-[17px] md:text-[18px] leading-[1.75] tracking-normal mb-4"
+                    className="text-text-dark text-sm md:text-base lg:text-[17px] xl:text-[18px] leading-[1.75] tracking-normal mb-3 md:mb-4"
                   >
                     {cleanParagraph}
                   </p>
@@ -207,8 +207,8 @@ const BlogPost = () => {
               })}
             </div>
           ) : (
-            <div className="prose prose-lg max-w-none text-center py-12">
-              <p className="text-text-dark text-[17px] md:text-[18px] leading-[1.75] tracking-normal">
+            <div className="prose prose-lg max-w-none text-center py-8 md:py-10 lg:py-12">
+              <p className="text-text-dark text-sm md:text-base lg:text-[17px] xl:text-[18px] leading-[1.75] tracking-normal">
                 {t('blogPost.contentComingSoon', language)}
               </p>
             </div>
@@ -216,11 +216,11 @@ const BlogPost = () => {
 
           {/* Footer */}
           {content && content.length > 0 && (
-            <div className="mt-12 pt-8 border-t border-[#F2E8C6]">
-              <div className="flex items-center justify-between flex-wrap gap-4">
+            <div className="mt-8 md:mt-10 lg:mt-12 pt-6 md:pt-7 lg:pt-8 border-t border-[#F2E8C6]">
+              <div className="flex items-center justify-between flex-wrap gap-3 md:gap-4">
                 <div>
-                  <p className="text-sm text-[#6B7280]">{t('blogPost.publishedOn', language)}</p>
-                  <p className="text-base font-semibold text-black">{post.date}</p>
+                  <p className="text-xs md:text-sm text-[#6B7280]">{t('blogPost.publishedOn', language)}</p>
+                  <p className="text-sm md:text-base font-semibold text-black">{post.date}</p>
                 </div>
                 <button
                   onClick={() => navigate("/")}

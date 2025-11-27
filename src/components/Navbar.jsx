@@ -72,7 +72,7 @@ const Navbar = () => {
       <div className='w-full flex justify-between items-center max-w-7xl mx-auto'>
         <Link
           to='/'
-          className='flex items-center shrink-0 -ml-6 sm:-ml-12 lg:-ml-20 mr-4'
+          className='flex items-center shrink-0 -ml-2 xs:-ml-4 sm:-ml-6 md:-ml-12 lg:-ml-20 mr-2 xs:mr-3 md:mr-4'
           onClick={() => {
             setActive("");
             window.scrollTo(0, 0);
@@ -85,7 +85,7 @@ const Navbar = () => {
           />
         </Link>
 
-        <ul className='list-none hidden sm:flex flex-row gap-10 flex-1 justify-center items-center'>
+        <ul className='list-none hidden sm:flex flex-row gap-6 md:gap-8 lg:gap-10 flex-1 justify-center items-center'>
           {navLinks.map((nav) => (
             nav.id === "work" ? (
               <li
@@ -97,7 +97,7 @@ const Navbar = () => {
                 <div
                   className={`${
                     active === nav.title ? "text-[#374151]" : "text-[#6B7280]"
-                  } hover:text-[#374151] text-[18px] font-medium cursor-pointer flex items-center gap-1`}
+                  } hover:text-[#374151] text-base md:text-lg lg:text-[18px] font-medium cursor-pointer flex items-center gap-1`}
                   onClick={() => {
                     setActive(nav.title);
                     setBlogDropdownOpen(!blogDropdownOpen);
@@ -242,7 +242,7 @@ const Navbar = () => {
                 key={nav.id}
                 className={`${
                   active === nav.title ? "text-[#374151]" : "text-[#6B7280]"
-                } hover:text-[#374151] text-[18px] font-medium cursor-pointer`}
+                } hover:text-[#374151] text-base md:text-lg lg:text-[18px] font-medium cursor-pointer`}
                 onClick={() => setActive(nav.title)}
               >
                 <a href={`#${nav.id}`} onClick={(e) => handleAnchorClick(e, nav.id)}>
