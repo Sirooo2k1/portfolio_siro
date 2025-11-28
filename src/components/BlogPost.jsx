@@ -1,7 +1,7 @@
 import React from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import { blogPosts } from "../constants";
+import { blogPosts, experiences } from "../constants";
 import { useLanguage } from "../utils/language";
 import { t } from "../utils/translations";
 
@@ -10,6 +10,104 @@ const BlogPost = () => {
   const navigate = useNavigate();
   const { language } = useLanguage();
   const post = blogPosts.find((p) => p.slug === slug);
+
+  // Map slug to blog post card ID
+  const getBlogCardId = () => {
+    const blogSlugToCompanyName = {
+      "why-did-i-even-study-abroad": "Why Did I Even Study Abroad?",
+      "the-decision-that-changed-my-life": "The Decision That Changed My Life",
+      "the-art-of-cooking": "The simple joys of cooking",
+      "exploring-the-world": "Unforgettable Journeys",
+    };
+
+    const companyName = blogSlugToCompanyName[slug];
+    if (!companyName) return null;
+
+    // Find the experience index
+    const experienceIndex = experiences.findIndex(
+      (exp) => exp.company_name === companyName
+    );
+    if (experienceIndex === -1) return null;
+
+    const experience = experiences[experienceIndex];
+    // Create categoryId from date (same logic as in Experience.jsx)
+    const categoryId = experience.date
+      .replace("Category: ", "")
+      .toLowerCase()
+      .replace(/\s+/g, "-");
+
+    return `blog-${categoryId}-${experienceIndex}`;
+  };
+
+  // Smooth scroll helper function
+  const smoothScrollToElement = (element, offset = 0) => {
+    if (!element) return;
+    
+    const navbar = document.querySelector("nav");
+    const navbarHeight = navbar ? navbar.getBoundingClientRect().height : 70;
+    
+    // Get element position relative to document
+    const rect = element.getBoundingClientRect();
+    const elementTop = rect.top + window.pageYOffset;
+    
+    // Calculate target position: element top + hash-span offset (100px) - navbar height - additional offset
+    const targetPosition = elementTop + 100 - navbarHeight - offset;
+
+    window.scrollTo({
+      top: Math.max(0, targetPosition),
+      behavior: "smooth",
+    });
+  };
+
+  // Handle back to blog section (top left button)
+  const handleBackToBlogSection = () => {
+    navigate("/");
+    // Wait for navigation and DOM to be ready
+    setTimeout(() => {
+      const workSection = document.getElementById("work");
+      if (workSection) {
+        // Scroll to work section with standard offset
+        smoothScrollToElement(workSection, 30);
+      }
+    }, 200);
+  };
+
+  // Handle back to specific blog post (bottom right button)
+  const handleBackToBlogPost = () => {
+    const cardId = getBlogCardId();
+    navigate("/");
+    // Wait for navigation and DOM to be ready, then scroll to specific blog post card
+    setTimeout(() => {
+      if (cardId) {
+        const cardElement = document.getElementById(cardId);
+        if (cardElement) {
+          // Scroll to blog post card with smaller offset for better positioning
+          // This brings the card closer to the top for better visibility
+          smoothScrollToElement(cardElement, 20);
+        } else {
+          // If card not found, try again after a bit more time (for lazy loading)
+          setTimeout(() => {
+            const retryElement = document.getElementById(cardId);
+            if (retryElement) {
+              smoothScrollToElement(retryElement, 20);
+            } else {
+              // Fallback: scroll to work section if card still not found
+              const workSection = document.getElementById("work");
+              if (workSection) {
+                smoothScrollToElement(workSection, 30);
+              }
+            }
+          }, 300);
+        }
+      } else {
+        // Fallback: scroll to work section if card ID not found
+        const workSection = document.getElementById("work");
+        if (workSection) {
+          smoothScrollToElement(workSection, 30);
+        }
+      }
+    }, 200);
+  };
 
   if (!post) {
     return (
@@ -68,7 +166,7 @@ const BlogPost = () => {
       <div className="bg-white border-b border-[#F2E8C6] sticky top-0 z-10">
         <div className="max-w-4xl mx-auto px-4 md:px-5 lg:px-6 py-3 md:py-3.5 lg:py-4">
           <button
-            onClick={() => navigate("/")}
+            onClick={handleBackToBlogSection}
             className="text-[#6B7280] hover:text-[#374151] transition-colors flex items-center gap-2 text-sm md:text-base"
           >
             <svg
@@ -223,7 +321,7 @@ const BlogPost = () => {
                   <p className="text-sm md:text-base font-semibold text-black">{post.date}</p>
                 </div>
                 <button
-                  onClick={() => navigate("/")}
+                  onClick={handleBackToBlogPost}
                   className="flex items-center gap-2 px-6 py-3 bg-[#F3F0EB] hover:bg-[#E8E3DC] transition-colors rounded-lg text-black font-semibold text-sm uppercase tracking-wide"
                 >
                   <span>{t('blogPost.backToBlog', language)}</span>

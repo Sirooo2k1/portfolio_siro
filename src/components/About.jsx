@@ -84,27 +84,27 @@ const About = () => {
       <div ref={aboutRef} className="w-full">
         <motion.div variants={textVariant()} ref={textRef}>
           <div variants={textVariant()}>
-            <h2 className="font-heading text-black font-black md:text-[60px] sm:text-[50px] xs:text-[40px] text-[30px] leading-tight tracking-wide mb-6 md:mb-8 lg:mb-10">{t('about.title', language)}</h2>
+            <h2 className="font-heading text-black font-black md:text-[55px] lg:text-[60px] sm:text-[50px] xs:text-[40px] text-[30px] leading-tight tracking-wide mb-6 md:mb-7 lg:mb-10">{t('about.title', language)}</h2>
           </div>
         </motion.div>
 
         <div
           variants={fadeIn("", "", 0.1, 1)}
-          className="flex items-start min-[1000px]:flex-row flex-col-reverse gap-8 md:gap-12 lg:gap-16 mt-8 md:mt-12"
+          className="flex items-start min-[1000px]:flex-row flex-col-reverse gap-8 md:gap-10 lg:gap-16 mt-8 md:mt-10 lg:mt-12"
         >
           <motion.div
             variants={fadeIn("", "", 0.1, 1)}
             className="flex-1 min-[1000px]:max-w-[50%] w-full"
           >
             {/* Left Column - Text */}
-            <div className="flex flex-col items-start space-y-5 md:space-y-6 pr-0 min-[1000px]:pr-4">
-              <p className="text-text-dark text-[17px] md:text-[18px] leading-[1.75] tracking-normal w-full max-w-none">
+            <div className="flex flex-col items-start space-y-5 md:space-y-5.5 lg:space-y-6 pr-0 min-[1000px]:pr-4">
+              <p className="text-text-dark text-[17px] md:text-[17px] lg:text-[18px] leading-[1.75] tracking-normal w-full max-w-none">
                 {t('about.paragraph1', language)}
               </p>
-              <p className="text-text-dark text-[17px] md:text-[18px] leading-[1.75] tracking-normal w-full max-w-none">
+              <p className="text-text-dark text-[17px] md:text-[17px] lg:text-[18px] leading-[1.75] tracking-normal w-full max-w-none">
                 {t('about.paragraph2', language)}
               </p>
-              <p className="text-text-dark text-[17px] md:text-[18px] leading-[1.75] tracking-normal w-full max-w-none">
+              <p className="text-text-dark text-[17px] md:text-[17px] lg:text-[18px] leading-[1.75] tracking-normal w-full max-w-none">
                 {t('about.paragraph3', language)}{" "}
                 <a href="mailto:sirogamer2001@gmail.com" className="text-[#374151] hover:text-[#1F2937] font-medium transition-colors underline-offset-2">
                   <u>{t('about.emailLink', language)}</u>
@@ -118,7 +118,7 @@ const About = () => {
             className="flex-shrink-0 min-[1000px]:max-w-[45%] w-full flex justify-center min-[1000px]:justify-end"
           >
             {/* Right Column - Photo */}
-            <div className="xs:w-[350px] xs:h-[350px] w-full max-w-[350px]">
+            <div className="xs:w-[350px] xs:h-[350px] md:w-[380px] md:h-[380px] lg:w-[350px] lg:h-[350px] w-full max-w-[380px] md:max-w-[380px] lg:max-w-[350px]">
               <div className="w-full bg-white rounded-[28px] p-2 shadow-lg border border-cream-300 hover:shadow-xl transition-shadow duration-300">
                 <div className="bg-white rounded-[22px] aspect-square flex justify-center items-center overflow-hidden relative">
                   <div 
@@ -142,11 +142,11 @@ const About = () => {
 
         <motion.div
           variants={fadeIn("", "", 0.1, 1)}
-          className="flex mt-12 md:mt-16 lg:mt-20 gap-4 md:gap-5 flex-wrap justify-center min-[1000px]:justify-start items-center"
+          className="flex mt-12 md:mt-14 lg:mt-20 gap-4 md:gap-4.5 lg:gap-5 flex-wrap justify-center min-[1000px]:justify-start items-center"
         >
           {/* Instagram Button */}
           <Tilt>
-            <div className="green-pink-gradient p-[1px] rounded-full shadow-lg flex justify-center items-center cursor-pointer select-none overflow-hidden hover:shadow-xl transition-shadow w-[180px]">
+            <div className="green-pink-gradient p-[1px] rounded-full shadow-lg flex justify-center items-center cursor-pointer select-none overflow-hidden hover:shadow-xl transition-shadow w-[180px] md:w-[190px] lg:w-[180px]">
               <a
                 href="https://www.instagram.com/ssiiroo09.29/?igsh=emZkOG1neW5hcnht&utm_source=qr#"
                 target="_blank"
@@ -161,7 +161,7 @@ const About = () => {
                       className="w-full h-full object-cover rounded-full"
                     />
                   </div>
-                  <p className="text-[18px] md:text-[20px] text-white font-semibold whitespace-nowrap">Instagram</p>
+                  <p className="text-[18px] md:text-[19px] lg:text-[20px] text-white font-semibold whitespace-nowrap">Instagram</p>
                 </div>
               </a>
             </div>
@@ -169,7 +169,7 @@ const About = () => {
 
           {/* GitHub Button */}
           <Tilt>
-            <div className="green-pink-gradient p-[1px] rounded-full shadow-lg flex justify-center items-center cursor-pointer select-none overflow-hidden hover:shadow-xl transition-shadow w-[180px]">
+            <div className="green-pink-gradient p-[1px] rounded-full shadow-lg flex justify-center items-center cursor-pointer select-none overflow-hidden hover:shadow-xl transition-shadow w-[180px] md:w-[190px] lg:w-[180px]">
               <a
                 href="https://github.com/Sirooo2k1"
                 target="_blank"
@@ -184,7 +184,7 @@ const About = () => {
                       className="w-full h-full object-cover rounded-full"
                     />
                   </div>
-                  <p className="text-[18px] md:text-[20px] text-white font-semibold whitespace-nowrap">GitHub</p>
+                  <p className="text-[18px] md:text-[19px] lg:text-[20px] text-white font-semibold whitespace-nowrap">GitHub</p>
                 </div>
               </a>
             </div>
@@ -192,7 +192,7 @@ const About = () => {
 
           {/* Email Button */}
           <Tilt>
-            <div className="green-pink-gradient p-[1px] rounded-full shadow-lg flex justify-center items-center cursor-pointer select-none overflow-hidden hover:shadow-xl transition-shadow w-[180px]">
+            <div className="green-pink-gradient p-[1px] rounded-full shadow-lg flex justify-center items-center cursor-pointer select-none overflow-hidden hover:shadow-xl transition-shadow w-[180px] md:w-[190px] lg:w-[180px]">
               <a
                 href="mailto:sirogamer2001@gmail.com"
                 target="_blank"
@@ -207,14 +207,14 @@ const About = () => {
                       className="w-full h-full object-cover rounded-full"
                     />
                   </div>
-                  <p className="text-[18px] md:text-[20px] text-white font-semibold whitespace-nowrap">Email</p>
+                  <p className="text-[18px] md:text-[19px] lg:text-[20px] text-white font-semibold whitespace-nowrap">Email</p>
                 </div>
               </a>
             </div>
           </Tilt>
         </motion.div>
 
-        <div className="mt-20 md:mt-24 lg:mt-28 flex flex-wrap gap-6 md:gap-8 lg:gap-10 justify-center">
+        <div className="mt-20 md:mt-22 lg:mt-28 flex flex-wrap gap-6 md:gap-7 lg:gap-10 justify-center">
           {services.map((service, index) => (
             <ServiceCard key={service.title} index={index} {...service} />
           ))}

@@ -68,8 +68,8 @@ const ProjectCard = ({
   const localizedDescription = project?.descriptionByLanguage?.[language] || description;
   
   return (
-    <div className="bg-cream-200 p-4 md:p-5 rounded-2xl md:rounded-3xl w-full sm:w-[360px] h-full min-h-[340px] md:min-h-[360px] flex flex-col justify-between shadow-md border border-cream-300">
-      <div className="relative w-full h-[200px] md:h-[230px]">
+    <div className="bg-cream-200 p-4 md:p-5 lg:p-5 rounded-2xl md:rounded-3xl w-full sm:w-[360px] md:w-[340px] lg:w-[360px] h-full min-h-[340px] md:min-h-[350px] lg:min-h-[360px] flex flex-col justify-between shadow-md border border-cream-300">
+      <div className="relative w-full h-[200px] md:h-[220px] lg:h-[230px]">
         {name === "Personal Portfolio" ? (
           <div className="w-full h-full rounded-2xl overflow-hidden bg-white">
             <div 
@@ -243,8 +243,8 @@ const ProjectCard = ({
       </div>
 
       <div className="mt-3 md:mt-3.5 flex-1 flex flex-col">
-        <h3 className="text-black font-bold text-lg md:text-xl lg:text-[22px] leading-tight mb-2">{localizedName}</h3>
-        <p className="text-text-medium text-xs md:text-sm lg:text-[13.5px] leading-[1.6] break-words" style={{ wordBreak: 'break-word', overflowWrap: 'break-word' }}>{localizedDescription}</p>
+        <h3 className="text-black font-bold text-lg md:text-[20px] lg:text-[22px] leading-tight mb-2">{localizedName}</h3>
+        <p className="text-text-medium text-xs md:text-[13px] lg:text-[13.5px] leading-[1.6] break-words" style={{ wordBreak: 'break-word', overflowWrap: 'break-word' }}>{localizedDescription}</p>
       </div>
 
       <div className="mt-2 md:mt-2.5 flex flex-wrap gap-1.5 md:gap-2">
