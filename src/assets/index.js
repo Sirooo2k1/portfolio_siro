@@ -1,9 +1,5 @@
 import logo from "./logo/logo hagoromo.png";
 import hagoromo from "./company/hagoromo.png";
-import backend from "./backend.png";
-import creator from "./creator.png";
-import mobile from "./mobile.png";
-import web from "./web.png";
 import menu from "./menu.svg";
 import close from "./close.svg";
 
@@ -24,10 +20,6 @@ import threejs from "./tech/threejs.svg";
 import meta from "./company/meta.png";
 import starbucks from "./company/starbucks.png";
 import tesla from "./company/tesla.png";
-
-import carrent from "./carrent.png";
-import jobit from "./jobit.png";
-import tripguide from "./tripguide.png";
 
 import youtube from "./logo/youtube.png";
 import github from "./logo/github.png";
@@ -84,10 +76,6 @@ import logovideodemo from "./projects/Logovideodemo.png";
 export {
   logo,
   hagoromo,
-  backend,
-  creator,
-  mobile,
-  web,
   menu,
   close,
   css,
@@ -106,9 +94,6 @@ export {
   meta,
   starbucks,
   tesla,
-  carrent,
-  jobit,
-  tripguide,
   youtube,
   github,
   instagram,

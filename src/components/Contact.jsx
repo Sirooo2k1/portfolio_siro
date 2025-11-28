@@ -126,12 +126,12 @@ const Contact = () => {
   return (
     <div
       ref={contactRef}
-      className={`mt-8 md:mt-10 lg:mt-12 xl:mt-12 flex xl:flex-row flex-col-reverse gap-6 md:gap-8 lg:gap-10 overflow-hidden`}
+      className={`mt-8 md:mt-9 lg:mt-12 xl:mt-12 flex xl:flex-row flex-col-reverse gap-6 md:gap-7 lg:gap-10 overflow-hidden`}
     >
       <motion.div
         ref={textRef}
         variants={slideIn("left", "tween", 0.2, 1)}
-        className='flex-[0.75] bg-cream-200 p-6 md:p-8 lg:p-10 rounded-3xl md:rounded-[35px] lg:rounded-[40px] border border-cream-300 text-black'
+        className='flex-[0.75] bg-cream-200 p-6 md:p-7 lg:p-10 rounded-3xl md:rounded-[32px] lg:rounded-[40px] border border-cream-300 text-black'
       >
         <h3 className={`${styles.sectionHeadText} text-black text-center`}>{t('contact.title', language)}</h3>
 

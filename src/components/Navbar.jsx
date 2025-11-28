@@ -81,11 +81,11 @@ const Navbar = () => {
           <img
             src={logo}
             alt='logo'
-            className='w-17 h-14 xs:w-21 xs:h-19 sm:w-25 sm:h-21 md:w-27 md:h-23 object-contain'
+            className='w-17 h-14 xs:w-21 xs:h-19 sm:w-25 sm:h-21 md:w-26 md:h-22 lg:w-27 lg:h-23 object-contain'
           />
         </Link>
 
-        <ul className='list-none hidden sm:flex flex-row gap-6 md:gap-8 lg:gap-10 flex-1 justify-center items-center'>
+        <ul className='list-none hidden sm:flex flex-row gap-6 md:gap-7 lg:gap-10 flex-1 justify-center items-center'>
           {navLinks.map((nav) => (
             nav.id === "work" ? (
               <li
@@ -97,7 +97,7 @@ const Navbar = () => {
                 <div
                   className={`${
                     active === nav.title ? "text-[#1F2937]" : "text-[#374151]"
-                  } hover:text-[#1F2937] text-base md:text-lg lg:text-[18px] font-medium cursor-pointer flex items-center gap-1`}
+                  } hover:text-[#1F2937] text-base md:text-[17px] lg:text-[18px] font-medium cursor-pointer flex items-center gap-1`}
                   onClick={() => {
                     setActive(nav.title);
                     setBlogDropdownOpen(!blogDropdownOpen);
