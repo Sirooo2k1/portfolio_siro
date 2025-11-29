@@ -232,6 +232,19 @@ h1, h2, h3, h4, h5, h6 {
   left: 0;
   z-index: 0;
   pointer-events: none;
+  /* Improve canvas rendering on Windows */
+  image-rendering: auto;
+  transform: translateZ(0);
+  will-change: transform;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+/* Improve canvas text rendering on Windows */
+#magic canvas {
+  image-rendering: auto;
+  transform: translateZ(0);
+  will-change: transform;
 }
 
 #magic[disabled] {
