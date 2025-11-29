@@ -318,7 +318,11 @@ const BlogPost = () => {
               <div className="flex items-center justify-between flex-wrap gap-3 md:gap-4">
                 <div>
                   <p className="text-xs md:text-sm text-[#6B7280]">{t('blogPost.publishedOn', language)}</p>
-                  <p className="text-sm md:text-base font-semibold text-black">{post.date}</p>
+                  <p className="text-sm md:text-base font-semibold text-black">
+                    {post.dateByLanguage && post.dateByLanguage[language] 
+                      ? post.dateByLanguage[language] 
+                      : post.date}
+                  </p>
                 </div>
                 <button
                   onClick={handleBackToBlogPost}

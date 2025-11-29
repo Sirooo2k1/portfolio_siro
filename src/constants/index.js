@@ -1026,7 +1026,7 @@ export const blogPosts = [
     title: "When Cooking Became Part of My Life",
     subtitle: "A Recipe for Life",
     category: "Cooking",
-    date: "August 2024",
+    date: "November 2025",
     content: [],
     // Multi-language support
     titleByLanguage: {
@@ -1043,6 +1043,11 @@ export const blogPosts = [
       en: "Cooking",
       vi: "Nấu Ăn",
       ja: "料理",
+    },
+    dateByLanguage: {
+      en: "November 2025",
+      vi: "Tháng 11 2025",
+      ja: "2025年11月",
     },
     contentByLanguage: {
       en: [
@@ -1073,7 +1078,7 @@ export const blogPosts = [
     title: "Exploring the World",
     subtitle: "Unforgettable Journeys",
     category: "Explore & Travel",
-    date: "July 2024",
+    date: "November 2025",
     content: [],
     // Multi-language support
     titleByLanguage: {
@@ -1090,6 +1095,11 @@ export const blogPosts = [
       en: "Explore & Travel",
       vi: "Khám Phá & Du Lịch",
       ja: "探索と旅行",
+    },
+    dateByLanguage: {
+      en: "November 2025",
+      vi: "Tháng 11 2025",
+      ja: "2025年11月",
     },
     contentByLanguage: {
       en: [
