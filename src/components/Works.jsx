@@ -176,20 +176,29 @@ const ProjectCard = ({
                   }
                 }}
               >
-                <div className="relative green-pink-gradient p-[3px] rounded-2xl w-full max-w-md mx-auto shadow-2xl" style={{ maxHeight: '85vh' }} onClick={(e) => e.stopPropagation()}>
+                <div className="relative green-pink-gradient p-[3px] rounded-2xl w-full max-w-md mx-auto shadow-2xl" style={{ maxHeight: '90vh' }} onClick={(e) => e.stopPropagation()}>
                   <div className="relative bg-gray-900 rounded-2xl w-full h-full overflow-hidden" style={{ pointerEvents: 'none' }}>
                     <button
                       onClick={(e) => {
                         e.stopPropagation();
                         setShowVideo(false);
                       }}
-                      className="absolute top-3 right-3 bg-black/70 text-white rounded-full w-10 h-10 flex items-center justify-center hover:bg-black/90 transition-colors text-xl"
+                      className="absolute top-3 right-3 bg-black/70 text-white rounded-full w-10 h-10 flex items-center justify-center hover:bg-black/90 transition-colors text-xl z-50"
                       aria-label="Close video"
                       style={{ pointerEvents: 'auto', zIndex: 100000 }}
                     >
                       ✕
                     </button>
-                    <div className="w-full overflow-hidden" style={{ aspectRatio: '267 / 591', minHeight: '500px', maxHeight: 'calc(85vh - 20px)', position: 'relative', pointerEvents: 'auto' }}>
+                    <div 
+                      className="w-full overflow-hidden" 
+                      style={{ 
+                        aspectRatio: '267 / 591', 
+                        minHeight: '300px',
+                        maxHeight: 'calc(90vh - 60px)',
+                        position: 'relative', 
+                        pointerEvents: 'auto' 
+                      }}
+                    >
                       <iframe
                         src="https://www.facebook.com/plugins/video.php?height=591&href=https%3A%2F%2Fwww.facebook.com%2Fdunglailaptrinh%2Fvideos%2F1105214645040692%2F&show_text=true&width=267&t=0"
                         width="100%"
@@ -203,8 +212,6 @@ const ProjectCard = ({
                           width: '100%', 
                           height: '100%',
                           display: 'block',
-                          transform: 'translateY(10px) scale(1.05)',
-                          transformOrigin: 'center center',
                           backgroundColor: '#111827',
                           pointerEvents: 'auto',
                           zIndex: 1
