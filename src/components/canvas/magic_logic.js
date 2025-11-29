@@ -117,15 +117,27 @@ class Environment {
 
   createRenderer() {
 
-    this.renderer = new THREE.WebGLRenderer();
+    // Enable antialiasing for better text rendering, especially on Windows
+    this.renderer = new THREE.WebGLRenderer({ 
+      antialias: true,
+      alpha: true,
+      powerPreference: "high-performance"
+    });
     this.renderer.setSize( this.container.clientWidth, this.container.clientHeight );
 
-    this.renderer.setPixelRatio( Math.min( window.devicePixelRatio, 2));
+    // Better pixel ratio handling for Windows high-DPI displays
+    const isWindows = navigator.platform.toLowerCase().includes('win');
+    const maxPixelRatio = isWindows ? 2.5 : 2;
+    this.renderer.setPixelRatio( Math.min( window.devicePixelRatio, maxPixelRatio));
 
     this.renderer.outputColorSpace = THREE.SRGBColorSpace;
 
 	this.renderer.setClearAlpha(0);
     this.container.appendChild( this.renderer.domElement );
+
+    // Improve text rendering quality
+    this.renderer.domElement.style.imageRendering = 'auto';
+    this.renderer.domElement.style.textRendering = 'optimizeLegibility';
 
     this.renderer.setAnimationLoop(() => { this.render() })
 
@@ -449,7 +461,16 @@ class CreateParticles {
 		const scaleFactor =  .00390625;
 		
 		// Calculate the dynamic text size based on the screen resolution
-		this.data.textSize = baseTextSize + (Math.min(screenWidth, screenHeight) * scaleFactor);
+		let calculatedSize = baseTextSize + (Math.min(screenWidth, screenHeight) * scaleFactor);
+		
+		// Adjust for Windows rendering differences
+		const isWindows = navigator.platform.toLowerCase().includes('win');
+		if (isWindows) {
+			// Slightly increase text size on Windows for better readability
+			calculatedSize *= 1.05;
+		}
+		
+		this.data.textSize = calculatedSize;
 	}
 
 	clearText() {
