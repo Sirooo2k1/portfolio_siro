@@ -204,9 +204,10 @@ class CreateParticles {
 		document.addEventListener( 'mousemove', this.onMouseMove.bind( this ));
 		document.addEventListener( 'mouseup', this.onMouseUp.bind( this ));
 
-		document.addEventListener( 'touchstart', this.OnTouchStart.bind( this ));
-		document.addEventListener( 'touchmove', this.OnTouchMove.bind( this ));
-		document.addEventListener( 'touchend', this.OnTouchEnd.bind( this ));
+		// Use { passive: false } to allow preventDefault for touch events
+		document.addEventListener( 'touchstart', this.OnTouchStart.bind( this ), { passive: false });
+		document.addEventListener( 'touchmove', this.OnTouchMove.bind( this ), { passive: false });
+		document.addEventListener( 'touchend', this.OnTouchEnd.bind( this ), { passive: false });
 
 		this.debouncedResize = debounce(this.onWindowResize.bind(this), 200);
 		window.addEventListener('resize', this.debouncedResize);
@@ -275,8 +276,23 @@ class CreateParticles {
 	}
 
 	OnTouchStart(event) {
-		this.mouse.x = (event.touches[0].clientX / window.innerWidth) * 2 - 1;
-		this.mouse.y = (event.touches[0].clientY / window.innerHeight) * 2 + 1;
+		// Prevent default scrolling behavior only when touching the text area
+		const touch = event.touches[0];
+		const touchX = touch.clientX;
+		const touchY = touch.clientY;
+		
+		// Check if touch is within the canvas area
+		if (this.renderer && this.renderer.domElement) {
+			const canvas = this.renderer.domElement;
+			const rect = canvas.getBoundingClientRect();
+			if (touchX >= rect.left && touchX <= rect.right && 
+			    touchY >= rect.top && touchY <= rect.bottom) {
+				event.preventDefault();
+			}
+		}
+
+		this.mouse.x = (touchX / window.innerWidth) * 2 - 1;
+		this.mouse.y = -(touchY / window.innerHeight) * 2 + 1;
 
 		const vector = new THREE.Vector3(this.mouse.x, this.mouse.y, 0.5);
 		vector.unproject(this.camera);
@@ -295,8 +311,23 @@ class CreateParticles {
 	}
 
 	OnTouchMove(event) {
-		this.mouse.x = (event.touches[0].clientX / window.innerWidth) * 2 - 1;
-		this.mouse.y = (event.touches[0].clientY / window.innerHeight) * 2 + 1;
+		// Prevent default scrolling behavior when moving within the text area
+		const touch = event.touches[0];
+		const touchX = touch.clientX;
+		const touchY = touch.clientY;
+		
+		// Check if touch is within the canvas area
+		if (this.renderer && this.renderer.domElement) {
+			const canvas = this.renderer.domElement;
+			const rect = canvas.getBoundingClientRect();
+			if (touchX >= rect.left && touchX <= rect.right && 
+			    touchY >= rect.top && touchY <= rect.bottom) {
+				event.preventDefault();
+			}
+		}
+
+		this.mouse.x = (touchX / window.innerWidth) * 2 - 1;
+		this.mouse.y = -(touchY / window.innerHeight) * 2 + 1;
 	}
 
 	render( level ){ 
