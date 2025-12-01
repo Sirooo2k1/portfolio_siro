@@ -70,7 +70,7 @@ const Navbar = () => {
       <div className='w-full flex justify-between items-center max-w-7xl mx-auto'>
         <Link
           to='/'
-          className='flex items-center shrink-0 -ml-2 xs:-ml-4 sm:-ml-6 md:-ml-4 lg:-ml-20 mr-2 xs:mr-3 sm:mr-3 md:mr-2 lg:mr-4'
+          className='flex items-center shrink-0 -ml-2 xs:-ml-4 sm:-ml-6 md:-ml-3 lg:-ml-20 mr-2 xs:mr-3 sm:mr-3 md:mr-1.5 lg:mr-4'
           onClick={() => {
             setActive("");
             window.scrollTo(0, 0);
@@ -83,7 +83,7 @@ const Navbar = () => {
           />
         </Link>
 
-        <ul className='list-none hidden sm:flex flex-row gap-6 md:gap-3 lg:gap-10 flex-1 justify-center items-center'>
+        <ul className='list-none hidden sm:flex flex-row gap-6 md:gap-2.5 lg:gap-10 flex-1 justify-center items-center'>
           {navLinks.map((nav) => (
             nav.id === "work" ? (
               <li
@@ -95,7 +95,7 @@ const Navbar = () => {
                 <div
                   className={`${
                     active === nav.title ? "text-[#1F2937]" : "text-[#374151]"
-                  } hover:text-[#1F2937] text-base md:text-[14.5px] lg:text-[18px] font-medium cursor-pointer flex items-center gap-1`}
+                  } hover:text-[#1F2937] text-base md:text-[14px] lg:text-[18px] font-medium cursor-pointer flex items-center gap-0.5 md:gap-1`}
                   onClick={() => {
                     setActive(nav.title);
                     setBlogDropdownOpen(!blogDropdownOpen);
@@ -240,7 +240,7 @@ const Navbar = () => {
                 key={nav.id}
                 className={`${
                   active === nav.title ? "text-[#1F2937]" : "text-[#374151]"
-                } hover:text-[#1F2937] text-base md:text-[14.5px] lg:text-[18px] font-medium cursor-pointer`}
+                } hover:text-[#1F2937] text-base md:text-[14px] lg:text-[18px] font-medium cursor-pointer`}
                 onClick={() => setActive(nav.title)}
               >
                 <a href={`#${nav.id}`} onClick={(e) => handleAnchorClick(e, nav.id)}>
@@ -255,9 +255,9 @@ const Navbar = () => {
           ))}
         </ul>
 
-        <div className='hidden sm:flex items-center gap-5 md:gap-3 lg:gap-5 shrink-0'>
+        <div className='hidden sm:flex items-center gap-5 md:gap-2.5 lg:gap-5 shrink-0'>
           <LanguageSwitcher />
-          <ul className='list-none flex flex-row gap-5 md:gap-3 lg:gap-5'>
+          <ul className='list-none flex flex-row gap-5 md:gap-2.5 lg:gap-5'>
             {navMedia.map((nav) =>
             (
               <li
