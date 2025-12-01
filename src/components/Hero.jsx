@@ -20,6 +20,63 @@ const Hero = () => {
     scrollDown: t('hero.scrollDown', language),
   }), [language]);
 
+  // Smooth scroll helper optimized for mobile/iPad
+  const smoothScrollTo = (elementId) => {
+    const element = document.getElementById(elementId);
+    if (!element) return;
+
+    // Get navbar height
+    const navbar = document.querySelector('nav');
+    const navbarHeight = navbar ? navbar.getBoundingClientRect().height : 80;
+    
+    // Hash-span has margin-top: -100px, so actual section starts at element position + 100px
+    const elementTop = element.getBoundingClientRect().top + window.pageYOffset;
+    
+    // Scroll to section start (after hash-span padding) with smaller offset for closer positioning
+    const targetPosition = elementTop + 100 - navbarHeight - 30;
+
+    // Use custom smooth scroll for mobile/iPad for better performance
+    const isMobile = window.innerWidth < 1024;
+    
+    if (isMobile) {
+      const startPosition = window.pageYOffset;
+      const distance = targetPosition - startPosition;
+      const duration = Math.min(Math.abs(distance) * 0.4, 800); // Faster and smoother for mobile
+      
+      let startTime = null;
+      
+      const easeInOutCubic = (t) => {
+        return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+      };
+      
+      const animateScroll = (currentTime) => {
+        if (startTime === null) startTime = currentTime;
+        const timeElapsed = currentTime - startTime;
+        const progress = Math.min(timeElapsed / duration, 1);
+        const easedProgress = easeInOutCubic(progress);
+        
+        window.scrollTo(0, startPosition + distance * easedProgress);
+        
+        if (progress < 1) {
+          requestAnimationFrame(animateScroll);
+        }
+      };
+      
+      requestAnimationFrame(animateScroll);
+    } else {
+      // For desktop, use native smooth scroll
+      window.scrollTo({
+        top: Math.max(0, targetPosition),
+        behavior: 'smooth'
+      });
+    }
+  };
+
+  const handleScrollClick = (e) => {
+    e.preventDefault();
+    smoothScrollTo('about');
+  };
+
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
 
@@ -63,7 +120,7 @@ const Hero = () => {
         </div>
 
 
-        <a href='#about' className="w-fit mx-auto flex items-center justify-center gap-3 md:gap-5 lg:gap-6 bg-tertiary px-3 py-1.5 md:px-5 md:py-2.5 lg:px-7 lg:py-3 rounded-lg md:rounded-xl lg:mt-10 mt-3 md:mt-4 lg:mt-5 cursor-pointer max-[350px]:hidden select-none">
+        <a href='#about' onClick={handleScrollClick} className="w-fit mx-auto flex items-center justify-center gap-3 md:gap-5 lg:gap-6 bg-tertiary px-3 py-1.5 md:px-5 md:py-2.5 lg:px-7 lg:py-3 rounded-lg md:rounded-xl lg:mt-10 mt-3 md:mt-4 lg:mt-5 cursor-pointer max-[350px]:hidden select-none">
           <div className='w-[28px] h-[50px] md:w-[32px] md:h-[58px] lg:w-[35px] lg:h-[64px] rounded-3xl border-3 md:border-4 border-secondary flex justify-center items-start p-1.5 md:p-2'>
             <motion.div
               animate={{

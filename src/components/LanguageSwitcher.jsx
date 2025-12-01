@@ -37,11 +37,11 @@ const LanguageSwitcher = () => {
   };
 
   return (
-    <div className="relative" ref={dropdownRef}>
+    <div className="relative inline-block" ref={dropdownRef}>
       {/* Dropdown Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center gap-1.5 sm:gap-2 px-2 sm:px-3 md:px-4 py-1.5 sm:py-2 bg-white border border-[#F2E8C6] rounded-lg shadow-lg transition-all duration-200 min-w-[60px] sm:min-w-[100px] md:min-w-[140px] justify-between shrink-0"
+        className="flex items-center gap-1.5 sm:gap-2 px-2 sm:px-3 md:px-4 py-1.5 sm:py-2 bg-white border border-[#F2E8C6] rounded-lg shadow-lg transition-all duration-200 min-w-[60px] sm:min-w-[100px] md:min-w-[140px] justify-between shrink-0 box-border w-full"
         aria-label="Select language"
       >
         <div className="flex items-center gap-1.5 sm:gap-2">
@@ -66,15 +66,15 @@ const LanguageSwitcher = () => {
 
       {/* Dropdown Menu */}
       {isOpen && (
-        <div className="absolute top-full left-0 mt-2 w-full min-w-[140px] sm:min-w-[160px] md:min-w-[180px] bg-white border border-[#F2E8C6] rounded-lg shadow-lg z-50 overflow-hidden">
+        <div className="absolute top-full left-1/2 -translate-x-1/2 sm:left-0 sm:translate-x-0 md:left-0 md:translate-x-0 mt-2 w-[140px] sm:w-full md:w-full min-w-[140px] sm:min-w-[160px] md:min-w-[180px] bg-white border border-[#F2E8C6] rounded-lg shadow-lg z-50 overflow-hidden box-border">
           {languages.map((lang) => (
             <button
               key={lang.code}
               onClick={() => handleLanguageChange(lang.code)}
-              className={`w-full px-3 sm:px-4 py-2 sm:py-3 flex items-center gap-2 sm:gap-3 text-left transition-colors ${
+              className={`w-full px-3 sm:px-4 py-2 sm:py-3 flex items-center gap-2 sm:gap-3 text-left transition-colors bg-white ${
                 language === lang.code
                   ? 'bg-[#F2E8C6] text-[#5B21B6] font-semibold'
-                  : 'text-[#1F2937] hover:bg-[#F2E8C6]'
+                  : 'text-[#1F2937] hover:text-[#F2E8C6]'
               }`}
             >
               <span className="text-base sm:text-lg md:text-xl leading-none">{lang.flag}</span>
