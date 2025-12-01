@@ -109,7 +109,7 @@ const Hero = () => {
   }, []);
 
   return (
-    <section ref={heroRef} className={`relative w-full h-screen mx-auto overflow-hidden`}>
+    <section ref={heroRef} className={`relative w-full h-screen mx-auto overflow-hidden touch-pan-y`}>
       
       <MagicCanvas />
 

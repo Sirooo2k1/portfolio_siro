@@ -40,7 +40,7 @@ const App = () => {
           path="/"
           element={
             <>
-              <div className='relative z-0 bg-primary' style={{ backgroundColor: '#FAFCC6' }} ref={appRef} >
+              <div className='relative z-0 bg-primary overflow-y-auto' style={{ backgroundColor: '#FAFCC6', WebkitOverflowScrolling: 'touch' }} ref={appRef} >
                 <div className='bg-hero-pattern bg-cover bg-no-repeat bg-center'>
                   <Navbar />
                   <Hero />

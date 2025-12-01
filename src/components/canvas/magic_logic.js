@@ -351,13 +351,15 @@ class CreateParticles {
 			const deltaX = Math.abs(touchX - this.touchStartX);
 			
 			// If movement is primarily vertical and significant (scrolling), allow it
-			if (deltaY > 15 && deltaY > deltaX * 1.2) {
+			// Reduced threshold for easier scrolling on mobile/iPad
+			if (deltaY > 10 && deltaY > deltaX * 1.1) {
 				// User is trying to scroll, allow it and stop text interaction
 				this.isInteractingWithText = false;
 				this.buttom = false;
 				this.data.ease = 0.05;
 				// Don't prevent default, allow scroll
-			} else if (deltaX < 80 && deltaY < 80) {
+				return; // Exit early to allow native scroll
+			} else if (deltaX < 50 && deltaY < 50) {
 				// Small movement, likely interacting with text
 				event.preventDefault();
 				
