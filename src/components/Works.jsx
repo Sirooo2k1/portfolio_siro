@@ -68,7 +68,7 @@ const ProjectCard = ({
   const localizedDescription = project?.descriptionByLanguage?.[language] || description;
   
   return (
-    <div className="bg-cream-200 p-4 md:p-5 lg:p-5 rounded-2xl md:rounded-3xl w-full sm:w-[360px] md:w-[340px] lg:w-[360px] h-full min-h-[340px] md:min-h-[350px] lg:min-h-[360px] flex flex-col justify-between shadow-md border border-cream-300">
+    <div className="bg-cream-200 p-4 md:p-5 lg:p-5 rounded-2xl md:rounded-3xl w-full sm:w-[360px] md:w-[320px] lg:w-[360px] h-full min-h-[340px] md:min-h-[350px] lg:min-h-[360px] flex flex-col justify-between shadow-md border border-cream-300">
       <div className="relative w-full h-[200px] md:h-[220px] lg:h-[230px]">
         {name === "Personal Portfolio" ? (
           <div className="w-full h-full rounded-2xl overflow-hidden bg-white">
@@ -309,7 +309,7 @@ const Works = () => {
         </motion.p>
       </div>
 
-      <div className="mt-12 md:mt-16 lg:mt-20 flex flex-wrap gap-4 md:gap-6 lg:gap-7 justify-center md:justify-start">
+      <div className="mt-12 md:mt-16 lg:mt-20 flex flex-wrap gap-4 md:gap-5 lg:gap-7 justify-center md:justify-center lg:justify-start">
         {projects.map((project, index) => (
           //   <div>
           //   {isDesktop ? (
