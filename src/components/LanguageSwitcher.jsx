@@ -41,15 +41,16 @@ const LanguageSwitcher = () => {
       {/* Dropdown Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center gap-2 px-4 py-2 bg-white border border-[#F2E8C6] rounded-lg shadow-lg transition-all duration-200 min-w-[140px] justify-between"
+        className="flex items-center gap-1.5 sm:gap-2 px-2 sm:px-3 md:px-4 py-1.5 sm:py-2 bg-white border border-[#F2E8C6] rounded-lg shadow-lg transition-all duration-200 min-w-[60px] sm:min-w-[100px] md:min-w-[140px] justify-between shrink-0"
         aria-label="Select language"
       >
-        <div className="flex items-center gap-2">
-          <span className="text-xl leading-none">{currentLanguage.flag}</span>
-          <span className="text-[#1F2937] font-semibold text-sm">{currentLanguage.fullName}</span>
+        <div className="flex items-center gap-1.5 sm:gap-2">
+          <span className="text-base sm:text-lg md:text-xl leading-none">{currentLanguage.flag}</span>
+          <span className="text-[#1F2937] font-semibold text-xs sm:text-sm hidden sm:inline lg:hidden">{currentLanguage.name}</span>
+          <span className="text-[#1F2937] font-semibold text-xs sm:text-sm hidden lg:inline">{currentLanguage.fullName}</span>
         </div>
         <svg
-          className={`w-4 h-4 text-[#6B7280] transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`}
+          className={`w-3 h-3 sm:w-3.5 sm:h-3.5 md:w-4 md:h-4 text-[#6B7280] transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`}
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
@@ -65,22 +66,22 @@ const LanguageSwitcher = () => {
 
       {/* Dropdown Menu */}
       {isOpen && (
-        <div className="absolute top-full left-0 mt-2 w-full bg-white border border-[#F2E8C6] rounded-lg shadow-lg z-50 overflow-hidden">
+        <div className="absolute top-full left-0 mt-2 w-full min-w-[140px] sm:min-w-[160px] md:min-w-[180px] bg-white border border-[#F2E8C6] rounded-lg shadow-lg z-50 overflow-hidden">
           {languages.map((lang) => (
             <button
               key={lang.code}
               onClick={() => handleLanguageChange(lang.code)}
-              className={`w-full px-4 py-3 flex items-center gap-3 text-left transition-colors ${
+              className={`w-full px-3 sm:px-4 py-2 sm:py-3 flex items-center gap-2 sm:gap-3 text-left transition-colors ${
                 language === lang.code
                   ? 'bg-[#F2E8C6] text-[#5B21B6] font-semibold'
-                  : 'text-[#1F2937] hover:text-[#F2E8C6]'
+                  : 'text-[#1F2937] hover:bg-[#F2E8C6]'
               }`}
             >
-              <span className="text-xl leading-none">{lang.flag}</span>
-              <span className="text-sm font-medium">{lang.fullName}</span>
+              <span className="text-base sm:text-lg md:text-xl leading-none">{lang.flag}</span>
+              <span className="text-xs sm:text-sm font-medium">{lang.fullName}</span>
               {language === lang.code && (
                 <svg
-                  className="w-4 h-4 ml-auto"
+                  className="w-3.5 h-3.5 sm:w-4 sm:h-4 ml-auto"
                   fill="currentColor"
                   viewBox="0 0 20 20"
                 >
