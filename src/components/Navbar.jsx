@@ -102,7 +102,7 @@ const Navbar = () => {
       <div className='w-full flex justify-between items-center max-w-7xl mx-auto overflow-visible min-w-0'>
         <Link
           to='/'
-          className='flex items-center flex-1 sm:flex-initial sm:shrink-0 -ml-0.5 sm:-ml-2 md:-ml-3 lg:-ml-20 mr-1 sm:mr-2 md:mr-3 lg:mr-4 sm:shrink-0'
+          className='flex items-center flex-1 sm:flex-initial sm:shrink-0 ml-0 sm:-ml-2 md:-ml-3 lg:-ml-20 mr-1 sm:mr-2 md:mr-3 lg:mr-4 sm:shrink-0 min-w-0'
           onClick={() => {
             setActive("");
             window.scrollTo(0, 0);
@@ -111,7 +111,7 @@ const Navbar = () => {
           <img
             src={logo}
             alt='logo'
-            className='w-full max-w-[calc(100vw-80px)] sm:w-[115px] sm:h-[100px] md:w-[130px] md:h-[115px] lg:w-[180px] lg:h-[160px] xl:w-[195px] xl:h-[175px] h-[60px] sm:h-[100px] object-contain transition-all duration-300'
+            className='w-full max-w-[calc(100vw-100px)] sm:w-[115px] sm:h-[100px] md:w-[130px] md:h-[115px] lg:w-[180px] lg:h-[160px] xl:w-[195px] xl:h-[175px] h-[60px] sm:h-[100px] object-contain transition-all duration-300'
           />
         </Link>
 
