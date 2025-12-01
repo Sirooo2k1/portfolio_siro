@@ -193,7 +193,7 @@ const Experience = () => {
     checkDesktop();
     
     // Set ready immediately for initial render
-    setIsReady(true);
+        setIsReady(true);
     
     // Listen for resize
     window.addEventListener('resize', checkDesktop);

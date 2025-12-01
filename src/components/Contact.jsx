@@ -96,17 +96,17 @@ const Contact = () => {
         "REDACTED_EMAILJS_PUBLIC_KEY"
       );
 
-      setLoading(false);
+          setLoading(false);
       console.log("EmailJS Success:", result);
-      alert(t('contact.success', language));
+          alert(t('contact.success', language));
 
-      setForm({
-        name: "",
-        email: "",
-        message: "",
-      });
+          setForm({
+            name: "",
+            email: "",
+            message: "",
+          });
     } catch (error) {
-      setLoading(false);
+          setLoading(false);
       console.error("EmailJS Error Details:", {
         text: error.text,
         status: error.status,
@@ -118,7 +118,7 @@ const Contact = () => {
       let errorMessage = t('contact.error', language);
       if (error.text) {
         errorMessage += `\n\nChi tiết lỗi: ${error.text}`;
-      }
+        }
       alert(errorMessage);
     }
   };

@@ -38,7 +38,7 @@ const ServiceCard = ({ index, title, icon }) => {
           className="bg-white rounded-[20px] py-5 px-12 h-[280px] flex flex-col border border-cream-300 shadow-md"
         >
           <div className="flex-1 flex items-center justify-center">
-            <img src={icon} alt={title} className="w-22 h-22 object-contain" />
+          <img src={icon} alt={title} className="w-22 h-22 object-contain" />
           </div>
 
           <h3 className="text-black text-[20px] font-bold text-center leading-tight h-[60px] flex items-center justify-center">
