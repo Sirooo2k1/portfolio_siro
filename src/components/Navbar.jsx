@@ -288,16 +288,18 @@ const Navbar = () => {
           <img
             src={toggle ? close : menu}
             alt='menu'
-            className={`w-[28px] h-[28px] object-contain ${
-              toggle ? 'brightness-0' : ''
+            className={`w-[28px] h-[28px] object-contain transition-all duration-200 ease-in-out cursor-pointer transform ${
+              toggle ? 'brightness-0 rotate-90' : 'brightness-100 rotate-0'
             }`}
+            style={{ willChange: 'transform, filter' }}
             onClick={() => setToggle(!toggle)}
           />
 
           <div
             className={`${
-              !toggle ? "hidden" : "flex"
-            } p-6 black-gradient absolute top-20 right-0 mx-4 my-2 min-w-[140px] z-10 rounded-xl flex-col`}
+              toggle ? "opacity-100 translate-y-0 pointer-events-auto visible" : "opacity-0 -translate-y-2 pointer-events-none invisible"
+            } p-6 black-gradient absolute top-20 right-0 mx-4 my-2 min-w-[140px] z-10 rounded-xl flex-col transition-all duration-200 ease-out flex transform`}
+            style={{ willChange: 'transform, opacity' }}
           >
             <ul className='list-none flex justify-end items-start flex-1 flex-col gap-4'>
               {navLinks.map((nav) => (
