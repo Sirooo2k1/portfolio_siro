@@ -90,7 +90,7 @@ export const translations = {
       about: "Giới thiệu",
       blog: "Blog",
       projects: "Dự án",
-      education: "Học vấn & Đào tạo",
+      education: "Học tập & Phát triển",
       contact: "Liên hệ",
     },
     // Hero
@@ -145,7 +145,7 @@ export const translations = {
     },
     // Programs
     programs: {
-      title: "Học vấn & Đào tạo",
+      title: "Học tập & Phát triển",
     },
     // BlogPost
     blogPost: {
@@ -175,7 +175,7 @@ export const translations = {
       about: "自己紹介",
       blog: "ブログ",
       projects: "プロジェクト",
-      education: "教育・学習",
+      education: "学習と成長",
       contact: "お問い合わせ",
     },
     // Hero
@@ -230,7 +230,7 @@ export const translations = {
     },
     // Programs
     programs: {
-      title: "教育・学習",
+      title: "学習と成長",
     },
     // BlogPost
     blogPost: {

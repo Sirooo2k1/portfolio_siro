@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 
 import { styles } from "../styles";
@@ -18,11 +18,32 @@ const ProgramCard = ({
   program, // Pass the full program object for translations
 }) => {
   const { language } = useLanguage();
+  const [windowWidth, setWindowWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 1024);
+  
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+    
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
   
   // Get localized content
   const localizedCompany = program?.companyByLanguage?.[language] || company;
   const localizedTitle = program?.titleByLanguage?.[language] || title;
   const localizedDescription = program?.descriptionByLanguage?.[language] || description;
+  
+  // Calculate responsive scale values for Swinburne and freeCodeCamp
+  const getSwinburneScale = () => {
+    if (windowWidth < 768) return '1.0';
+    return '1.2';
+  };
+  
+  const getFreeCodeCampScale = () => {
+    if (windowWidth < 768) return '1.0';
+    return '1.2';
+  };
   
   return (
   <div className='w-full md:w-[48%] lg:w-[48%]'>
@@ -70,11 +91,9 @@ const ProgramCard = ({
                   : 'w-14 h-14 md:w-15 md:h-15 lg:w-16 lg:h-16'
               }`}
               style={company === 'Swinburne University Lecturer' ? { 
-                width: '80px',
-                height: '80px',
                 imageRendering: 'crisp-edges',
                 WebkitImageRendering: '-webkit-optimize-contrast',
-                transform: 'scale(1.2)',
+                transform: `scale(${getSwinburneScale()})`,
                 transformOrigin: 'center',
                 filter: 'contrast(1.15) saturate(1.1)',
                 willChange: 'transform',
@@ -83,7 +102,7 @@ const ProgramCard = ({
               } : company === 'freeCodeCamp' ? {
                 imageRendering: 'crisp-edges',
                 WebkitImageRendering: '-webkit-optimize-contrast',
-                transform: 'scale(1.2)',
+                transform: `scale(${getFreeCodeCampScale()})`,
                 transformOrigin: 'center',
                 filter: 'contrast(1.2) saturate(1.15) brightness(1.05)',
                 willChange: 'transform',

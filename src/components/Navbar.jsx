@@ -132,7 +132,7 @@ const Navbar = () => {
                     onMouseEnter={() => setBlogDropdownOpen(true)}
                     onMouseLeave={() => setBlogDropdownOpen(false)}
                   >
-                    <div className="bg-white rounded-lg shadow-xl border-2 border-[#D1D5DB] py-3 relative" style={{ backgroundColor: '#FFFFFF', boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)' }}>
+                    <div className="bg-white rounded-lg shadow-lg border border-[#F2E8C6] py-3 relative">
                       {/* Diamond icon at center of top border */}
                       <div className="absolute -top-[9.5px] left-1/2 transform -translate-x-1/2">
                         <svg
@@ -222,7 +222,7 @@ const Navbar = () => {
                         <div key={category}>
                           <a
                             href={`#${nav.id}`}
-                              className="block px-4 py-2 text-[14px] text-[#1F2937] hover:bg-[#F9FAFB] hover:text-[#111827] transition-colors font-lora bg-white text-center cursor-pointer font-medium"
+                              className="block px-4 py-2 text-[14px] text-[#1F2937] hover:text-[#F2E8C6] transition-colors font-lora bg-white text-center cursor-pointer font-medium"
                               onClick={handleCategoryClick}
                           >
                             {getCategoryTranslation(category)}
