@@ -16,7 +16,7 @@ const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [blogDropdownOpen, setBlogDropdownOpen] = useState(false);
 
-  // Smooth scroll helper - scroll closer to headings
+  // Smooth scroll helper - scroll closer to headings with improved smoothness for mobile/iPad
   const smoothScrollTo = (elementId) => {
     const element = document.getElementById(elementId);
     if (!element) return;
@@ -32,10 +32,42 @@ const Navbar = () => {
     // This brings headings closer to navbar with a nice breathing room
     const targetPosition = elementTop + 100 - navbarHeight - 30; // -30 for closer spacing to headings
 
-    window.scrollTo({
-      top: Math.max(0, targetPosition),
-      behavior: 'smooth'
-    });
+    // Use scrollIntoView for better mobile/iPad support with smooth behavior
+    const isMobile = window.innerWidth < 1024;
+    
+    if (isMobile && element.scrollIntoView) {
+      // For mobile/iPad, use scrollIntoView with smooth behavior for better performance
+      const startPosition = window.pageYOffset;
+      const distance = targetPosition - startPosition;
+      const duration = Math.min(Math.abs(distance) * 0.5, 1000); // Max 1 second, faster for shorter distances
+      
+      let startTime = null;
+      
+      const easeInOutCubic = (t) => {
+        return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+      };
+      
+      const animateScroll = (currentTime) => {
+        if (startTime === null) startTime = currentTime;
+        const timeElapsed = currentTime - startTime;
+        const progress = Math.min(timeElapsed / duration, 1);
+        const easedProgress = easeInOutCubic(progress);
+        
+        window.scrollTo(0, startPosition + distance * easedProgress);
+        
+        if (progress < 1) {
+          requestAnimationFrame(animateScroll);
+        }
+      };
+      
+      requestAnimationFrame(animateScroll);
+    } else {
+      // For desktop, use native smooth scroll
+      window.scrollTo({
+        top: Math.max(0, targetPosition),
+        behavior: 'smooth'
+      });
+    }
   };
 
   // Handle anchor link clicks
@@ -63,7 +95,7 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`px-2 sm:px-6 md:px-10 lg:px-16 w-full flex items-center h-[65px] sm:h-[72px] md:h-[78px] lg:h-[80px] fixed top-0 z-20 overflow-visible transition-all duration-300 ${
+      className={`px-2 sm:px-6 md:px-6 lg:px-16 w-full flex items-center h-[65px] sm:h-[72px] md:h-[76px] lg:h-[80px] fixed top-0 z-20 overflow-visible transition-all duration-300 ${
         scrolled ? "bg-[#FAFCC6] shadow-md" : "bg-transparent"
       }`}
     >
@@ -79,7 +111,7 @@ const Navbar = () => {
           <img
             src={logo}
             alt='logo'
-            className='w-full max-w-[calc(100vw-80px)] sm:w-[115px] sm:h-[100px] md:w-[155px] md:h-[135px] lg:w-[180px] lg:h-[160px] xl:w-[195px] xl:h-[175px] h-[60px] sm:h-[100px] object-contain transition-all duration-300'
+            className='w-full max-w-[calc(100vw-80px)] sm:w-[115px] sm:h-[100px] md:w-[130px] md:h-[115px] lg:w-[180px] lg:h-[160px] xl:w-[195px] xl:h-[175px] h-[60px] sm:h-[100px] object-contain transition-all duration-300'
           />
         </Link>
 
@@ -95,7 +127,7 @@ const Navbar = () => {
                 <div
                   className={`${
                     active === nav.title ? "text-[#1F2937]" : "text-[#374151]"
-                  } hover:text-[#1F2937] text-[13px] md:text-[14.5px] lg:text-[16px] xl:text-[18px] font-medium cursor-pointer flex items-center gap-1 whitespace-nowrap transition-colors duration-200`}
+                  } hover:text-[#1F2937] text-[13px] md:text-[14px] lg:text-[16px] xl:text-[18px] font-medium cursor-pointer flex items-center gap-1 whitespace-nowrap transition-colors duration-200`}
                   onClick={() => {
                     setActive(nav.title);
                     setBlogDropdownOpen(!blogDropdownOpen);
@@ -240,7 +272,7 @@ const Navbar = () => {
                 key={nav.id}
                 className={`${
                   active === nav.title ? "text-[#1F2937]" : "text-[#374151]"
-                } hover:text-[#1F2937] text-[13px] md:text-[14.5px] lg:text-[16px] xl:text-[18px] font-medium cursor-pointer whitespace-nowrap transition-colors duration-200`}
+                } hover:text-[#1F2937] text-[13px] md:text-[14px] lg:text-[16px] xl:text-[18px] font-medium cursor-pointer whitespace-nowrap transition-colors duration-200`}
                 onClick={() => setActive(nav.title)}
               >
                 <a href={`#${nav.id}`} onClick={(e) => handleAnchorClick(e, nav.id)}>
@@ -255,9 +287,9 @@ const Navbar = () => {
           ))}
         </ul>
 
-        <div className='hidden md:flex items-center gap-2 md:gap-3 lg:gap-4 xl:gap-5 shrink-0'>
+        <div className='hidden md:flex items-center gap-2 md:gap-2 lg:gap-4 xl:gap-5 shrink-0'>
           <LanguageSwitcher />
-          <ul className='list-none flex flex-row gap-2 md:gap-3 lg:gap-4 xl:gap-5'>
+          <ul className='list-none flex flex-row gap-2 md:gap-2 lg:gap-4 xl:gap-5'>
             {navMedia.map((nav) =>
             (
               <li
@@ -293,7 +325,7 @@ const Navbar = () => {
               src={toggle ? close : menu}
               alt='menu'
               className={`w-6 h-6 sm:w-7 sm:h-7 object-contain transition-all duration-200 ${
-                toggle ? 'brightness-0 rotate-90' : ''
+                toggle ? 'brightness-0' : ''
               }`}
             />
           </button>
