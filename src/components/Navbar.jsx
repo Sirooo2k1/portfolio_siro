@@ -72,7 +72,7 @@ const Navbar = () => {
       <div className='w-full flex justify-between items-center max-w-7xl mx-auto'>
         <Link
           to='/'
-          className='flex items-center shrink-0 -ml-2 xs:-ml-4 sm:-ml-4 md:-ml-6 lg:-ml-20 mr-2 xs:mr-3 sm:mr-3 md:mr-4'
+          className='flex items-center shrink-0 -ml-2 xs:-ml-4 sm:-ml-6 md:-ml-8 lg:-ml-20 mr-2 xs:mr-3 md:mr-4'
           onClick={() => {
             setActive("");
             window.scrollTo(0, 0);
@@ -81,11 +81,11 @@ const Navbar = () => {
           <img
             src={logo}
             alt='logo'
-            className='w-17 h-14 xs:w-21 xs:h-19 sm:w-24 sm:h-20 md:w-26 md:h-22 lg:w-27 lg:h-23 object-contain'
+            className='w-17 h-14 xs:w-21 xs:h-19 sm:w-25 sm:h-21 md:w-26 md:h-22 lg:w-27 lg:h-23 object-contain'
           />
         </Link>
 
-        <ul className='list-none hidden sm:flex flex-row gap-4 sm:gap-5 md:gap-5 lg:gap-10 flex-1 justify-center items-center'>
+        <ul className='list-none hidden sm:flex flex-row gap-6 md:gap-5 lg:gap-10 flex-1 justify-center items-center'>
           {navLinks.map((nav) => (
             nav.id === "work" ? (
               <li
@@ -97,7 +97,7 @@ const Navbar = () => {
                 <div
                   className={`${
                     active === nav.title ? "text-[#1F2937]" : "text-[#374151]"
-                  } hover:text-[#1F2937] text-[15px] sm:text-base md:text-[16px] lg:text-[18px] font-medium cursor-pointer flex items-center gap-1`}
+                  } hover:text-[#1F2937] text-base md:text-[16px] lg:text-[18px] font-medium cursor-pointer flex items-center gap-1`}
                   onClick={() => {
                     setActive(nav.title);
                     setBlogDropdownOpen(!blogDropdownOpen);
@@ -242,7 +242,7 @@ const Navbar = () => {
                 key={nav.id}
                 className={`${
                   active === nav.title ? "text-[#1F2937]" : "text-[#374151]"
-                } hover:text-[#1F2937] text-[15px] sm:text-base md:text-[16px] lg:text-[18px] font-medium cursor-pointer`}
+                } hover:text-[#1F2937] text-base md:text-[16px] lg:text-[18px] font-medium cursor-pointer`}
                 onClick={() => setActive(nav.title)}
               >
                 <a href={`#${nav.id}`} onClick={(e) => handleAnchorClick(e, nav.id)}>
@@ -257,9 +257,9 @@ const Navbar = () => {
           ))}
         </ul>
 
-        <div className='hidden sm:flex items-center gap-3 sm:gap-4 md:gap-5 shrink-0'>
+        <div className='hidden sm:flex items-center gap-5 md:gap-4 lg:gap-5 shrink-0'>
           <LanguageSwitcher />
-          <ul className='list-none flex flex-row gap-3 sm:gap-4 md:gap-5'>
+          <ul className='list-none flex flex-row gap-5 md:gap-4 lg:gap-5'>
             {navMedia.map((nav) =>
             (
               <li
