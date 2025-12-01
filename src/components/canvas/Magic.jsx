@@ -4,12 +4,6 @@ const MagicCanvas = memo(() => {
 	const magicRef = useRef(null);
 
 	useEffect(() => {
-		const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-		if (isMobile) {
-			console.log('Disabling Intersection Observer For Mobile');
-			return;
-		}
-
 		// Re-initialize magic when component mounts
 		const initializeMagic = () => {
 			const magicElement = document.querySelector('#magic');
@@ -35,30 +29,41 @@ const MagicCanvas = memo(() => {
 			}
 		}, 150);
 
-		const observer = new IntersectionObserver(entries => {
-			entries.forEach(entry => {
-				const magicElement = document.querySelector('#magic');
-				if (!magicElement) return;
-				
-				if (entry.isIntersecting && entry.intersectionRatio > 0.3) {
-					magicElement.removeAttribute('disabled');
-				}
-				else if (!entry.isIntersecting && entry.intersectionRatio <= 0.3) {
-					magicElement.setAttribute('disabled', true);
-				}
-			});
-		}, { threshold: 0.3 });
-	
-		if (magicRef.current) {
-			observer.observe(magicRef.current);
-		}
-	
-		return () => {
-			clearTimeout(initTimer);
+		// Use IntersectionObserver only on desktop for performance
+		// On mobile, always enable to allow touch interactions
+		const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+		
+		if (!isMobile) {
+			const observer = new IntersectionObserver(entries => {
+				entries.forEach(entry => {
+					const magicElement = document.querySelector('#magic');
+					if (!magicElement) return;
+					
+					if (entry.isIntersecting && entry.intersectionRatio > 0.3) {
+						magicElement.removeAttribute('disabled');
+					}
+					else if (!entry.isIntersecting && entry.intersectionRatio <= 0.3) {
+						magicElement.setAttribute('disabled', true);
+					}
+				});
+			}, { threshold: 0.3 });
+		
 			if (magicRef.current) {
-				observer.unobserve(magicRef.current);
+				observer.observe(magicRef.current);
 			}
-		};
+		
+			return () => {
+				clearTimeout(initTimer);
+				if (magicRef.current) {
+					observer.unobserve(magicRef.current);
+				}
+			};
+		} else {
+			// On mobile, keep magic enabled for touch interactions
+			return () => {
+				clearTimeout(initTimer);
+			};
+		}
 	}, []);
 	
 	return (
