@@ -70,7 +70,7 @@ const Navbar = () => {
       <div className='w-full flex justify-between items-center max-w-7xl mx-auto'>
         <Link
           to='/'
-          className='flex items-center shrink-0 -ml-2 xs:-ml-4 sm:-ml-6 md:-ml-3 lg:-ml-20 mr-2 xs:mr-3 sm:mr-3 md:mr-1.5 lg:mr-4'
+          className='flex items-center shrink-0 -ml-2 xs:-ml-4 sm:-ml-6 md:-ml-4 lg:-ml-20 mr-2 xs:mr-3 sm:mr-3 md:mr-2 lg:mr-4'
           onClick={() => {
             setActive("");
             window.scrollTo(0, 0);
@@ -79,11 +79,11 @@ const Navbar = () => {
           <img
             src={logo}
             alt='logo'
-            className='w-17 h-14 xs:w-21 xs:h-19 sm:w-25 sm:h-21 md:w-24 md:h-20 lg:w-27 lg:h-23 object-contain'
+            className='w-[68px] h-14 xs:w-[84px] xs:h-[76px] sm:w-[100px] sm:h-[84px] md:w-24 md:h-20 lg:w-[108px] lg:h-[92px] object-contain'
           />
         </Link>
 
-        <ul className='list-none hidden sm:flex flex-row gap-6 md:gap-2.5 lg:gap-10 flex-1 justify-center items-center'>
+        <ul className='list-none hidden sm:flex flex-row gap-6 md:gap-3 lg:gap-10 flex-1 justify-center items-center'>
           {navLinks.map((nav) => (
             nav.id === "work" ? (
               <li
@@ -95,7 +95,7 @@ const Navbar = () => {
                 <div
                   className={`${
                     active === nav.title ? "text-[#1F2937]" : "text-[#374151]"
-                  } hover:text-[#1F2937] text-base md:text-[14px] lg:text-[18px] font-medium cursor-pointer flex items-center gap-0.5 md:gap-1`}
+                  } hover:text-[#1F2937] text-base md:text-[14.5px] lg:text-[18px] font-medium cursor-pointer flex items-center gap-1`}
                   onClick={() => {
                     setActive(nav.title);
                     setBlogDropdownOpen(!blogDropdownOpen);
@@ -240,7 +240,7 @@ const Navbar = () => {
                 key={nav.id}
                 className={`${
                   active === nav.title ? "text-[#1F2937]" : "text-[#374151]"
-                } hover:text-[#1F2937] text-base md:text-[14px] lg:text-[18px] font-medium cursor-pointer`}
+                } hover:text-[#1F2937] text-base md:text-[14.5px] lg:text-[18px] font-medium cursor-pointer`}
                 onClick={() => setActive(nav.title)}
               >
                 <a href={`#${nav.id}`} onClick={(e) => handleAnchorClick(e, nav.id)}>
@@ -255,9 +255,9 @@ const Navbar = () => {
           ))}
         </ul>
 
-        <div className='hidden sm:flex items-center gap-5 md:gap-2.5 lg:gap-5 shrink-0'>
+        <div className='hidden sm:flex items-center gap-5 md:gap-3 lg:gap-5 shrink-0'>
           <LanguageSwitcher />
-          <ul className='list-none flex flex-row gap-5 md:gap-2.5 lg:gap-5'>
+          <ul className='list-none flex flex-row gap-5 md:gap-3 lg:gap-5'>
             {navMedia.map((nav) =>
             (
               <li
@@ -288,18 +288,16 @@ const Navbar = () => {
           <img
             src={toggle ? close : menu}
             alt='menu'
-            className={`w-[28px] h-[28px] object-contain transition-all duration-200 ease-in-out cursor-pointer transform ${
-              toggle ? 'brightness-0 rotate-90' : 'brightness-100 rotate-0'
+            className={`w-[28px] h-[28px] object-contain ${
+              toggle ? 'brightness-0' : ''
             }`}
-            style={{ willChange: 'transform, filter' }}
             onClick={() => setToggle(!toggle)}
           />
 
           <div
             className={`${
-              toggle ? "opacity-100 translate-y-0 pointer-events-auto visible" : "opacity-0 -translate-y-2 pointer-events-none invisible"
-            } p-6 black-gradient absolute top-20 right-0 mx-4 my-2 min-w-[140px] z-10 rounded-xl flex-col transition-all duration-200 ease-out flex transform`}
-            style={{ willChange: 'transform, opacity' }}
+              !toggle ? "hidden" : "flex"
+            } p-6 black-gradient absolute top-20 right-0 mx-4 my-2 min-w-[140px] z-10 rounded-xl flex-col`}
           >
             <ul className='list-none flex justify-end items-start flex-1 flex-col gap-4'>
               {navLinks.map((nav) => (

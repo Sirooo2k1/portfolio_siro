@@ -305,15 +305,15 @@ class CreateParticles {
 				// Only interact with text if raycaster intersects
 				if (intersects.length > 0) {
 					this.isInteractingWithText = true;
-					
-					const vector = new THREE.Vector3(this.mouse.x, this.mouse.y, 0.5);
-					vector.unproject(this.camera);
-					const dir = vector.sub(this.camera.position).normalize();
-					const distance = -this.camera.position.z / dir.z;
-					this.currenPosition = this.camera.position.clone().add(dir.multiplyScalar(distance));
-					
-					this.buttom = true;
-					this.data.ease = 0.01;
+
+		const vector = new THREE.Vector3(this.mouse.x, this.mouse.y, 0.5);
+		vector.unproject(this.camera);
+		const dir = vector.sub(this.camera.position).normalize();
+		const distance = -this.camera.position.z / dir.z;
+		this.currenPosition = this.camera.position.clone().add(dir.multiplyScalar(distance));
+
+		this.buttom = true;
+		this.data.ease = 0.01;
 				} else {
 					// Touch is in canvas but not on text, allow normal scroll
 					this.isInteractingWithText = false;
