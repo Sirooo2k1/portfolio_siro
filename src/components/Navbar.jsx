@@ -23,7 +23,7 @@ const Navbar = () => {
 
     // Get navbar height
     const navbar = document.querySelector('nav');
-    const navbarHeight = navbar ? navbar.getBoundingClientRect().height : 70;
+    const navbarHeight = navbar ? navbar.getBoundingClientRect().height : 80;
     
     // Hash-span has margin-top: -100px, so actual section starts at element position + 100px
     const elementTop = element.getBoundingClientRect().top + window.pageYOffset;
@@ -63,14 +63,14 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`px-6 sm:px-16 md:px-8 lg:px-16 w-full flex items-center py-3 fixed top-0 z-20 ${
-        scrolled ? "bg-[#FAFCC6]" : "bg-transparent"
+      className={`px-2 sm:px-6 md:px-10 lg:px-16 w-full flex items-center h-[65px] sm:h-[72px] md:h-[78px] lg:h-[80px] fixed top-0 z-20 overflow-visible transition-all duration-300 ${
+        scrolled ? "bg-[#FAFCC6] shadow-md" : "bg-transparent"
       }`}
     >
-      <div className='w-full flex justify-between items-center max-w-7xl mx-auto'>
+      <div className='w-full flex justify-between items-center max-w-7xl mx-auto overflow-visible min-w-0'>
         <Link
           to='/'
-          className='flex items-center shrink-0 -ml-2 xs:-ml-4 sm:-ml-6 md:-ml-4 lg:-ml-20 mr-2 xs:mr-3 sm:mr-3 md:mr-2 lg:mr-4'
+          className='flex items-center flex-1 sm:flex-initial sm:shrink-0 -ml-0.5 sm:-ml-2 md:-ml-3 lg:-ml-20 mr-1 sm:mr-2 md:mr-3 lg:mr-4 sm:shrink-0'
           onClick={() => {
             setActive("");
             window.scrollTo(0, 0);
@@ -79,11 +79,11 @@ const Navbar = () => {
           <img
             src={logo}
             alt='logo'
-            className='w-[68px] h-14 xs:w-[84px] xs:h-[76px] sm:w-[100px] sm:h-[84px] md:w-24 md:h-20 lg:w-[108px] lg:h-[92px] object-contain'
+            className='w-full max-w-[calc(100vw-80px)] sm:w-[115px] sm:h-[100px] md:w-[155px] md:h-[135px] lg:w-[180px] lg:h-[160px] xl:w-[195px] xl:h-[175px] h-[60px] sm:h-[100px] object-contain transition-all duration-300'
           />
         </Link>
 
-        <ul className='list-none hidden sm:flex flex-row gap-6 md:gap-3 lg:gap-10 flex-1 justify-center items-center'>
+        <ul className='list-none hidden md:flex flex-row gap-2 md:gap-3 lg:gap-6 xl:gap-10 flex-1 justify-center items-center min-w-0'>
           {navLinks.map((nav) => (
             nav.id === "work" ? (
               <li
@@ -95,7 +95,7 @@ const Navbar = () => {
                 <div
                   className={`${
                     active === nav.title ? "text-[#1F2937]" : "text-[#374151]"
-                  } hover:text-[#1F2937] text-base md:text-[14.5px] lg:text-[18px] font-medium cursor-pointer flex items-center gap-1`}
+                  } hover:text-[#1F2937] text-[13px] md:text-[14.5px] lg:text-[16px] xl:text-[18px] font-medium cursor-pointer flex items-center gap-1 whitespace-nowrap transition-colors duration-200`}
                   onClick={() => {
                     setActive(nav.title);
                     setBlogDropdownOpen(!blogDropdownOpen);
@@ -109,7 +109,7 @@ const Navbar = () => {
                    nav.id === "contact" ? t(`nav.contact`, language) : nav.title}
                 </a>
                   <svg
-                    className={`w-4 h-4 transition-transform ${
+                    className={`w-3.5 h-3.5 md:w-4 md:h-4 transition-transform duration-200 ${
                       blogDropdownOpen ? "rotate-180" : ""
                     }`}
                     fill="none"
@@ -240,7 +240,7 @@ const Navbar = () => {
                 key={nav.id}
                 className={`${
                   active === nav.title ? "text-[#1F2937]" : "text-[#374151]"
-                } hover:text-[#1F2937] text-base md:text-[14.5px] lg:text-[18px] font-medium cursor-pointer`}
+                } hover:text-[#1F2937] text-[13px] md:text-[14.5px] lg:text-[16px] xl:text-[18px] font-medium cursor-pointer whitespace-nowrap transition-colors duration-200`}
                 onClick={() => setActive(nav.title)}
               >
                 <a href={`#${nav.id}`} onClick={(e) => handleAnchorClick(e, nav.id)}>
@@ -255,25 +255,24 @@ const Navbar = () => {
           ))}
         </ul>
 
-        <div className='hidden sm:flex items-center gap-5 md:gap-3 lg:gap-5 shrink-0'>
+        <div className='hidden md:flex items-center gap-2 md:gap-3 lg:gap-4 xl:gap-5 shrink-0'>
           <LanguageSwitcher />
-          <ul className='list-none flex flex-row gap-5 md:gap-3 lg:gap-5'>
+          <ul className='list-none flex flex-row gap-2 md:gap-3 lg:gap-4 xl:gap-5'>
             {navMedia.map((nav) =>
             (
               <li
                 key={nav.id}
                 className={`${
                   active === nav.title ? "text-white" : "text-secondary"
-                } hover:cursor-pointer`}
-                style={{ width: "28px", height: "28px" }}
+                } hover:cursor-pointer w-6 h-6 md:w-7 md:h-7 lg:w-7 lg:h-7`}
               >
-                <div className="green-pink-gradient p-[1px] rounded-full cursor-pointer select-none overflow-hidden">
+                <div className="green-pink-gradient p-[1px] rounded-full cursor-pointer select-none overflow-hidden w-full h-full">
                   <div className="w-full h-full rounded-full overflow-hidden flex items-center justify-center green-pink-gradient">
                     <a href={nav.link} target="_blank" rel="noopener noreferrer" className="w-full h-full flex items-center justify-center">
                       <img
                         src={nav.image}
                         alt={nav.link}
-                        className={`${nav.id === "Instagram" ? "w-full h-full object-cover rounded-full" : "w-[24px] h-[24px] object-contain"} transition-filter duration-150 hover:brightness-75`}
+                        className={`${nav.id === "Instagram" ? "w-full h-full object-cover rounded-full" : "w-[20px] h-[20px] md:w-[22px] md:h-[22px] lg:w-[24px] lg:h-[24px] object-contain"} transition-all duration-200 hover:brightness-75 hover:scale-110`}
                       />
                     </a>
                   </div>
@@ -284,29 +283,34 @@ const Navbar = () => {
           </ul>
         </div>
 
-        <div className='sm:hidden flex flex-1 justify-end items-center'>
-          <img
-            src={toggle ? close : menu}
-            alt='menu'
-            className={`w-[28px] h-[28px] object-contain ${
-              toggle ? 'brightness-0' : ''
-            }`}
+        <div className='md:hidden flex flex-1 justify-end items-center'>
+          <button
             onClick={() => setToggle(!toggle)}
-          />
+            className='p-2 -mr-2 focus:outline-none'
+            aria-label='Toggle menu'
+          >
+            <img
+              src={toggle ? close : menu}
+              alt='menu'
+              className={`w-6 h-6 sm:w-7 sm:h-7 object-contain transition-all duration-200 ${
+                toggle ? 'brightness-0 rotate-90' : ''
+              }`}
+            />
+          </button>
 
           <div
             className={`${
               !toggle ? "hidden" : "flex"
-            } p-6 black-gradient absolute top-20 right-0 mx-4 my-2 min-w-[140px] z-10 rounded-xl flex-col`}
+            } p-5 sm:p-6 black-gradient absolute top-[65px] sm:top-[72px] right-0 mx-2 sm:mx-3 my-2 min-w-[160px] sm:min-w-[180px] z-10 rounded-xl flex-col shadow-2xl animate-in slide-in-from-top-2 duration-200`}
           >
             <ul className='list-none flex justify-end items-start flex-1 flex-col gap-4'>
               {navLinks.map((nav) => (
                 nav.id === "work" ? (
                   <li key={nav.id} className="w-full">
                     <div
-                      className={`font-poppins font-medium cursor-pointer text-[16px] ${
+                      className={`font-poppins font-medium cursor-pointer text-[15px] sm:text-[16px] ${
                         active === nav.title ? "text-white" : "text-secondary"
-                      } flex items-center justify-between`}
+                      } flex items-center justify-between py-1 transition-colors duration-200`}
                       onClick={() => {
                         setBlogDropdownOpen(!blogDropdownOpen);
                         setActive(nav.title);
@@ -320,7 +324,7 @@ const Navbar = () => {
                    nav.id === "contact" ? t(`nav.contact`, language) : nav.title}
                 </a>
                       <svg
-                        className={`w-4 h-4 transition-transform ${
+                        className={`w-3.5 h-3.5 sm:w-4 sm:h-4 transition-transform duration-200 ${
                           blogDropdownOpen ? "rotate-180" : ""
                         }`}
                         fill="none"
@@ -423,9 +427,9 @@ const Navbar = () => {
                 ) : (
                   <li
                     key={nav.id}
-                    className={`font-poppins font-medium cursor-pointer text-[16px] ${
+                    className={`font-poppins font-medium cursor-pointer text-[15px] sm:text-[16px] ${
                       active === nav.title ? "text-white" : "text-secondary"
-                    }`}
+                    } py-1 transition-colors duration-200`}
                     onClick={() => {
                       setToggle(!toggle);
                       setActive(nav.title);
@@ -443,16 +447,15 @@ const Navbar = () => {
               ))}
             </ul>
 
-            <div className='flex flex-col items-center gap-4 mt-4'>
+            <div className='flex flex-col items-center gap-3 sm:gap-4 mt-4 pt-4 border-t border-gray-600'>
               <LanguageSwitcher />
-              <ul className='list-none flex justify-center items-start flex-row gap-4'>
+              <ul className='list-none flex justify-center items-center flex-row gap-3 sm:gap-4'>
                 {navMedia.map((nav) => (
                 <li
                   key={nav.id}
                   className={`${
                     active === nav.title ? "text-white" : "text-secondary"
-                  } hover:cursor-pointer`}
-                  style={{ width: "28px", height: "28px" }}
+                  } hover:cursor-pointer w-7 h-7 sm:w-8 sm:h-8`}
                 >
                   <div className='green-pink-gradient p-[1px] rounded-full cursor-pointer select-none overflow-hidden'>
                     <div className="w-full h-full rounded-full overflow-hidden flex items-center justify-center green-pink-gradient">
@@ -460,7 +463,7 @@ const Navbar = () => {
                         <img
                           src={nav.image}
                           alt={nav.link}
-                          className={`${nav.id === "Instagram" ? "w-full h-full object-cover rounded-full" : "w-[24px] h-[24px] object-contain"} transition-filter duration-150 hover:brightness-75`}
+                          className={`${nav.id === "Instagram" ? "w-full h-full object-cover rounded-full" : "w-[20px] h-[20px] sm:w-[22px] sm:h-[22px] object-contain"} transition-all duration-200 hover:brightness-75 hover:scale-110`}
                         />
                       </a>
                     </div>
