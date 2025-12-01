@@ -168,6 +168,9 @@ class CreateParticles {
 		this.colorChange = new THREE.Color();
 
 		this.buttom = false;
+		this.isInteractingWithText = false;
+		this.touchStartY = null;
+		this.touchStartX = null;
 
 		this.data = {
 			// text: "Hi, I'm Steven\nXR Developor\n@ Stanford",
@@ -276,58 +279,102 @@ class CreateParticles {
 	}
 
 	OnTouchStart(event) {
-		// Prevent default scrolling behavior only when touching the text area
 		const touch = event.touches[0];
 		const touchX = touch.clientX;
 		const touchY = touch.clientY;
 		
-		// Check if touch is within the canvas area
-		if (this.renderer && this.renderer.domElement) {
-			const canvas = this.renderer.domElement;
-			const rect = canvas.getBoundingClientRect();
-			if (touchX >= rect.left && touchX <= rect.right && 
-			    touchY >= rect.top && touchY <= rect.bottom) {
-				event.preventDefault();
-			}
-		}
-
+		// Store initial touch position for scroll detection
+		this.touchStartY = touchY;
+		this.touchStartX = touchX;
+		
 		this.mouse.x = (touchX / window.innerWidth) * 2 - 1;
 		this.mouse.y = -(touchY / window.innerHeight) * 2 + 1;
 
-		const vector = new THREE.Vector3(this.mouse.x, this.mouse.y, 0.5);
-		vector.unproject(this.camera);
-		const dir = vector.sub(this.camera.position).normalize();
-		const distance = -this.camera.position.z / dir.z;
-		this.currenPosition = this.camera.position.clone().add(dir.multiplyScalar(distance));
-
-		const pos = this.particles.geometry.attributes.position;
-		this.buttom = true;
-		this.data.ease = 0.01;
+		// Check if touch is within the canvas area
+		if (this.renderer && this.renderer.domElement && this.planeArea) {
+			const canvas = this.renderer.domElement;
+			const rect = canvas.getBoundingClientRect();
+			const isInCanvas = touchX >= rect.left && touchX <= rect.right && 
+			                   touchY >= rect.top && touchY <= rect.bottom;
+			
+			if (isInCanvas) {
+				// Check if touch is near text by using raycaster
+				this.raycaster.setFromCamera(this.mouse, this.camera);
+				const intersects = this.raycaster.intersectObject(this.planeArea);
+				
+				// Only interact with text if raycaster intersects
+				if (intersects.length > 0) {
+					this.isInteractingWithText = true;
+					
+					const vector = new THREE.Vector3(this.mouse.x, this.mouse.y, 0.5);
+					vector.unproject(this.camera);
+					const dir = vector.sub(this.camera.position).normalize();
+					const distance = -this.camera.position.z / dir.z;
+					this.currenPosition = this.camera.position.clone().add(dir.multiplyScalar(distance));
+					
+					this.buttom = true;
+					this.data.ease = 0.01;
+				} else {
+					// Touch is in canvas but not on text, allow normal scroll
+					this.isInteractingWithText = false;
+				}
+			} else {
+				// Touch is outside canvas, allow normal interactions
+				this.isInteractingWithText = false;
+			}
+		} else {
+			this.isInteractingWithText = false;
+		}
 	}
 
 	OnTouchEnd(event) {
 		this.buttom = false;
 		this.data.ease = 0.05;
+		this.isInteractingWithText = false;
+		this.touchStartY = null;
+		this.touchStartX = null;
 	}
 
 	OnTouchMove(event) {
-		// Prevent default scrolling behavior when moving within the text area
 		const touch = event.touches[0];
 		const touchX = touch.clientX;
 		const touchY = touch.clientY;
 		
-		// Check if touch is within the canvas area
-		if (this.renderer && this.renderer.domElement) {
-			const canvas = this.renderer.domElement;
-			const rect = canvas.getBoundingClientRect();
-			if (touchX >= rect.left && touchX <= rect.right && 
-			    touchY >= rect.top && touchY <= rect.bottom) {
-				event.preventDefault();
-			}
-		}
-
+		// Update mouse position for potential interaction
 		this.mouse.x = (touchX / window.innerWidth) * 2 - 1;
 		this.mouse.y = -(touchY / window.innerHeight) * 2 + 1;
+		
+		// Only prevent default if we're actually interacting with text
+		if (this.isInteractingWithText && this.touchStartY !== null && this.touchStartX !== null) {
+			// Calculate movement distance from start
+			const deltaY = Math.abs(touchY - this.touchStartY);
+			const deltaX = Math.abs(touchX - this.touchStartX);
+			
+			// If movement is primarily vertical and significant (scrolling), allow it
+			if (deltaY > 15 && deltaY > deltaX * 1.2) {
+				// User is trying to scroll, allow it and stop text interaction
+				this.isInteractingWithText = false;
+				this.buttom = false;
+				this.data.ease = 0.05;
+				// Don't prevent default, allow scroll
+			} else if (deltaX < 80 && deltaY < 80) {
+				// Small movement, likely interacting with text
+				event.preventDefault();
+				
+				// Update interaction position
+				const vector = new THREE.Vector3(this.mouse.x, this.mouse.y, 0.5);
+				vector.unproject(this.camera);
+				const dir = vector.sub(this.camera.position).normalize();
+				const distance = -this.camera.position.z / dir.z;
+				this.currenPosition = this.camera.position.clone().add(dir.multiplyScalar(distance));
+			} else {
+				// Large movement, probably scrolling, allow it
+				this.isInteractingWithText = false;
+				this.buttom = false;
+				this.data.ease = 0.05;
+			}
+		}
+		// If not interacting with text, just update mouse position and allow scroll
 	}
 
 	render( level ){ 
