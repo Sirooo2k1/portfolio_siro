@@ -36,6 +36,14 @@ module.exports = {
       screens: {
         xs: "450px",
       },
+      spacing: {
+        '17': '4.25rem',  // 68px
+        '19': '4.75rem',  // 76px
+        '21': '5.25rem',  // 84px
+        '23': '5.75rem',  // 92px
+        '25': '6.25rem',  // 100px
+        '27': '6.75rem',  // 108px
+      },
       backgroundImage: {
         "hero-pattern": "url('/src/assets/herobg.png')",
       },
