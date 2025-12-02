@@ -38,13 +38,13 @@ const ProgramCard = ({
   const getSwinburneScale = () => {
     if (windowWidth < 768) return '1.1';
     if (windowWidth < 1024) return '1.3';
-    return '1.4';
+    return '1.2'; // Giữ nguyên như ban đầu cho desktop
   };
   
   const getFreeCodeCampScale = () => {
     if (windowWidth < 768) return '1.1';
     if (windowWidth < 1024) return '1.3';
-    return '1.4';
+    return '1.2'; // Giữ nguyên như ban đầu cho desktop
   };
   
   return (
@@ -81,7 +81,7 @@ const ProgramCard = ({
             } text-[#5B21B6] bg-[#F2E8C6] px-4 md:px-4.5 lg:px-6 py-1.5 md:py-2 rounded-xl md:rounded-2xl inline-block font-medium shadow-sm text-center whitespace-nowrap mx-auto md:mx-0 mt-0.5`}><i>{date}</i></p>
           </div>
 
-          <div className={company === 'Swinburne University Lecturer' || company === 'freeCodeCamp' || (company === 'Hagoromo University' && title.includes('Game Programming')) || company === 'AWS Learning Path' ? 'w-16 h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 flex items-center justify-center overflow-visible flex-shrink-0' : company === 'Cybersecurity Journey' ? 'w-16 h-16 md:w-18 md:h-18 lg:w-20 lg:h-20 flex items-center justify-center overflow-hidden rounded-full flex-shrink-0' : 'flex-shrink-0'}>
+          <div className={company === 'Swinburne University Lecturer' || company === 'freeCodeCamp' || (company === 'Hagoromo University' && title.includes('Game Programming')) || company === 'AWS Learning Path' ? 'w-16 h-16 md:w-20 md:h-20 lg:w-20 lg:h-20 flex items-center justify-center overflow-visible flex-shrink-0' : company === 'Cybersecurity Journey' ? 'w-16 h-16 md:w-18 md:h-18 lg:w-20 lg:h-20 flex items-center justify-center overflow-hidden rounded-full flex-shrink-0' : 'flex-shrink-0'}>
             <img
               src={icon}
               alt={`${company} logo`}
@@ -89,7 +89,7 @@ const ProgramCard = ({
                 company === 'Cybersecurity Journey' ? 'object-cover' : 'object-contain'
               } ${
                 index <= 5 
-                  ? 'w-16 h-16 md:w-20 md:h-20 lg:w-24 lg:h-24' 
+                  ? 'w-16 h-16 md:w-20 md:h-20 lg:w-20 lg:h-20' 
                   : 'w-14 h-14 md:w-18 md:h-18 lg:w-20 lg:h-20'
               }`}
               style={company === 'Swinburne University Lecturer' ? { 
