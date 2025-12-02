@@ -35,10 +35,10 @@ const ServiceCard = ({ index, title, icon }) => {
             scale: 1,
             speed: 450,
           }}
-          className="bg-white rounded-[20px] py-4 px-4 sm:py-5 sm:px-6 md:py-5 md:px-8 lg:px-12 h-[270px] sm:h-[270px] md:h-[280px] flex flex-col border border-cream-300 shadow-md overflow-hidden"
+          className="bg-white rounded-[20px] py-4 px-4 sm:py-5 sm:px-6 md:py-5 md:px-8 lg:px-12 h-[280px] sm:h-[270px] md:h-[280px] flex flex-col border border-cream-300 shadow-md overflow-hidden"
         >
-          <div className="flex-1 flex items-center justify-center min-h-0 py-1">
-            <img src={icon} alt={title} className="w-[72px] h-[72px] sm:w-20 sm:h-20 md:w-[88px] md:h-[88px] lg:w-[100px] lg:h-[100px] object-contain max-w-full max-h-full" />
+          <div className="flex-1 flex items-center justify-center min-h-0 py-2">
+            <img src={icon} alt={title} className="w-[84px] h-[84px] sm:w-20 sm:h-20 md:w-[88px] md:h-[88px] lg:w-[100px] lg:h-[100px] object-contain max-w-full max-h-full" />
           </div>
 
           <h3 className="text-black text-sm sm:text-base md:text-[19px] lg:text-[20px] font-bold text-center leading-tight min-h-[50px] sm:min-h-[55px] md:min-h-[60px] flex items-center justify-center px-3 break-words overflow-wrap-anywhere">
