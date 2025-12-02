@@ -121,7 +121,7 @@ const Hero = () => {
 
 
         <a href='#about' onClick={handleScrollClick} className="w-fit mx-auto flex items-center justify-center gap-3 md:gap-5 lg:gap-6 bg-tertiary px-3 py-1.5 md:px-5 md:py-2.5 lg:px-7 lg:py-3 rounded-lg md:rounded-xl lg:mt-10 mt-3 md:mt-4 lg:mt-5 cursor-pointer max-[350px]:hidden select-none">
-          <div className='w-[28px] h-[50px] md:w-[32px] md:h-[58px] lg:w-[35px] lg:h-[64px] rounded-3xl border-3 md:border-4 border-secondary flex justify-center items-start p-1.5 md:p-2'>
+          <div className='w-[28px] h-[50px] md:w-[32px] md:h-[58px] lg:w-[35px] lg:h-[64px] rounded-3xl border-2 md:border-[3px] lg:border-4 border-secondary flex justify-center items-start p-1.5 md:p-2'>
             <motion.div
               animate={{
                 y: [0, 20, 0],
