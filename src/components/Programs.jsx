@@ -36,13 +36,15 @@ const ProgramCard = ({
   
   // Calculate responsive scale values for Swinburne and freeCodeCamp
   const getSwinburneScale = () => {
-    if (windowWidth < 768) return '1.0';
-    return '1.2';
+    if (windowWidth < 768) return '1.1';
+    if (windowWidth < 1024) return '1.3';
+    return '1.4';
   };
   
   const getFreeCodeCampScale = () => {
-    if (windowWidth < 768) return '1.0';
-    return '1.2';
+    if (windowWidth < 768) return '1.1';
+    if (windowWidth < 1024) return '1.3';
+    return '1.4';
   };
   
   return (
@@ -56,21 +58,21 @@ const ProgramCard = ({
           ? 'py-4 md:py-4.5 lg:py-5 min-h-[220px] md:min-h-[235px] lg:min-h-[240px]' 
           : 'py-5 md:py-5.5 lg:py-6 min-h-[260px] md:min-h-[270px] lg:min-h-[280px]'
       }`}>
-        <div className={`flex justify-between items-center ${
+        <div className={`flex justify-between items-start ${
           index <= 5 
-            ? 'gap-5' 
-            : 'gap-6'
+            ? 'gap-3 md:gap-4 lg:gap-5' 
+            : 'gap-3 md:gap-5 lg:gap-6'
         }`}>
-          <div className='flex-1 flex flex-col gap-1.5'>
-            <h3 className={`text-black font-bold ${
+          <div className='flex-1 flex flex-col gap-1.5 min-w-0'>
+            <h3 className={`text-black font-bold break-words ${
               index <= 5 
-                ? 'text-lg md:text-[20px] lg:text-[22px]' 
-                : 'text-xl md:text-[21px] lg:text-[24px]'
+                ? 'text-base md:text-lg lg:text-[20px] xl:text-[22px]' 
+                : 'text-lg md:text-xl lg:text-[21px] xl:text-[24px]'
             }`}>{localizedTitle}</h3>
-            <p className={`text-text-medium font-medium ${
+            <p className={`text-text-medium font-medium break-words ${
               index <= 5 
-                ? 'text-sm md:text-[14.5px] lg:text-[15px]' 
-                : 'text-sm md:text-[15px] lg:text-[16px]'
+                ? 'text-xs md:text-sm lg:text-[14.5px] xl:text-[15px]' 
+                : 'text-xs md:text-sm lg:text-[15px] xl:text-[16px]'
             }`}>{localizedCompany}</p>
             <p className={`${
               index <= 5 
@@ -79,7 +81,7 @@ const ProgramCard = ({
             } text-[#5B21B6] bg-[#F2E8C6] px-4 md:px-4.5 lg:px-6 py-1.5 md:py-2 rounded-xl md:rounded-2xl inline-block font-medium shadow-sm text-center whitespace-nowrap mx-auto md:mx-0 mt-0.5`}><i>{date}</i></p>
           </div>
 
-          <div className={company === 'Swinburne University Lecturer' || company === 'freeCodeCamp' || (company === 'Hagoromo University' && title.includes('Game Programming')) || company === 'AWS Learning Path' ? 'w-16 h-16 md:w-18 md:h-18 lg:w-20 lg:h-20 flex items-center justify-center overflow-visible' : company === 'Cybersecurity Journey' ? 'w-16 h-16 md:w-18 md:h-18 lg:w-20 lg:h-20 flex items-center justify-center overflow-hidden rounded-full' : ''}>
+          <div className={company === 'Swinburne University Lecturer' || company === 'freeCodeCamp' || (company === 'Hagoromo University' && title.includes('Game Programming')) || company === 'AWS Learning Path' ? 'w-16 h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 flex items-center justify-center overflow-visible flex-shrink-0' : company === 'Cybersecurity Journey' ? 'w-16 h-16 md:w-18 md:h-18 lg:w-20 lg:h-20 flex items-center justify-center overflow-hidden rounded-full flex-shrink-0' : 'flex-shrink-0'}>
             <img
               src={icon}
               alt={`${company} logo`}
@@ -87,8 +89,8 @@ const ProgramCard = ({
                 company === 'Cybersecurity Journey' ? 'object-cover' : 'object-contain'
               } ${
                 index <= 5 
-                  ? 'w-16 h-16 md:w-18 md:h-18 lg:w-20 lg:h-20' 
-                  : 'w-14 h-14 md:w-15 md:h-15 lg:w-16 lg:h-16'
+                  ? 'w-16 h-16 md:w-20 md:h-20 lg:w-24 lg:h-24' 
+                  : 'w-14 h-14 md:w-18 md:h-18 lg:w-20 lg:h-20'
               }`}
               style={company === 'Swinburne University Lecturer' ? { 
                 imageRendering: 'crisp-edges',
