@@ -33,7 +33,7 @@ const LanguageSwitcher = () => {
 
   const handleLanguageChange = (langCode) => {
     setLanguage(langCode);
-    setIsOpen(false);
+    setIsOpen(false); 
   };
 
   return (
