@@ -45,7 +45,19 @@ const LanguageSwitcher = () => {
         aria-label="Select language"
       >
         <div className="flex items-center gap-1.5 sm:gap-2">
-          <span className="text-base sm:text-lg md:text-xl leading-none" style={{ fontFamily: 'Apple Color Emoji, Segoe UI Emoji, Noto Color Emoji, sans-serif' }}>{currentLanguage.flag}</span>
+          <span 
+            className="text-base sm:text-lg md:text-xl leading-none font-emoji" 
+            style={{ 
+              fontFamily: '"Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji", "Android Emoji", "EmojiSymbols", "EmojiOne Mozilla", "Twemoji Mozilla", "Segoe UI", "Helvetica Neue", "Arial", sans-serif',
+              display: 'inline-block',
+              lineHeight: '1',
+              verticalAlign: 'middle'
+            }}
+            role="img"
+            aria-label={currentLanguage.fullName}
+          >
+            {currentLanguage.flag}
+          </span>
           <span className="text-[#1F2937] font-semibold text-xs sm:text-sm hidden sm:inline lg:hidden">{currentLanguage.name}</span>
           <span className="text-[#1F2937] font-semibold text-xs sm:text-sm hidden lg:inline">{currentLanguage.fullName}</span>
         </div>
@@ -77,7 +89,19 @@ const LanguageSwitcher = () => {
                   : 'text-[#1F2937] hover:text-[#F2E8C6]'
               }`}
             >
-              <span className="text-base sm:text-lg md:text-xl leading-none" style={{ fontFamily: 'Apple Color Emoji, Segoe UI Emoji, Noto Color Emoji, sans-serif' }}>{lang.flag}</span>
+              <span 
+                className="text-base sm:text-lg md:text-xl leading-none font-emoji" 
+                style={{ 
+                  fontFamily: '"Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji", "Android Emoji", "EmojiSymbols", "EmojiOne Mozilla", "Twemoji Mozilla", "Segoe UI", "Helvetica Neue", "Arial", sans-serif',
+                  display: 'inline-block',
+                  lineHeight: '1',
+                  verticalAlign: 'middle'
+                }}
+                role="img"
+                aria-label={lang.fullName}
+              >
+                {lang.flag}
+              </span>
               <span className="text-xs sm:text-sm font-medium">{lang.fullName}</span>
               {language === lang.code && (
                 <svg

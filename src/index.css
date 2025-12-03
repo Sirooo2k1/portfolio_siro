@@ -299,3 +299,15 @@ h1, h2, h3, h4, h5, h6 {
   padding-left: 1.5rem;
 }
 
+/* Emoji font fallback for better compatibility on older Windows systems */
+.font-emoji {
+  font-family: "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji", "Android Emoji", "EmojiSymbols", "EmojiOne Mozilla", "Twemoji Mozilla", "Segoe UI", "Helvetica Neue", "Arial", sans-serif;
+  font-feature-settings: "liga", "kern";
+  text-rendering: optimizeLegibility;
+  -webkit-font-feature-settings: "liga", "kern";
+  -moz-font-feature-settings: "liga", "kern";
+  /* Force emoji rendering */
+  unicode-bidi: bidi-override;
+  direction: ltr;
+}
+
