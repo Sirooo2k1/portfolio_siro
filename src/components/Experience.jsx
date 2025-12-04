@@ -80,7 +80,7 @@ const ExperienceCard = ({ experience, index }) => {
         }}
         contentArrowStyle={{ borderRight: "7px solid #F3F0EB" }}
         date={
-          <div className={`hidden lg:flex items-center h-full w-full ${isLeftColumn ? "justify-end pr-7" : "justify-start pl-7"}`}>
+          <div className={`hidden xl:flex items-center h-full w-full ${isLeftColumn ? "justify-end pr-7" : "justify-start pl-7"}`}>
             <span className='flex items-center justify-center px-8 py-3 rounded-3xl bg-[#F2E8C6] text-[#5B21B6] font-semibold text-lg shadow-sm whitespace-nowrap -mt-4 md:-mt-3 lg:-mt-5' style={{ width: 'calc(100% - 56px)' }}>
               {localizedDate}
             </span>

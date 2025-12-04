@@ -24,10 +24,10 @@ const ServiceCard = ({ index, title, icon }) => {
   };
   
   return (
-    <div className="w-full xs:w-[250px] sm:w-[250px]">
+    <div className="flex justify-center w-full min-[768px]:w-[calc((100%-1.5rem)/2)] min-[1024px]:w-[calc((100%-2rem)/3)] min-[1280px]:w-[calc((100%-2.25rem)/4)]">
       <motion.div
         variants={fadeIn("right", "spring", index * 0.5, 0.75)}
-        className="w-full p-[1px] rounded-[20px]"
+        className="p-[1px] rounded-[20px]"
       >
         <div
           options={{
@@ -35,7 +35,7 @@ const ServiceCard = ({ index, title, icon }) => {
             scale: 1,
             speed: 450,
           }}
-          className="bg-white rounded-[20px] py-4 px-4 sm:py-5 sm:px-6 md:py-5 md:px-8 lg:px-12 h-[280px] sm:h-[270px] md:h-[280px] flex flex-col border border-cream-300 shadow-md overflow-hidden"
+          className="bg-white rounded-[20px] py-4 px-4 sm:py-5 sm:px-6 md:py-5 md:px-8 lg:px-12 h-[220px] min-[360px]:h-[220px] sm:h-[270px] md:h-[280px] flex flex-col border border-cream-300 shadow-md overflow-hidden w-[220px] sm:w-[250px]"
         >
           <div className="flex-1 flex items-center justify-center min-h-0 py-2">
             <img src={icon} alt={title} className="w-[92px] h-[92px] sm:w-[88px] sm:h-[88px] md:w-[96px] md:h-[96px] lg:w-[110px] lg:h-[110px] object-contain max-w-full max-h-full" />
@@ -214,7 +214,7 @@ const About = () => {
           </Tilt>
         </motion.div>
 
-        <div className="mt-20 md:mt-22 lg:mt-28 flex flex-wrap gap-6 md:gap-7 lg:gap-10 justify-center">
+        <div className="mt-20 md:mt-22 lg:mt-28 flex flex-wrap gap-4 md:gap-6 min-[1024px]:gap-4 min-[1280px]:gap-3 lg:gap-10 justify-center min-[768px]:justify-start min-[1024px]:justify-center items-center w-full">
           {services.map((service, index) => (
             <ServiceCard key={service.title} index={index} {...service} />
           ))}

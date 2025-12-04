@@ -48,22 +48,22 @@ const ProgramCard = ({
   };
   
   return (
-  <div className='w-full md:w-[48%] lg:w-[48%]'>
+  <div className='w-full min-[768px]:w-[calc((100%-0.5rem)/2)] min-[1280px]:w-[calc((100%-25px)/2)]'>
     <motion.div
       variants={fadeIn(index % 2 === 0 ? "right" : "left", "spring", (Math.floor(index / 2 ) + 1) * 0.5, 0.55)}
       className='w-full bg-cream-200 rounded-2xl md:rounded-[24px] p-1 shadow-md border border-cream-300 h-full'
     >
-      <div       className={`bg-white rounded-xl md:rounded-[22px] px-6 md:px-7 lg:px-10 flex flex-col justify-between h-full ${
+      <div       className={`bg-white rounded-xl md:rounded-[22px] px-4 md:px-5 lg:px-10 flex flex-col justify-between h-full ${
         index <= 5 
           ? 'py-4 md:py-4.5 lg:py-5 min-h-[220px] md:min-h-[235px] lg:min-h-[240px]' 
           : 'py-5 md:py-5.5 lg:py-6 min-h-[260px] md:min-h-[270px] lg:min-h-[280px]'
       }`}>
         <div className={`flex justify-between items-start ${
           index <= 5 
-            ? 'gap-3 md:gap-4 lg:gap-5' 
-            : 'gap-3 md:gap-5 lg:gap-6'
+            ? 'gap-3 md:gap-3 lg:gap-5' 
+            : 'gap-3 md:gap-4 lg:gap-6'
         }`}>
-          <div className='flex-1 flex flex-col gap-1.5 min-w-0'>
+          <div className='flex-1 flex flex-col gap-1.5 min-w-0 overflow-visible'>
             <h3 className={`text-black font-bold break-words ${
               index <= 5 
                 ? 'text-base md:text-lg lg:text-[20px] xl:text-[22px]' 
@@ -74,14 +74,13 @@ const ProgramCard = ({
                 ? 'text-xs md:text-sm lg:text-[14.5px] xl:text-[15px]' 
                 : 'text-xs md:text-sm lg:text-[15px] xl:text-[16px]'
             }`}>{localizedCompany}</p>
-            <p className={`${
-              index <= 5 
-                ? 'text-xs md:text-[12.5px] lg:text-[13px]' 
-                : 'text-sm md:text-[14.5px] lg:text-[16px]'
-            } text-[#5B21B6] bg-[#F2E8C6] px-4 md:px-4.5 lg:px-6 py-1.5 md:py-2 rounded-xl md:rounded-2xl inline-block font-medium shadow-sm text-center whitespace-nowrap mx-auto md:mx-0 mt-0.5`}><i>{date}</i></p>
           </div>
 
-          <div className={company === 'Swinburne University Lecturer' || company === 'freeCodeCamp' || (company === 'Hagoromo University' && title.includes('Game Programming')) || company === 'AWS Learning Path' ? 'w-16 h-16 md:w-20 md:h-20 lg:w-20 lg:h-20 flex items-center justify-center overflow-visible flex-shrink-0' : company === 'Cybersecurity Journey' ? 'w-16 h-16 md:w-18 md:h-18 lg:w-20 lg:h-20 flex items-center justify-center overflow-hidden rounded-full flex-shrink-0' : 'flex-shrink-0'}>
+          <div className={`${
+            company === 'Cybersecurity Journey' 
+              ? 'w-16 h-16 md:w-20 md:h-20 lg:w-20 lg:h-20 flex items-center justify-center overflow-hidden rounded-full flex-shrink-0' 
+              : 'w-16 h-16 md:w-20 md:h-20 lg:w-20 lg:h-20 flex items-center justify-center overflow-visible flex-shrink-0'
+          }`}>
             <img
               src={icon}
               alt={`${company} logo`}
@@ -146,6 +145,14 @@ const ProgramCard = ({
           </div>
         </div>
 
+        <div className="flex justify-start mt-2">
+          <p className={`${
+            index <= 5 
+              ? 'text-xs md:text-[12.5px] lg:text-[13px]' 
+              : 'text-sm md:text-[14.5px] lg:text-[16px]'
+          } text-[#5B21B6] bg-[#F2E8C6] px-3 md:px-4 lg:px-6 py-1.5 md:py-2 rounded-xl md:rounded-2xl inline-block font-medium shadow-sm text-center whitespace-nowrap w-fit`}><i>{date}</i></p>
+        </div>
+
         <div className={`flex-1 flex ${index <= 5 ? 'mt-2.5 md:mt-3' : 'mt-3 md:mt-4'}`}>
           <p 
             className={`text-text-dark tracking-normal ${
@@ -184,12 +191,12 @@ const Programs = () => {
   const { language } = useLanguage();
   return (
     <div className='mt-12 bg-cream-200 rounded-[40px] shadow-lg border border-cream-300 p-[6px]'>
-      <div className={`bg-white rounded-[32px] border border-cream-200 ${styles.padding} min-h-[300px]`}> 
-        <motion.div variants={textVariant()} className='flex justify-center'>
-          <h2 className={`${styles.sectionHeadText} text-center`}>{t('programs.title', language)}</h2>
+      <div className={`bg-white rounded-[32px] border border-cream-200 ${styles.padding} min-h-[300px] flex items-center justify-center`}> 
+        <motion.div variants={textVariant()} className='flex justify-center items-center min-[360px]:justify-center min-[360px]:items-center w-full'>
+          <h2 className={`${styles.sectionHeadText} text-center min-[360px]:text-center`}>{t('programs.title', language)}</h2>
         </motion.div>
       </div>
-      <div className={`-mt-12 md:-mt-14 lg:-mt-20 pb-10 md:pb-11 lg:pb-14 ${styles.paddingX} flex flex-wrap gap-4 md:gap-5 lg:gap-7 justify-center md:justify-between items-stretch`}>
+      <div className={`-mt-12 md:-mt-14 lg:-mt-20 pb-10 md:pb-11 lg:pb-14 ${styles.paddingX} flex flex-wrap gap-3 md:gap-2 lg:gap-2 min-[1280px]:gap-[25px] justify-center min-[768px]:justify-start items-stretch`}>
         {programs.map((program, index) => (
           <ProgramCard
             key={`${program.company}-${program.title}-${index}`}

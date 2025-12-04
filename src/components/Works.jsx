@@ -68,7 +68,7 @@ const ProjectCard = ({
   const localizedDescription = project?.descriptionByLanguage?.[language] || description;
   
   return (
-    <div className="bg-cream-200 p-4 md:p-5 lg:p-5 rounded-2xl md:rounded-3xl w-full sm:w-[360px] md:w-[calc(33.333%-1rem)] lg:w-[320px] xl:w-[360px] h-full min-h-[340px] md:min-h-[350px] lg:min-h-[360px] flex flex-col justify-between shadow-md border border-cream-300">
+    <div className="bg-cream-200 p-4 md:p-5 lg:p-5 rounded-2xl md:rounded-3xl w-full h-full min-h-[340px] md:min-h-[350px] lg:min-h-[360px] flex flex-col justify-between shadow-md border border-cream-300">
       <div className="relative w-full h-[200px] md:h-[220px] lg:h-[230px]">
         {name === "Personal Portfolio" ? (
           <div className="w-full h-full rounded-2xl overflow-hidden bg-white">
@@ -309,20 +309,12 @@ const Works = () => {
         </motion.p>
       </div>
 
-      <div className="mt-12 md:mt-16 lg:mt-20 flex flex-wrap gap-4 md:gap-5 lg:gap-7 justify-center md:justify-center lg:justify-start">
+      <div className="mt-12 md:mt-16 lg:mt-20 flex flex-wrap gap-4 md:gap-4 min-[1024px]:gap-3 lg:gap-7 justify-center items-stretch w-full">
         {projects.map((project, index) => (
-          //   <div>
-          //   {isDesktop ? (
-          //     <ProjectCard index={index} {...project} />
-          //   ) : (
-          //     <motion.div variants={fadeInDevice(isDesktop, "up", "spring", index * 0.5, 0.75)}>
-          //       <ProjectCard index={index} {...project} />
-          //     </motion.div>
-          //   )}
-          // </div>
           <motion.div
             key={project.name ?? index}
             variants={fadeIn("up", "spring", index * 0.5, 0.75)}
+            className="w-full min-[768px]:w-[calc((100%-1rem)/2)] min-[1024px]:w-[calc((100%-1.5rem)/3)] min-[1280px]:w-[320px] 2xl:w-[360px] flex"
           >
             <ProjectCard index={index} {...project} project={project} />
           </motion.div>

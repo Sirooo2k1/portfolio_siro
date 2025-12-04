@@ -78,6 +78,8 @@ const Hero = () => {
   };
 
   useEffect(() => {
+    if (!heroRef.current) return;
+    
     gsap.registerPlugin(ScrollTrigger);
 
     // Hero chỉ quản lý màu khi ở trong Hero section
