@@ -292,7 +292,7 @@ const Works = () => {
         <h2 className={`${styles.sectionHeadText}`}>{t('works.title', language)}</h2>
       </motion.div>
 
-      <div className="w-full flex">
+      <div className="w-full">
         <motion.p
           variants={fadeIn("", "", 0.1, 1)}
           className="mt-3 text-black text-sm md:text-base lg:text-[17px] max-w-3xl leading-relaxed md:leading-[28px] lg:leading-[30px]"
@@ -309,7 +309,7 @@ const Works = () => {
         </motion.p>
       </div>
 
-      <div className="mt-12 md:mt-16 lg:mt-20 flex flex-wrap gap-4 md:gap-4 min-[1024px]:gap-3 lg:gap-7 justify-center items-stretch w-full">
+      <div className="mt-12 md:mt-16 lg:mt-20 flex flex-wrap gap-4 md:gap-4 min-[1024px]:gap-3 lg:gap-7 min-[1280px]:gap-6 justify-center min-[1280px]:justify-start items-stretch w-full">
         {projects.map((project, index) => (
           <motion.div
             key={project.name ?? index}
