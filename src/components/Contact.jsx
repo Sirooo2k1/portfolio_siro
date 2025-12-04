@@ -19,9 +19,11 @@ const Contact = () => {
 
 
   useEffect(() => {
+    if (!contactRef.current || !textRef.current) return;
+    
     gsap.registerPlugin(ScrollTrigger);
 
-    gsap.timeline({
+    const timeline = gsap.timeline({
       scrollTrigger: {
         trigger: contactRef.current,
         start: "top 80%",
@@ -30,20 +32,37 @@ const Contact = () => {
         pinSpacing: false,
         onEnter: () => {
           setCurrentBG('#FAFCC6');
-          gsap.to(textRef.current, {
-            color: '#282828',
-            duration: 0.6
-          })
+          if (textRef.current) {
+            gsap.to(textRef.current, {
+              color: '#282828',
+              duration: 0.6
+            })
+          }
         },
         onLeaveBack: () => {
           setCurrentBG('#FAFCC6');
-          gsap.to(textRef.current, {
-            duration: 0.6
-          })
+          if (textRef.current) {
+            gsap.to(textRef.current, {
+              duration: 0.6
+            })
+          }
         }
       }
     })
-  }, [])
+    
+    return () => {
+      if (timeline) {
+        timeline.kill();
+      }
+      // Clean up any ScrollTriggers associated with this component
+      const triggers = ScrollTrigger.getAll();
+      triggers.forEach(trigger => {
+        if (trigger.vars && trigger.vars.trigger === contactRef.current) {
+          trigger.kill();
+        }
+      });
+    };
+  }, [setCurrentBG])
 
   const formRef = useRef();
   const [form, setForm] = useState({

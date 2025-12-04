@@ -11,14 +11,20 @@ const preload = () => {
 	// Clean up previous instance if exists
 	if (environmentInstance) {
 		try {
-			if (environmentInstance.renderer) {
-				environmentInstance.renderer.dispose();
-			}
-			if (environmentInstance.scene) {
-				environmentInstance.scene.clear();
-			}
-			if (environmentInstance.createParticles) {
-				// Clean up particles if needed
+			if (environmentInstance.dispose) {
+				environmentInstance.dispose();
+			} else {
+				// Fallback cleanup
+				if (environmentInstance.renderer) {
+					environmentInstance.renderer.setAnimationLoop(null);
+					environmentInstance.renderer.dispose();
+				}
+				if (environmentInstance.scene) {
+					environmentInstance.scene.clear();
+				}
+				if (environmentInstance.createParticles && environmentInstance.createParticles.dispose) {
+					environmentInstance.createParticles.dispose();
+				}
 			}
 		} catch (e) {
 			console.log('Error cleaning up previous environment:', e);
@@ -92,9 +98,38 @@ class Environment {
   }
 
   bindEvents(){
+    this.handleResize = this.onWindowResize.bind(this);
+    window.addEventListener( 'resize', this.handleResize);
+  }
 
-    window.addEventListener( 'resize', this.onWindowResize.bind( this ));
+  dispose() {
+    // Remove event listeners
+    if (this.handleResize) {
+      window.removeEventListener('resize', this.handleResize);
+    }
     
+    // Stop animation loop
+    if (this.renderer) {
+      this.renderer.setAnimationLoop(null);
+    }
+    
+    // Clean up CreateParticles
+    if (this.createParticles) {
+      this.createParticles.dispose();
+    }
+    
+    // Dispose renderer
+    if (this.renderer) {
+      if (this.renderer.domElement && this.renderer.domElement.parentNode) {
+        this.renderer.domElement.parentNode.removeChild(this.renderer.domElement);
+      }
+      this.renderer.dispose();
+    }
+    
+    // Clear scene
+    if (this.scene) {
+      this.scene.clear();
+    }
   }
 
   setup(){ 
@@ -203,14 +238,21 @@ class CreateParticles {
 	}
 
 	bindEvents() {
-		document.addEventListener( 'mousedown', this.onMouseDown.bind( this ));
-		document.addEventListener( 'mousemove', this.onMouseMove.bind( this ));
-		document.addEventListener( 'mouseup', this.onMouseUp.bind( this ));
+		this.handleMouseDown = this.onMouseDown.bind(this);
+		this.handleMouseMove = this.onMouseMove.bind(this);
+		this.handleMouseUp = this.onMouseUp.bind(this);
+		this.handleTouchStart = this.OnTouchStart.bind(this);
+		this.handleTouchMove = this.OnTouchMove.bind(this);
+		this.handleTouchEnd = this.OnTouchEnd.bind(this);
+		
+		document.addEventListener( 'mousedown', this.handleMouseDown);
+		document.addEventListener( 'mousemove', this.handleMouseMove);
+		document.addEventListener( 'mouseup', this.handleMouseUp);
 
 		// Use { passive: false } to allow preventDefault for touch events
-		document.addEventListener( 'touchstart', this.OnTouchStart.bind( this ), { passive: false });
-		document.addEventListener( 'touchmove', this.OnTouchMove.bind( this ), { passive: false });
-		document.addEventListener( 'touchend', this.OnTouchEnd.bind( this ), { passive: false });
+		document.addEventListener( 'touchstart', this.handleTouchStart, { passive: false });
+		document.addEventListener( 'touchmove', this.handleTouchMove, { passive: false });
+		document.addEventListener( 'touchend', this.handleTouchEnd, { passive: false });
 
 		this.debouncedResize = debounce(this.onWindowResize.bind(this), 200);
 		window.addEventListener('resize', this.debouncedResize);
@@ -528,7 +570,7 @@ class CreateParticles {
 			this.data.amount = 200;
 			this.data.particleSize = 1;
 			this.data.particleColor = 0xffffff,
-			this.data.textSize = 4.5;
+			this.data.textSize = 3.8;
 			this.data.area = 25;
 			this.data.ease = 0.03;
 		}
@@ -538,7 +580,19 @@ class CreateParticles {
 		const screenWidth = window.innerWidth;
 		const screenHeight = window.innerHeight;
 		const baseTextSize = this.data.textSize
-		const scaleFactor =  .00390625;
+		
+		// Adjust scale factor based on screen size for better fit
+		let scaleFactor = 0.00390625;
+		if (screenWidth <= 450) {
+			// Smaller scale factor for very small screens (430px, etc.)
+			scaleFactor = 0.0025;
+		} else if (screenWidth >= 820 && screenWidth <= 1180) {
+			// Smaller scale factor for tablet screens (820x1180, etc.) to prevent overflow
+			scaleFactor = 0.0028;
+		} else if (screenWidth >= 1024 && screenWidth <= 1366) {
+			// Smaller scale factor for tablet screens (1024x1366, etc.) to prevent overflow
+			scaleFactor = 0.003;
+		}
 		
 		// Calculate the dynamic text size based on the screen resolution
 		let calculatedSize = baseTextSize + (Math.min(screenWidth, screenHeight) * scaleFactor);
@@ -550,12 +604,89 @@ class CreateParticles {
 			calculatedSize *= 1.05;
 		}
 		
+		// Additional reduction for very small screens to prevent overflow
+		if (screenWidth <= 450) {
+			calculatedSize *= 0.95;
+		} else if (screenWidth >= 820 && screenWidth <= 1180) {
+			// Additional reduction for tablet screens (820x1180) to prevent overflow
+			calculatedSize *= 0.90;
+		} else if (screenWidth >= 1024 && screenWidth <= 1366) {
+			// Additional reduction for tablet screens to prevent overflow
+			calculatedSize *= 0.92;
+		}
+		
 		this.data.textSize = calculatedSize;
 	}
 
 	clearText() {
-		this.scene.remove( this.particles );
-		this.geometryCopy.clearGroups();
+		if (this.particles) {
+			this.scene.remove( this.particles );
+		}
+		if (this.geometryCopy) {
+			this.geometryCopy.clearGroups();
+		}
+	}
+
+	dispose() {
+		// Remove event listeners
+		if (this.handleMouseDown) {
+			document.removeEventListener('mousedown', this.handleMouseDown);
+		}
+		if (this.handleMouseMove) {
+			document.removeEventListener('mousemove', this.handleMouseMove);
+		}
+		if (this.handleMouseUp) {
+			document.removeEventListener('mouseup', this.handleMouseUp);
+		}
+		if (this.handleTouchStart) {
+			document.removeEventListener('touchstart', this.handleTouchStart);
+		}
+		if (this.handleTouchMove) {
+			document.removeEventListener('touchmove', this.handleTouchMove);
+		}
+		if (this.handleTouchEnd) {
+			document.removeEventListener('touchend', this.handleTouchEnd);
+		}
+		if (this.debouncedResize) {
+			window.removeEventListener('resize', this.debouncedResize);
+			if (this.debouncedResize.cancel) {
+				this.debouncedResize.cancel();
+			}
+		}
+		
+		// Disconnect MutationObserver
+		if (this.observer) {
+			this.observer.disconnect();
+		}
+		
+		// Dispose Three.js resources
+		if (this.particles) {
+			if (this.particles.geometry) {
+				this.particles.geometry.dispose();
+			}
+			if (this.particles.material) {
+				if (Array.isArray(this.particles.material)) {
+					this.particles.material.forEach(mat => mat.dispose());
+				} else {
+					this.particles.material.dispose();
+				}
+			}
+			this.scene.remove(this.particles);
+		}
+		
+		if (this.geometryCopy) {
+			this.geometryCopy.dispose();
+		}
+		
+		if (this.planeArea) {
+			if (this.planeArea.geometry) {
+				this.planeArea.geometry.dispose();
+			}
+			if (this.planeArea.material) {
+				this.planeArea.material.dispose();
+			}
+			this.scene.remove(this.planeArea);
+		}
 	}
 
 	createText(){ 

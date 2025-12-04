@@ -110,9 +110,9 @@ const Navbar = () => {
           <img
             src={logo}
             alt='logo'
-            className='h-[60px] w-auto sm:h-[70px] md:h-[80px] lg:h-[160px] xl:h-[175px] object-contain transition-all duration-300'
+            className='h-[75px] w-auto sm:h-[80px] md:h-[85px] lg:h-[160px] xl:h-[175px] object-contain transition-all duration-300'
             style={{
-              maxWidth: 'min(calc(100vw - 260px), 195px)',
+              maxWidth: 'min(calc(100vw - 230px), 210px)',
             }}
           />
         </Link>

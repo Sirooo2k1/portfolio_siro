@@ -8,6 +8,8 @@ export const BackgroundProvider = ({ children }) => {
   let appRef = useRef(null);
 
   useEffect(() => {
+    if (!appRef.current) return;
+    
     gsap.to(appRef.current, {
       duration: 1,
       backgroundColor: currentBG,

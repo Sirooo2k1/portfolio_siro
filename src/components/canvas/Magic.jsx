@@ -32,38 +32,35 @@ const MagicCanvas = memo(() => {
 		// Use IntersectionObserver only on desktop for performance
 		// On mobile, always enable to allow touch interactions
 		const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+		let observer = null;
 		
 		if (!isMobile) {
-		const observer = new IntersectionObserver(entries => {
-			entries.forEach(entry => {
-				const magicElement = document.querySelector('#magic');
-				if (!magicElement) return;
-				
-				if (entry.isIntersecting && entry.intersectionRatio > 0.3) {
-					magicElement.removeAttribute('disabled');
-				}
-				else if (!entry.isIntersecting && entry.intersectionRatio <= 0.3) {
-					magicElement.setAttribute('disabled', true);
-				}
-			});
-		}, { threshold: 0.3 });
-	
-		if (magicRef.current) {
-			observer.observe(magicRef.current);
+			observer = new IntersectionObserver(entries => {
+				entries.forEach(entry => {
+					const magicElement = document.querySelector('#magic');
+					if (!magicElement) return;
+					
+					if (entry.isIntersecting && entry.intersectionRatio > 0.3) {
+						magicElement.removeAttribute('disabled');
+					}
+					else if (!entry.isIntersecting && entry.intersectionRatio <= 0.3) {
+						magicElement.setAttribute('disabled', true);
+					}
+				});
+			}, { threshold: 0.3 });
+		
+			if (magicRef.current) {
+				observer.observe(magicRef.current);
+			}
 		}
 	
 		return () => {
 			clearTimeout(initTimer);
-			if (magicRef.current) {
+			if (observer && magicRef.current) {
 				observer.unobserve(magicRef.current);
+				observer.disconnect();
 			}
 		};
-		} else {
-			// On mobile, keep magic enabled for touch interactions
-			return () => {
-				clearTimeout(initTimer);
-			};
-		}
 	}, []);
 	
 	return (
