@@ -117,7 +117,7 @@ const Navbar = () => {
           />
         </Link>
 
-        <ul className='list-none hidden min-[900px]:flex flex-row gap-2 min-[900px]:gap-2.5 md:gap-3 lg:gap-4 xl:gap-6 flex-1 justify-center items-center min-w-0 flex-shrink'>
+        <ul className='list-none hidden lg:flex flex-row gap-2 lg:gap-2.5 xl:gap-4 2xl:gap-6 flex-1 justify-center items-center min-w-0 flex-shrink'>
           {navLinks.map((nav) => (
             nav.id === "work" ? (
               <li
@@ -129,7 +129,7 @@ const Navbar = () => {
                 <div
                   className={`${
                     active === nav.title ? "text-[#1F2937]" : "text-[#374151]"
-                  } hover:text-[#1F2937] text-[11px] min-[900px]:text-[12px] md:text-[13px] lg:text-[15px] xl:text-[17px] font-medium cursor-pointer flex items-center gap-1 whitespace-nowrap transition-colors duration-200`}
+                  } hover:text-[#1F2937] text-[11px] lg:text-[12px] xl:text-[15px] 2xl:text-[17px] font-medium cursor-pointer flex items-center gap-1 whitespace-nowrap transition-colors duration-200`}
                   onClick={() => {
                     setActive(nav.title);
                     setBlogDropdownOpen(!blogDropdownOpen);
@@ -273,7 +273,7 @@ const Navbar = () => {
                 key={nav.id}
                 className={`${
                   active === nav.title ? "text-[#1F2937]" : "text-[#374151]"
-                } hover:text-[#1F2937] text-[11px] min-[900px]:text-[12px] md:text-[13px] lg:text-[15px] xl:text-[17px] font-medium cursor-pointer whitespace-nowrap transition-colors duration-200 flex-shrink-0`}
+                } hover:text-[#1F2937] text-[11px] lg:text-[12px] xl:text-[15px] 2xl:text-[17px] font-medium cursor-pointer whitespace-nowrap transition-colors duration-200 flex-shrink-0`}
                 onClick={() => setActive(nav.title)}
               >
                 <a href={`#${nav.id}`} onClick={(e) => handleAnchorClick(e, nav.id)}>
@@ -288,7 +288,7 @@ const Navbar = () => {
           ))}
         </ul>
 
-        <div className='hidden md:flex items-center gap-2 md:gap-2.5 lg:gap-3 xl:gap-4 shrink-0'>
+        <div className='hidden lg:flex items-center gap-2 xl:gap-3 2xl:gap-4 shrink-0'>
           <LanguageSwitcher />
           <ul className='list-none flex flex-row gap-2 md:gap-2.5 lg:gap-3 xl:gap-4'>
             {navMedia.map((nav) =>
@@ -316,7 +316,7 @@ const Navbar = () => {
           </ul>
         </div>
 
-        <div className='md:hidden flex flex-1 justify-end items-center'>
+        <div className='lg:hidden flex flex-1 justify-end items-center'>
           <button
             onClick={() => setToggle(!toggle)}
             className='p-2 -mr-2 focus:outline-none'
