@@ -392,7 +392,7 @@ const projects = [
     ],
     image: me,
     source_code_link: "https://github.com/Sirooo2k1",
-    live_link: "https://portfoliosiro.vercel.app/",
+    live_link: "https://portfoliosiro.com",
   },
   {
     name: "My First Website",
