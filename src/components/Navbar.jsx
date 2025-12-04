@@ -21,9 +21,8 @@ const Navbar = () => {
     const element = document.getElementById(elementId);
     if (!element) return;
 
-    // Get navbar height
-    const navbar = document.querySelector('nav');
-    const navbarHeight = navbar ? navbar.getBoundingClientRect().height : 80;
+    // Navbar height is fixed at 80px
+    const navbarHeight = 80;
     
     // Hash-span has margin-top: -100px, so actual section starts at element position + 100px
     const elementTop = element.getBoundingClientRect().top + window.pageYOffset;
@@ -63,10 +62,10 @@ const Navbar = () => {
       requestAnimationFrame(animateScroll);
     } else {
       // For desktop, use native smooth scroll
-      window.scrollTo({
-        top: Math.max(0, targetPosition),
-        behavior: 'smooth'
-      });
+    window.scrollTo({
+      top: Math.max(0, targetPosition),
+      behavior: 'smooth'
+    });
     }
   };
 
@@ -95,14 +94,14 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`px-2 sm:px-6 md:px-6 lg:px-16 w-full flex items-center h-[65px] sm:h-[72px] md:h-[76px] lg:h-[80px] fixed top-0 z-20 overflow-visible transition-all duration-300 ${
+      className={`pl-4 pr-3 sm:pl-6 sm:pr-4 md:pl-6 md:pr-6 lg:pl-16 lg:pr-16 w-full flex items-center h-[80px] fixed top-0 z-20 overflow-visible transition-all duration-300 ${
         scrolled ? "bg-[#FAFCC6] shadow-md" : "bg-transparent"
       }`}
     >
-      <div className='w-full flex justify-between items-center max-w-7xl mx-auto overflow-visible min-w-0'>
+      <div className='w-full flex justify-between items-center max-w-7xl mx-auto overflow-visible min-w-0 gap-2 sm:gap-3 md:gap-4 lg:gap-5 xl:gap-6'>
         <Link
           to='/'
-          className='flex items-center flex-1 sm:flex-initial sm:shrink-0 ml-0 sm:-ml-2 md:-ml-3 lg:-ml-20 mr-1 sm:mr-2 md:mr-3 lg:mr-4 sm:shrink-0 min-w-0'
+          className='flex items-center flex-shrink-0 overflow-visible'
           onClick={() => {
             setActive("");
             window.scrollTo(0, 0);
@@ -111,23 +110,26 @@ const Navbar = () => {
           <img
             src={logo}
             alt='logo'
-            className='w-full max-w-[calc(100vw-100px)] sm:w-[115px] sm:h-[100px] md:w-[130px] md:h-[115px] lg:w-[180px] lg:h-[160px] xl:w-[195px] xl:h-[175px] h-[60px] sm:h-[100px] object-contain transition-all duration-300'
+            className='h-[60px] w-auto sm:h-[70px] md:h-[80px] lg:h-[160px] xl:h-[175px] object-contain transition-all duration-300'
+            style={{
+              maxWidth: 'min(calc(100vw - 260px), 195px)',
+            }}
           />
         </Link>
 
-        <ul className='list-none hidden md:flex flex-row gap-2 md:gap-3 lg:gap-6 xl:gap-10 flex-1 justify-center items-center min-w-0'>
+        <ul className='list-none hidden min-[900px]:flex flex-row gap-2 min-[900px]:gap-2.5 md:gap-3 lg:gap-4 xl:gap-6 flex-1 justify-center items-center min-w-0 flex-shrink'>
           {navLinks.map((nav) => (
             nav.id === "work" ? (
               <li
                 key={nav.id}
-                className="relative"
+                className="relative flex-shrink-0"
                 onMouseEnter={() => setBlogDropdownOpen(true)}
                 onMouseLeave={() => setBlogDropdownOpen(false)}
               >
                 <div
                   className={`${
                     active === nav.title ? "text-[#1F2937]" : "text-[#374151]"
-                  } hover:text-[#1F2937] text-[13px] md:text-[14px] lg:text-[16px] xl:text-[18px] font-medium cursor-pointer flex items-center gap-1 whitespace-nowrap transition-colors duration-200`}
+                  } hover:text-[#1F2937] text-[11px] min-[900px]:text-[12px] md:text-[13px] lg:text-[15px] xl:text-[17px] font-medium cursor-pointer flex items-center gap-1 whitespace-nowrap transition-colors duration-200`}
                   onClick={() => {
                     setActive(nav.title);
                     setBlogDropdownOpen(!blogDropdownOpen);
@@ -141,7 +143,7 @@ const Navbar = () => {
                    nav.id === "contact" ? t(`nav.contact`, language) : nav.title}
                 </a>
                   <svg
-                    className={`w-3.5 h-3.5 md:w-4 md:h-4 transition-transform duration-200 ${
+                    className={`w-3.5 h-3.5 lg:w-4 lg:h-4 transition-transform duration-200 flex-shrink-0 ${
                       blogDropdownOpen ? "rotate-180" : ""
                     }`}
                     fill="none"
@@ -220,9 +222,8 @@ const Navbar = () => {
                           });
                           
                           if (targetPost) {
-                            // Get navbar height
-                            const navbar = document.querySelector('nav');
-                            const navbarHeight = navbar ? navbar.getBoundingClientRect().height : 80;
+                            // Navbar height is fixed at 80px
+                            const navbarHeight = 80;
                             
                             // Get target post position
                             const targetPostTop = targetPost.getBoundingClientRect().top + window.pageYOffset;
@@ -272,7 +273,7 @@ const Navbar = () => {
                 key={nav.id}
                 className={`${
                   active === nav.title ? "text-[#1F2937]" : "text-[#374151]"
-                } hover:text-[#1F2937] text-[13px] md:text-[14px] lg:text-[16px] xl:text-[18px] font-medium cursor-pointer whitespace-nowrap transition-colors duration-200`}
+                } hover:text-[#1F2937] text-[11px] min-[900px]:text-[12px] md:text-[13px] lg:text-[15px] xl:text-[17px] font-medium cursor-pointer whitespace-nowrap transition-colors duration-200 flex-shrink-0`}
                 onClick={() => setActive(nav.title)}
               >
                 <a href={`#${nav.id}`} onClick={(e) => handleAnchorClick(e, nav.id)}>
@@ -287,9 +288,9 @@ const Navbar = () => {
           ))}
         </ul>
 
-        <div className='hidden md:flex items-center gap-2 md:gap-2 lg:gap-4 xl:gap-5 shrink-0'>
+        <div className='hidden md:flex items-center gap-2 md:gap-2.5 lg:gap-3 xl:gap-4 shrink-0'>
           <LanguageSwitcher />
-          <ul className='list-none flex flex-row gap-2 md:gap-2 lg:gap-4 xl:gap-5'>
+          <ul className='list-none flex flex-row gap-2 md:gap-2.5 lg:gap-3 xl:gap-4'>
             {navMedia.map((nav) =>
             (
               <li
@@ -321,26 +322,26 @@ const Navbar = () => {
             className='p-2 -mr-2 focus:outline-none'
             aria-label='Toggle menu'
           >
-            <img
-              src={toggle ? close : menu}
-              alt='menu'
+          <img
+            src={toggle ? close : menu}
+            alt='menu'
               className={`w-6 h-6 sm:w-7 sm:h-7 object-contain transition-all duration-200 ${
-                toggle ? 'brightness-0' : ''
-              }`}
-            />
+              toggle ? 'brightness-0' : ''
+            }`}
+          />
           </button>
 
           <div
             className={`${
               !toggle ? "hidden" : "flex"
-            } p-5 sm:p-6 black-gradient absolute top-[65px] sm:top-[72px] right-0 mx-2 sm:mx-3 my-2 min-w-[160px] sm:min-w-[180px] z-10 rounded-xl flex-col shadow-2xl animate-in slide-in-from-top-2 duration-200`}
+            } p-5 sm:p-6 black-gradient absolute top-[80px] right-0 mx-2 sm:mx-3 my-2 min-w-[160px] sm:min-w-[180px] z-10 rounded-xl flex-col shadow-2xl animate-in slide-in-from-top-2 duration-200`}
           >
             <ul className='list-none flex justify-end items-start flex-1 flex-col gap-4'>
               {navLinks.map((nav) => (
                 nav.id === "work" ? (
                   <li key={nav.id} className="w-full">
                     <div
-                      className={`font-poppins font-medium cursor-pointer text-[15px] sm:text-[16px] ${
+                      className={`font-poppins font-medium cursor-pointer text-[14px] sm:text-[16px] ${
                         active === nav.title ? "text-white" : "text-secondary"
                       } flex items-center justify-between py-1 transition-colors duration-200`}
                       onClick={() => {
@@ -413,9 +414,8 @@ const Navbar = () => {
                             });
                             
                             if (targetPost) {
-                              // Get navbar height
-                              const navbar = document.querySelector('nav');
-                              const navbarHeight = navbar ? navbar.getBoundingClientRect().height : 80;
+                            // Navbar height is fixed at 80px
+                            const navbarHeight = 80;
                               
                                 // Get target post position
                                 const targetPostTop = targetPost.getBoundingClientRect().top + window.pageYOffset;
@@ -459,7 +459,7 @@ const Navbar = () => {
                 ) : (
                   <li
                     key={nav.id}
-                    className={`font-poppins font-medium cursor-pointer text-[15px] sm:text-[16px] ${
+                    className={`font-poppins font-medium cursor-pointer text-[14px] sm:text-[16px] ${
                       active === nav.title ? "text-white" : "text-secondary"
                     } py-1 transition-colors duration-200`}
                     onClick={() => {

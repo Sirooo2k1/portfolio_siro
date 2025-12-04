@@ -60,53 +60,132 @@ const BlogPost = () => {
   };
 
   // Handle back to blog section (top left button)
+  // Scrolls to the corresponding card for the current blog post (same as bottom button)
   const handleBackToBlogSection = () => {
+    const cardId = getBlogCardId();
     navigate("/");
     // Wait for navigation and DOM to be ready
     setTimeout(() => {
-      const workSection = document.getElementById("work");
-      if (workSection) {
-        // Scroll to work section with standard offset
-        smoothScrollToElement(workSection, 30);
-      }
-    }, 200);
-  };
-
-  // Handle back to specific blog post (bottom right button)
-  const handleBackToBlogPost = () => {
-    const cardId = getBlogCardId();
-    navigate("/");
-    // Wait for navigation and DOM to be ready, then scroll to specific blog post card
-    setTimeout(() => {
+      let targetPost = null;
+      
+      // First, try to find the corresponding card for this blog post
       if (cardId) {
         const cardElement = document.getElementById(cardId);
         if (cardElement) {
-          // Scroll to blog post card with smaller offset for better positioning
-          // This brings the card closer to the top for better visibility
-          smoothScrollToElement(cardElement, 20);
+          targetPost = cardElement;
         } else {
           // If card not found, try again after a bit more time (for lazy loading)
           setTimeout(() => {
             const retryElement = document.getElementById(cardId);
             if (retryElement) {
-              smoothScrollToElement(retryElement, 20);
+              targetPost = retryElement;
+              scrollToPost(retryElement);
             } else {
-              // Fallback: scroll to work section if card still not found
-              const workSection = document.getElementById("work");
-              if (workSection) {
-                smoothScrollToElement(workSection, 30);
-              }
+              // Fallback: scroll to first blog post if card still not found
+              scrollToFirstPost();
             }
           }, 300);
-        }
-      } else {
-        // Fallback: scroll to work section if card ID not found
-        const workSection = document.getElementById("work");
-        if (workSection) {
-          smoothScrollToElement(workSection, 30);
+          return; // Exit early, will be handled in setTimeout
         }
       }
+      
+      // If we have a target post, scroll to it
+      if (targetPost) {
+        scrollToPost(targetPost);
+      } else {
+        // Fallback: scroll to first blog post if no corresponding card found
+        scrollToFirstPost();
+      }
     }, 200);
+  };
+
+  // Handle back to specific blog post card (bottom right button)
+  // Scrolls to the corresponding card for the current blog post
+  const handleBackToBlogPost = () => {
+    const cardId = getBlogCardId();
+    navigate("/");
+    // Wait for navigation and DOM to be ready
+    setTimeout(() => {
+      let targetPost = null;
+      
+      // First, try to find the corresponding card for this blog post
+      if (cardId) {
+        const cardElement = document.getElementById(cardId);
+        if (cardElement) {
+          targetPost = cardElement;
+        } else {
+          // If card not found, try again after a bit more time (for lazy loading)
+          setTimeout(() => {
+            const retryElement = document.getElementById(cardId);
+            if (retryElement) {
+              targetPost = retryElement;
+              scrollToPost(retryElement);
+            } else {
+              // Fallback: scroll to first blog post if card still not found
+              scrollToFirstPost();
+            }
+          }, 300);
+          return; // Exit early, will be handled in setTimeout
+        }
+      }
+      
+      // If we have a target post, scroll to it
+      if (targetPost) {
+        scrollToPost(targetPost);
+      } else {
+        // Fallback: scroll to first blog post if no corresponding card found
+        scrollToFirstPost();
+      }
+    }, 200);
+  };
+  
+  // Helper function to scroll to a specific blog post card
+  const scrollToPost = (postElement) => {
+    // Navbar height is fixed at 80px (same as Navbar.jsx)
+    const navbarHeight = 80;
+    
+    // Get target post position
+    const targetPostTop = postElement.getBoundingClientRect().top + window.pageYOffset;
+    
+    // Scroll to target post with navbar offset (same calculation as Navbar's blog dropdown)
+    const targetOffset = targetPostTop - navbarHeight - 20;
+    
+    window.scrollTo({
+      top: Math.max(0, targetOffset),
+      behavior: 'smooth'
+    });
+  };
+  
+  // Helper function to scroll to the first blog post
+  const scrollToFirstPost = () => {
+    // Find all blog post elements
+    const allBlogPosts = document.querySelectorAll('[id^="blog-"]');
+    let firstBlogPost = null;
+    
+    if (allBlogPosts.length > 0) {
+      // Find the first blog post by comparing positions
+      allBlogPosts.forEach((post) => {
+        if (!firstBlogPost) {
+          firstBlogPost = post;
+        } else {
+          const currentTop = post.getBoundingClientRect().top + window.pageYOffset;
+          const firstTop = firstBlogPost.getBoundingClientRect().top + window.pageYOffset;
+          if (currentTop < firstTop) {
+            firstBlogPost = post;
+          }
+        }
+      });
+    }
+    
+    if (firstBlogPost) {
+      scrollToPost(firstBlogPost);
+    } else {
+      // Fallback: scroll to work section if no blog posts found
+      const workSection = document.getElementById("work");
+      if (workSection) {
+        smoothScrollToElement(workSection, 30);
+      }
+    }
   };
 
   if (!post) {
