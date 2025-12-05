@@ -305,7 +305,7 @@ const Navbar = () => {
                       <img
                         src={nav.image}
                         alt={nav.link}
-                        className={`${nav.id === "Instagram" ? "w-full h-full object-cover rounded-full" : "w-[20px] h-[20px] md:w-[22px] md:h-[22px] lg:w-[24px] lg:h-[24px] object-contain"} transition-all duration-200 hover:brightness-75 hover:scale-110`}
+                        className="w-full h-full object-cover rounded-full transition-all duration-200 hover:brightness-75 hover:scale-110"
                       />
                     </a>
                   </div>
@@ -495,7 +495,7 @@ const Navbar = () => {
                         <img
                           src={nav.image}
                           alt={nav.link}
-                          className={`${nav.id === "Instagram" ? "w-full h-full object-cover rounded-full" : "w-[20px] h-[20px] sm:w-[22px] sm:h-[22px] object-contain"} transition-all duration-200 hover:brightness-75 hover:scale-110`}
+                          className="w-full h-full object-cover rounded-full transition-all duration-200 hover:brightness-75 hover:scale-110"
                         />
                       </a>
                     </div>
