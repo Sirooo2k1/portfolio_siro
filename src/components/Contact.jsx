@@ -33,19 +33,19 @@ const Contact = () => {
         onEnter: () => {
           setCurrentBG('#FAFCC6');
           if (textRef.current) {
-            gsap.to(textRef.current, {
-              color: '#282828',
-              duration: 0.6
-            })
+          gsap.to(textRef.current, {
+            color: '#282828',
+            duration: 0.6
+          })
           }
         },
         onLeaveBack: () => {
           setCurrentBG('#FAFCC6');
           if (textRef.current) {
-            gsap.to(textRef.current, {
-              duration: 0.6
-            })
-          }
+          gsap.to(textRef.current, {
+            duration: 0.6
+          })
+        }
         }
       }
     })
