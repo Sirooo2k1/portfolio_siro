@@ -269,7 +269,7 @@ const Experience = () => {
                   padding: '0',
                   maxWidth: '35px',
                   maxHeight: '35px',
-                  transform: 'scale(0.74)'
+                  transform: 'scale(0.75)'
                 }}
               />
             </a>
@@ -429,7 +429,7 @@ const Experience = () => {
                   padding: '0',
                   maxWidth: '35px',
                   maxHeight: '35px',
-                  transform: 'scale(0.74)'
+                  transform: 'scale(0.75)'
                 }}
               />
             </a>
