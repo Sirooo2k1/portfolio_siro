@@ -409,7 +409,7 @@ const BlogPost = () => {
                 </div>
                 <button
                   onClick={handleBackToBlogPost}
-                  className="flex items-center gap-2 px-6 py-3 bg-[#F3F0EB] hover:bg-[#E8E3DC] transition-colors rounded-lg text-black font-semibold text-sm uppercase tracking-wide"
+                  className="flex items-center gap-2 px-6 py-3 bg-[#F3F0EB] hover:bg-[#E8E3DC] transition-colors rounded-lg text-black font-semibold text-sm md:text-base lg:text-[17px] xl:text-[18px] tracking-wide"
                 >
                   <span>{t('blogPost.backToBlog', language)}</span>
                   <span className="text-black text-lg">➞</span>
