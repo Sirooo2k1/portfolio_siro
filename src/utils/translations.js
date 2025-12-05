@@ -44,7 +44,7 @@ export const translations = {
       welcome: "Welcome to my blog. This is where I regularly share small stories related to my daily life. I hope you'll find peace and a little joy when reading my blog.",
       happyReading: "Happy reading!",
       loading: "Loading...",
-      readMore: "READ MORE",
+      readMore: "Read More",
     },
     // Tech
     tech: {
@@ -129,7 +129,7 @@ export const translations = {
       welcome: "Chào mừng đến với blog của mình. Đây là nơi mình thường xuyên chia sẻ những câu chuyện nhỏ liên quan đến cuộc sống hàng ngày của mình. Mình hy vọng bạn sẽ tìm thấy sự bình yên và một chút niềm vui khi đọc blog của mình.",
       happyReading: "Chúc bạn đọc vui vẻ!",
       loading: "Đang tải...",
-      readMore: "ĐỌC THÊM",
+      readMore: "Đọc Thêm",
     },
     // Tech
     tech: {

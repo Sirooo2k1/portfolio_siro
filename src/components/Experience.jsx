@@ -158,7 +158,7 @@ const ExperienceCard = ({ experience, index }) => {
             <div className='mt-3 md:mt-4 lg:mt-5 xl:mt-6 flex justify-center'>
               <Link
                 to={`/blog/${slug}`}
-                className='flex items-center gap-1.5 md:gap-2 px-3 py-1.5 md:px-4 md:py-2 lg:px-5 lg:py-2.5 xl:px-6 xl:py-3 bg-[#F3F0EB] hover:bg-[#E8E3DC] transition-colors rounded-lg text-black font-semibold text-[10px] md:text-xs lg:text-sm uppercase tracking-wide'
+                className='flex items-center gap-1.5 md:gap-2 px-3 py-1.5 md:px-4 md:py-2 lg:px-5 lg:py-2.5 xl:px-6 xl:py-3 bg-[#F3F0EB] hover:bg-[#E8E3DC] transition-colors rounded-lg text-black font-semibold text-sm md:text-base lg:text-[17px] xl:text-[18px] tracking-wide'
               >
                 <span>{t('experience.readMore', language)}</span>
                 <span className='text-black text-lg'>➞</span>
