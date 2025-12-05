@@ -315,8 +315,12 @@ const BlogPost = () => {
                 const isShortLine = trimmedParagraph.length < 120;
                 const prevIsEmpty = index > 0 && (!content[index - 1] || content[index - 1].trim() === "");
                 // Also check if it's a very short line (likely a heading like "Khi nhìn lại")
-                const isVeryShort = trimmedParagraph.length < 50 && !trimmedParagraph.includes(".");
-                const isSubheading = !isHeading && !isNumberedHeading && ((isShortLine && hasDash && prevIsEmpty) || (isVeryShort && prevIsEmpty)) && !trimmedParagraph.startsWith("*") && !trimmedParagraph.startsWith("–");
+                // Exclude lines that end with punctuation (complete sentences) or colon to avoid false positives
+                const endsWithPunctuation = /[。！？\.!?]$/.test(trimmedParagraph);
+                const endsWithColon = /[：:]$/.test(trimmedParagraph);
+                const isVeryShort = trimmedParagraph.length < 50 && !trimmedParagraph.includes(".") && !endsWithPunctuation && !endsWithColon;
+                // Only detect as subheading if it has dash AND doesn't end with punctuation or colon (not a complete sentence)
+                const isSubheading = !isHeading && !isNumberedHeading && ((isShortLine && hasDash && prevIsEmpty && !endsWithPunctuation && !endsWithColon) || (isVeryShort && prevIsEmpty)) && !trimmedParagraph.startsWith("*") && !trimmedParagraph.startsWith("–");
                 
                 // Check if it's a bullet point (starts with "–", "-", or "*")
                 const isBulletPoint = trimmedParagraph.startsWith("–") || trimmedParagraph.startsWith("-") || trimmedParagraph.startsWith("*");

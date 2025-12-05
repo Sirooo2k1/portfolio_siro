@@ -11,7 +11,25 @@ export const LanguageProvider = ({ children }) => {
   useEffect(() => {
     // Lưu ngôn ngữ vào localStorage khi thay đổi
     localStorage.setItem('language', language);
+    
+    // Set data attribute trên body và html để CSS có thể tự động áp dụng font
+    if (document.body) {
+      document.body.setAttribute('data-language', language);
+    }
+    if (document.documentElement) {
+      document.documentElement.setAttribute('data-language', language);
+    }
   }, [language]);
+
+  // Set data attribute ngay khi mount để đảm bảo font được áp dụng ngay từ đầu
+  useEffect(() => {
+    if (document.body) {
+      document.body.setAttribute('data-language', language);
+    }
+    if (document.documentElement) {
+      document.documentElement.setAttribute('data-language', language);
+    }
+  }, []);
 
   return (
     <LanguageContext.Provider value={{ language, setLanguage }}>

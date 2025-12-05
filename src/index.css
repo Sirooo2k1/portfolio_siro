@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Outfit:wght@100;200;300;400;500;600;700;800;900&family=Noto+Sans+JP:wght@100;200;300;400;500;600;700;800;900&family=Lora:wght@400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Outfit:wght@100;200;300;400;500;600;700;800;900&family=Klee+One:wght@400;600&family=LXGW+WenKai+Mono+TC&family=Gowun+Batang&family=Lora:wght@400;500;600;700&display=swap");
 
 @tailwind base;
 @tailwind components;
@@ -26,18 +26,159 @@ body {
   overflow-x: hidden;
 }
 
+/* Base typography for default languages (en, vi, etc.) */
+body,
+p,
+span,
+div,
+li,
+td,
+th,
+button,
+label,
+input,
+textarea,
+a,
+code,
+pre {
+  font-family: "Lora", serif;
+  font-weight: 400;
+  font-size: 16px;
+}
+
+/* Navbar menu - keep original font size */
+nav a {
+  font-size: inherit !important;
+}
+
 h1, h2, h3, h4, h5, h6 {
   font-family: "Lora", serif;
   font-weight: 700;
   letter-spacing: -0.02em;
 }
 
-/* Japanese text styling */
-.japanese-text {
-  font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Meiryo", "Yu Gothic", "MS PGothic", sans-serif;
-  font-feature-settings: "palt";
-  letter-spacing: 0.05em;
-  line-height: 1.8;
+/* Auto-apply font when language is Japanese */
+[data-language="ja"] * {
+  font-family: "Klee One", cursive !important;
+}
+
+[data-language="ja"] p,
+[data-language="ja"] span,
+[data-language="ja"] div,
+[data-language="ja"] li,
+[data-language="ja"] td,
+[data-language="ja"] th,
+[data-language="ja"] button,
+[data-language="ja"] label,
+[data-language="ja"] input,
+[data-language="ja"] textarea {
+  font-weight: 400 !important;
+}
+
+/* Navbar links for Japanese - make them bolder */
+[data-language="ja"] nav a {
+  font-family: "Klee One", cursive !important;
+  font-weight: 600 !important;
+  font-size: inherit !important;
+}
+
+/* Headings for Japanese - make them bolder */
+[data-language="ja"] h1,
+[data-language="ja"] h2,
+[data-language="ja"] h3,
+[data-language="ja"] h4,
+[data-language="ja"] h5,
+[data-language="ja"] h6 {
+  font-family: "Klee One", cursive !important;
+  font-weight: 600 !important;
+}
+
+/* Auto-apply font when language is Chinese */
+[data-language="zh"] * {
+  font-family: "LXGW WenKai Mono TC", monospace !important;
+}
+
+[data-language="zh"] p,
+[data-language="zh"] span,
+[data-language="zh"] div,
+[data-language="zh"] li,
+[data-language="zh"] td,
+[data-language="zh"] th,
+[data-language="zh"] button,
+[data-language="zh"] label,
+[data-language="zh"] input,
+[data-language="zh"] textarea,
+[data-language="zh"] a,
+[data-language="zh"] strong,
+[data-language="zh"] b,
+[data-language="zh"] em,
+[data-language="zh"] i,
+[data-language="zh"] small,
+[data-language="zh"] code,
+[data-language="zh"] pre {
+  font-weight: 400 !important;
+}
+
+/* Navbar links for Chinese - make them bolder */
+[data-language="zh"] nav a {
+  font-family: "LXGW WenKai Mono TC", monospace !important;
+  font-weight: 400 !important;
+  font-size: inherit !important;
+}
+
+/* Headings for Chinese - make them bolder */
+[data-language="zh"] h1,
+[data-language="zh"] h2,
+[data-language="zh"] h3,
+[data-language="zh"] h4,
+[data-language="zh"] h5,
+[data-language="zh"] h6 {
+  font-family: "LXGW WenKai Mono TC", monospace !important;
+  font-weight: 400 !important;
+}
+
+/* Auto-apply font when language is Korean */
+[data-language="ko"] * {
+  font-family: "Gowun Batang", serif !important;
+}
+
+[data-language="ko"] p,
+[data-language="ko"] span,
+[data-language="ko"] div,
+[data-language="ko"] li,
+[data-language="ko"] td,
+[data-language="ko"] th,
+[data-language="ko"] button,
+[data-language="ko"] label,
+[data-language="ko"] input,
+[data-language="ko"] textarea,
+[data-language="ko"] a,
+[data-language="ko"] strong,
+[data-language="ko"] b,
+[data-language="ko"] em,
+[data-language="ko"] i,
+[data-language="ko"] small,
+[data-language="ko"] code,
+[data-language="ko"] pre {
+  font-weight: 400 !important;
+}
+
+/* Navbar links for Korean */
+[data-language="ko"] nav a {
+  font-family: "Gowun Batang", serif !important;
+  font-weight: 400 !important;
+  font-size: inherit !important;
+}
+
+/* Headings for Korean */
+[data-language="ko"] h1,
+[data-language="ko"] h2,
+[data-language="ko"] h3,
+[data-language="ko"] h4,
+[data-language="ko"] h5,
+[data-language="ko"] h6 {
+  font-family: "Gowun Batang", serif !important;
+  font-weight: 400 !important;
 }
 
 .hash-span {
@@ -76,12 +217,6 @@ h1, h2, h3, h4, h5, h6 {
   background: -webkit-linear-gradient(-90.13deg, #00cea8 1.9%, #bf61ff 97.5%);
 }
 
-/* .blue-white-gradient {
-  background: #0077b5;
-  background: -webkit-linear-gradient(left, #0077b5 0%, #0077b5 50%, #ffffff 50%, #ffffff 100%);
-  background: linear-gradient(to right, #0077b5 0%, #0077b5 50%, #ffffff 50%, #ffffff 100%);
-} */
-
 .orange-text-gradient {
   background: #f12711; /* fallback for old browsers */
   background: -webkit-linear-gradient(
@@ -115,7 +250,6 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .blue-text-gradient {
-  /* background: -webkit-linear-gradient(#eee, #333); */
   background: #56ccf2; /* fallback for old browsers */
   background: -webkit-linear-gradient(
     to top,

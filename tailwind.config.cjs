@@ -7,7 +7,9 @@ module.exports = {
       fontFamily: {
         sans: ["Lora", "serif"],
         heading: ["Lora", "serif"],
-        japanese: ["Noto Sans JP", "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Meiryo", "Yu Gothic", "MS PGothic", "sans-serif"],
+        japanese: ["Klee One", "cursive"],
+        chinese: ["LXGW WenKai Mono TC", "monospace"],
+        korean: ["Gowun Batang", "serif"],
         lora: ["Lora", "serif"],
       },
       colors: {

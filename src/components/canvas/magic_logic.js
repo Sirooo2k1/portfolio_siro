@@ -15,13 +15,13 @@ const preload = () => {
 				environmentInstance.dispose();
 			} else {
 				// Fallback cleanup
-				if (environmentInstance.renderer) {
+			if (environmentInstance.renderer) {
 					environmentInstance.renderer.setAnimationLoop(null);
-					environmentInstance.renderer.dispose();
-				}
-				if (environmentInstance.scene) {
-					environmentInstance.scene.clear();
-				}
+				environmentInstance.renderer.dispose();
+			}
+			if (environmentInstance.scene) {
+				environmentInstance.scene.clear();
+			}
 				if (environmentInstance.createParticles && environmentInstance.createParticles.dispose) {
 					environmentInstance.createParticles.dispose();
 				}
@@ -620,10 +620,10 @@ class CreateParticles {
 
 	clearText() {
 		if (this.particles) {
-			this.scene.remove( this.particles );
+		this.scene.remove( this.particles );
 		}
 		if (this.geometryCopy) {
-			this.geometryCopy.clearGroups();
+		this.geometryCopy.clearGroups();
 		}
 	}
 
