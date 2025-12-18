@@ -19,7 +19,7 @@ const Contact = () => {
 
   // EmailJS Configuration
   const EMAILJS_SERVICE_ID = "service_sw24ukd"; // Service ID
-  const EMAILJS_TEMPLATE_ID = "template_anxsffi"; // Template ID (phải bắt đầu bằng "template_")
+  const EMAILJS_TEMPLATE_ID = "template_anxsffi"; // Template ID
   const EMAILJS_PUBLIC_KEY = "gjXlJ8IsosmTpdXBs"; // Public Key
   const YOUR_EMAIL = "sirosiro2k1@gmail.com"; // Email để nhận thư
 
