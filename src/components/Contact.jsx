@@ -19,7 +19,7 @@ const Contact = () => {
 
   // EmailJS Configuration
   const EMAILJS_SERVICE_ID = "VITE_EMAILJS_SERVICE_ID"; // Service ID
-  const EMAILJS_TEMPLATE_ID = "VITE_EMAILJS_TEMPLATE_ID"; // Template ID (phải bắt đầu bằng "template_")
+  const EMAILJS_TEMPLATE_ID = "VITE_EMAILJS_TEMPLATE_ID"; // Template ID
   const EMAILJS_PUBLIC_KEY = "VITE_EMAILJS_PUBLIC_KEY"; // Public Key
   const YOUR_EMAIL = "VITE_YOUR_EMAIL"; // Email để nhận thư
 
