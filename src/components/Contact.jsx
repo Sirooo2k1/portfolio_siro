@@ -183,80 +183,6 @@ const Contact = () => {
 
   return (
     <>
-      {/* Success/Error Notification */}
-      {notification.show && (
-        <motion.div
-          initial={{ opacity: 0, y: -20, scale: 0.95 }}
-          animate={{ opacity: 1, y: 0, scale: 1 }}
-          exit={{ opacity: 0, scale: 0.95, transition: { duration: 0.2 } }}
-          className="fixed top-[84px] right-2 sm:right-2 md:right-3 lg:right-3 xl:right-4 z-[100] max-w-[calc(100vw-1rem)] sm:max-w-sm md:max-w-md"
-        >
-          <div
-            className={`${
-              notification.type === 'success'
-                ? 'bg-gradient-to-r from-green-500 to-emerald-600'
-                : 'bg-gradient-to-r from-red-500 to-rose-600'
-            } text-white px-3 py-2.5 sm:px-5 sm:py-3.5 md:px-6 md:py-4 rounded-lg sm:rounded-xl shadow-2xl border-2 ${
-              notification.type === 'success' ? 'border-green-400' : 'border-red-400'
-            } flex items-start sm:items-center gap-2.5 sm:gap-4 backdrop-blur-sm transition-all duration-300`}
-          >
-            <div className="flex-shrink-0 mt-0.5 sm:mt-0">
-              {notification.type === 'success' ? (
-                <svg
-                  className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 lg:w-7 lg:h-7"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-                  />
-                </svg>
-              ) : (
-                <svg
-                  className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 lg:w-7 lg:h-7"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M6 18L18 6M6 6l12 12"
-                  />
-                </svg>
-              )}
-            </div>
-            <p className="flex-1 text-xs sm:text-sm md:text-base font-semibold leading-relaxed break-words min-w-0">
-              {notification.message}
-            </p>
-            <button
-              onClick={() => setNotification({ show: false, type: 'success', message: '' })}
-              className="flex-shrink-0 hover:bg-white/20 rounded-full p-0.5 sm:p-1 transition-colors mt-0.5 sm:mt-0"
-              aria-label="Close notification"
-            >
-              <svg
-                className="w-3.5 h-3.5 sm:w-4 sm:h-4 md:w-5 md:h-5"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M6 18L18 6M6 6l12 12"
-                />
-              </svg>
-            </button>
-          </div>
-        </motion.div>
-      )}
-
       <div
         ref={contactRef}
         className={`mt-8 md:mt-9 lg:mt-12 xl:mt-12 flex xl:flex-row flex-col-reverse gap-6 md:gap-7 lg:gap-10 overflow-hidden`}
@@ -306,6 +232,80 @@ const Contact = () => {
               className='bg-white py-3 px-4 md:py-4 md:px-6 placeholder:text-text-light text-black rounded-lg md:rounded-xl outline-none border border-cream-300 focus:border-[#F2E8C6] transition-colors font-medium resize-none text-sm md:text-base'
             />
           </label>
+
+          {/* Success/Error Notification */}
+          {notification.show && (
+            <motion.div
+              initial={{ opacity: 0, y: -10, scale: 0.98 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.98, transition: { duration: 0.2 } }}
+              className="w-full"
+            >
+              <div
+                className={`${
+                  notification.type === 'success'
+                    ? 'bg-gradient-to-r from-green-500 to-emerald-600'
+                    : 'bg-gradient-to-r from-red-500 to-rose-600'
+                } text-white px-4 py-3 sm:px-5 sm:py-3.5 md:px-6 md:py-4 rounded-lg sm:rounded-xl shadow-lg border-2 ${
+                  notification.type === 'success' ? 'border-green-400' : 'border-red-400'
+                } flex items-center gap-3 sm:gap-4 transition-all duration-300`}
+              >
+                <div className="flex-shrink-0">
+                  {notification.type === 'success' ? (
+                    <svg
+                      className="w-5 h-5 sm:w-6 sm:h-6"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                      />
+                    </svg>
+                  ) : (
+                    <svg
+                      className="w-5 h-5 sm:w-6 sm:h-6"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M6 18L18 6M6 6l12 12"
+                      />
+                    </svg>
+                  )}
+                </div>
+                <p className="flex-1 text-sm sm:text-base font-semibold leading-relaxed break-words">
+                  {notification.message}
+                </p>
+                <button
+                  onClick={() => setNotification({ show: false, type: 'success', message: '' })}
+                  className="flex-shrink-0 hover:bg-white/20 rounded-full p-1 transition-colors"
+                  aria-label="Close notification"
+                >
+                  <svg
+                    className="w-4 h-4 sm:w-5 sm:h-5"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M6 18L18 6M6 6l12 12"
+                    />
+                  </svg>
+                </button>
+              </div>
+            </motion.div>
+          )}
 
           <button
             type='submit'
