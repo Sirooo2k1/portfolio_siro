@@ -646,11 +646,11 @@ const programs = [
       "2026 will mark the year I embark on my journey into cybersecurity. Not to become a hacker or expert, but to understand how to protect the products I build. I want to know what makes a system robust, what makes it vulnerable, and what creates a truly trustworthy application.\n\nI plan to start with the most fundamental foundations:\n• How networks and security protocols work behind the scenes\n• The mindset of an ethical hacker when identifying vulnerabilities\n• Common security pitfalls in web development and how to avoid them\n• Encryption principles that make data truly secure\n• And finally, how to respond when incidents actually occur",
     // Multi-language support
     companyByLanguage: {
-      en: "Cybersecurity Journey",
-      vi: "Hành Trình An Ninh Mạng",
-      ja: "サイバーセキュリティの旅",
-      zh: "网络安全之旅",
-      ko: "사이버 보안 여정",
+      en: "Cybersecurity Learning Journey",
+      vi: "Hành Trình Học An Ninh Mạng",
+      ja: "サイバーセキュリティ学習の旅",
+      zh: "网络安全学习之旅",
+      ko: "사이버 보안 학습 여정",
     },
     titleByLanguage: {
       en: "Cybersecurity",
@@ -690,11 +690,11 @@ const programs = [
       ko: "클라우드 컴퓨팅",
     },
     descriptionByLanguage: {
-      en: "Throughout my programming journey, I've always been curious: How can a small application on my computer serve thousands, even millions of people out there?\nThe answer I discovered is cloud computing, the platform that provides power for modern applications.\n\nMy AWS journey will start from the most fundamental foundations:\n• Understanding the AWS ecosystem and how services connect and support each other to create a flexible and powerful platform\n• Building scalable architectures and sustainable systems that adapt to application scale and expand when needed\n• Optimizing performance and cost by balancing speed, stability, and budget\n• Applying Well-Architected principles to deploy, monitor, and operate professionally according to industry standards",
-      vi: "Trong suốt hành trình lập trình của mình, mình luôn tò mò: Làm thế nào một ứng dụng nhỏ trên máy tính của mình có thể phục vụ hàng nghìn, thậm chí hàng triệu người ngoài kia?\nCâu trả lời mình khám phá được là điện toán đám mây, nền tảng cung cấp sức mạnh cho các ứng dụng hiện đại.\n\nHành trình AWS của mình sẽ bắt đầu với những nền tảng cơ bản nhất:\n• Hiểu hệ sinh thái AWS và cách các dịch vụ kết nối và hỗ trợ lẫn nhau để tạo ra một nền tảng linh hoạt và mạnh mẽ\n• Xây dựng kiến trúc có thể mở rộng và hệ thống bền vững thích ứng với quy mô ứng dụng và mở rộng khi cần\n• Tối ưu hóa hiệu suất và chi phí bằng cách cân bằng tốc độ, ổn định và ngân sách\n• Áp dụng các nguyên tắc Well-Architected để triển khai, giám sát và vận hành chuyên nghiệp theo tiêu chuẩn ngành",
-      ja: "プログラミングの旅を通じて、私は常に好奇心を持っていました：コンピュータ上の小さなアプリケーションが、どのようにして何千人、何百万人もの人々にサービスを提供できるのか？\n私が発見した答えは、クラウドコンピューティング、現代のアプリケーションに力を与えるプラットフォームです。\n\n私のAWSの旅は、最も基本的な基盤から始まります：\n• AWSエコシステムと、サービスが相互に接続し、サポートして柔軟で強力なプラットフォームを作成する方法を理解する\n• アプリケーションの規模に適応し、必要に応じて拡張するスケーラブルなアーキテクチャと持続可能なシステムを構築する\n• 速度、安定性、予算のバランスを取ることにより、パフォーマンスとコストを最適化する\n• Well-Architectedの原則を適用して、業界標準に従って専門的に展開、監視、運用する",
-      zh: "在我的编程旅程中，我一直很好奇：我电脑上的一个小应用程序如何能够为成千上万甚至数百万人提供服务？\n我发现的答案是云计算，为现代应用程序提供动力的平台。\n\n我的 AWS 旅程将从最基础的基础开始：\n• 了解 AWS 生态系统以及服务如何相互连接和支持，以创建一个灵活而强大的平台\n• 构建可扩展的架构和可持续的系统，适应应用程序规模并在需要时扩展\n• 通过平衡速度、稳定性和预算来优化性能和成本\n• 应用 Well-Architected 原则，根据行业标准专业地部署、监控和运营",
-      ko: "프로그래밍 여정을 통해 저는 항상 궁금했습니다: 제 컴퓨터의 작은 애플리케이션이 어떻게 수천 명, 심지어 수백만 명의 사람들에게 서비스를 제공할 수 있을까요?\n제가 발견한 답은 클라우드 컴퓨팅, 현대 애플리케이션에 힘을 제공하는 플랫폼입니다.\n\n제 AWS 여정은 가장 기본적인 기초부터 시작할 것입니다:\n• AWS 생태계와 서비스가 서로 연결되고 지원하여 유연하고 강력한 플랫폼을 만드는 방법 이해\n• 애플리케이션 규모에 적응하고 필요할 때 확장할 수 있는 확장 가능한 아키텍처와 지속 가능한 시스템 구축\n• 속도, 안정성 및 예산의 균형을 맞춰 성능과 비용 최적화\n• Well-Architected 원칙을 적용하여 업계 표준에 따라 전문적으로 배포, 모니터링 및 운영",
+      en: "Throughout my programming journey, I've always been curious: How can a small application on my computer serve thousands, even millions of people out there?\nThe answer I discovered is cloud computing, the platform that provides power for modern applications.\n\nMy AWS journey will start from the most fundamental foundations:\n• Understanding the AWS ecosystem and how services connect, support each other to create a flexible and powerful platform\n• Building scalable architectures and sustainable systems that adapt to application scale and expand when needed\n• Optimizing performance and cost by balancing speed, stability, and budget\n• Applying Well-Architected principles to deploy, monitor, and operate professionally according to industry standards",
+      vi: "Trong suốt hành trình lập trình của mình, mình luôn tò mò: Làm thế nào một ứng dụng nhỏ trên máy tính của mình có thể phục vụ hàng nghìn, thậm chí hàng triệu người ngoài kia?\nCâu trả lời mình khám phá được là điện toán đám mây, nền tảng cung cấp sức mạnh cho các ứng dụng hiện đại.\n\nHành trình AWS của mình sẽ bắt đầu với những nền tảng cơ bản nhất:\n• Hiểu hệ sinh thái AWS và cách các dịch vụ kết nối, hỗ trợ lẫn nhau để tạo ra một nền tảng linh hoạt và mạnh mẽ\n• Xây dựng kiến trúc có thể mở rộng và hệ thống bền vững thích ứng với quy mô ứng dụng và mở rộng khi cần\n• Tối ưu hóa hiệu suất và chi phí bằng cách cân bằng tốc độ, ổn định và ngân sách\n• Áp dụng các nguyên tắc Well-Architected để triển khai, giám sát và vận hành chuyên nghiệp theo tiêu chuẩn ngành",
+      ja: "プログラミングの旅を通じて、私は常に好奇心を持っていました：コンピュータ上の小さなアプリケーションが、どのようにして何千人、何百万人もの人々にサービスを提供できるのか？\n私が発見した答えは、クラウドコンピューティング、現代のアプリケーションに力を与えるプラットフォームです。\n\n私のAWSの旅は、最も基本的な基盤から始まります：\n• AWSエコシステムと、サービスが相互に接続、サポートし合って柔軟で強力なプラットフォームを作成する方法を理解する\n• アプリケーションの規模に適応し、必要に応じて拡張するスケーラブルなアーキテクチャと持続可能なシステムを構築する\n• 速度、安定性、予算のバランスを取ることにより、パフォーマンスとコストを最適化する\n• Well-Architectedの原則を適用して、業界標準に従って専門的に展開、監視、運用する",
+      zh: "在我的编程旅程中，我一直很好奇：我电脑上的一个小应用程序如何能够为成千上万甚至数百万人提供服务？\n我发现的答案是云计算，为现代应用程序提供动力的平台。\n\n我的 AWS 旅程将从最基础的基础开始：\n• 了解 AWS 生态系统以及服务如何相互连接、支持，以创建一个灵活而强大的平台\n• 构建可扩展的架构和可持续的系统，适应应用程序规模并在需要时扩展\n• 通过平衡速度、稳定性和预算来优化性能和成本\n• 应用 Well-Architected 原则，根据行业标准专业地部署、监控和运营",
+      ko: "프로그래밍 여정을 통해 저는 항상 궁금했습니다: 제 컴퓨터의 작은 애플리케이션이 어떻게 수천 명, 심지어 수백만 명의 사람들에게 서비스를 제공할 수 있을까요?\n제가 발견한 답은 클라우드 컴퓨팅, 현대 애플리케이션에 힘을 제공하는 플랫폼입니다.\n\n제 AWS 여정은 가장 기본적인 기초부터 시작할 것입니다:\n• AWS 생태계와 서비스가 서로 연결, 지원하여 유연하고 강력한 플랫폼을 만드는 방법 이해\n• 애플리케이션 규모에 적응하고 필요할 때 확장할 수 있는 확장 가능한 아키텍처와 지속 가능한 시스템 구축\n• 속도, 안정성 및 예산의 균형을 맞춰 성능과 비용 최적화\n• Well-Architected 원칙을 적용하여 업계 표준에 따라 전문적으로 배포, 모니터링 및 운영",
     },
   },
 ];
