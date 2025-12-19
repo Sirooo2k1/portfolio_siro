@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { blogPosts, experiences } from "../constants";
@@ -10,6 +10,11 @@ const BlogPost = () => {
   const navigate = useNavigate();
   const { language } = useLanguage();
   const post = blogPosts.find((p) => p.slug === slug);
+
+  // Scroll to top instantly when component mounts
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [slug]);
 
   // Map slug to blog post card ID
   const getBlogCardId = () => {
