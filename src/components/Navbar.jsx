@@ -17,6 +17,7 @@ const Navbar = () => {
   const [blogDropdownOpen, setBlogDropdownOpen] = useState(false);
 
   // Smooth scroll helper - scroll closer to headings with improved smoothness for mobile/iPad
+  // Uses native smooth scroll for better performance on both desktop and mobile
   const smoothScrollTo = (elementId) => {
     const element = document.getElementById(elementId);
     if (!element) return;
@@ -31,42 +32,12 @@ const Navbar = () => {
     // This brings headings closer to navbar with a nice breathing room
     const targetPosition = elementTop + 100 - navbarHeight - 30; // -30 for closer spacing to headings
 
-    // Use scrollIntoView for better mobile/iPad support with smooth behavior
-    const isMobile = window.innerWidth < 1024;
-    
-    if (isMobile && element.scrollIntoView) {
-      // For mobile/iPad, use scrollIntoView with smooth behavior for better performance
-      const startPosition = window.pageYOffset;
-      const distance = targetPosition - startPosition;
-      const duration = Math.min(Math.abs(distance) * 0.5, 1000); // Max 1 second, faster for shorter distances
-      
-      let startTime = null;
-      
-      const easeInOutCubic = (t) => {
-        return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
-      };
-      
-      const animateScroll = (currentTime) => {
-        if (startTime === null) startTime = currentTime;
-        const timeElapsed = currentTime - startTime;
-        const progress = Math.min(timeElapsed / duration, 1);
-        const easedProgress = easeInOutCubic(progress);
-        
-        window.scrollTo(0, startPosition + distance * easedProgress);
-        
-        if (progress < 1) {
-          requestAnimationFrame(animateScroll);
-        }
-      };
-      
-      requestAnimationFrame(animateScroll);
-    } else {
-      // For desktop, use native smooth scroll
+    // Use native smooth scroll for both desktop and mobile for better performance
+    // Native smooth scroll is optimized by the browser and performs better than custom animations
     window.scrollTo({
       top: Math.max(0, targetPosition),
       behavior: 'smooth'
     });
-    }
   };
 
   // Handle anchor link clicks

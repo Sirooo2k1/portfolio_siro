@@ -20,7 +20,7 @@ const Hero = () => {
     scrollDown: t('hero.scrollDown', language),
   }), [language]);
 
-  // Smooth scroll helper optimized for mobile/iPad
+  // Smooth scroll helper - uses native smooth scroll for better performance on both desktop and mobile
   const smoothScrollTo = (elementId) => {
     const element = document.getElementById(elementId);
     if (!element) return;
@@ -35,41 +35,12 @@ const Hero = () => {
     // Scroll to section start (after hash-span padding) with smaller offset for closer positioning
     const targetPosition = elementTop + 100 - navbarHeight - 30;
 
-    // Use custom smooth scroll for mobile/iPad for better performance
-    const isMobile = window.innerWidth < 1024;
-    
-    if (isMobile) {
-      const startPosition = window.pageYOffset;
-      const distance = targetPosition - startPosition;
-      const duration = Math.min(Math.abs(distance) * 0.4, 800); // Faster and smoother for mobile
-      
-      let startTime = null;
-      
-      const easeInOutCubic = (t) => {
-        return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
-      };
-      
-      const animateScroll = (currentTime) => {
-        if (startTime === null) startTime = currentTime;
-        const timeElapsed = currentTime - startTime;
-        const progress = Math.min(timeElapsed / duration, 1);
-        const easedProgress = easeInOutCubic(progress);
-        
-        window.scrollTo(0, startPosition + distance * easedProgress);
-        
-        if (progress < 1) {
-          requestAnimationFrame(animateScroll);
-        }
-      };
-      
-      requestAnimationFrame(animateScroll);
-    } else {
-      // For desktop, use native smooth scroll
-      window.scrollTo({
-        top: Math.max(0, targetPosition),
-        behavior: 'smooth'
-      });
-    }
+    // Use native smooth scroll for both desktop and mobile for better performance
+    // Native smooth scroll is optimized by the browser and performs better than custom animations
+    window.scrollTo({
+      top: Math.max(0, targetPosition),
+      behavior: 'smooth'
+    });
   };
 
   const handleScrollClick = (e) => {
