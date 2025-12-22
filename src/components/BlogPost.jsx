@@ -13,7 +13,11 @@ const BlogPost = () => {
   const post = blogPosts.find((p) => p.slug === slug);
 
   // Force scroll to top instantly before render (no animation, no delay)
+  // Optimized for both desktop and mobile
   useLayoutEffect(() => {
+    // Detect mobile device
+    const isMobile = window.innerWidth < 1024 || /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+    
     // Disable browser scroll restoration to prevent automatic scrolling
     if ('scrollRestoration' in window.history) {
       window.history.scrollRestoration = 'manual';
@@ -25,24 +29,40 @@ const BlogPost = () => {
     document.documentElement.style.scrollBehavior = 'auto';
     document.body.style.scrollBehavior = 'auto';
     
-    // Immediately set scroll position to 0 before any rendering
-    window.scrollTo(0, 0);
-    document.documentElement.scrollTop = 0;
-    document.body.scrollTop = 0;
-    
-    // Force immediate scroll without any delay - multiple times to ensure it works
-    requestAnimationFrame(() => {
+    // Function to force scroll to top - works on both desktop and mobile
+    const forceScrollToTop = () => {
       window.scrollTo(0, 0);
       document.documentElement.scrollTop = 0;
       document.body.scrollTop = 0;
       
-      // Force again in next frame
+      // For iOS Safari, also try scrollIntoView
+      if (isMobile && document.documentElement.scrollIntoView) {
+        document.documentElement.scrollIntoView({ behavior: 'auto', block: 'start' });
+      }
+    };
+    
+    // Immediately set scroll position to 0 before any rendering
+    forceScrollToTop();
+    
+    // Force immediate scroll without any delay - multiple times to ensure it works
+    // This is especially important for mobile browsers
+    requestAnimationFrame(() => {
+      forceScrollToTop();
+      
+      // Force again in next frame (important for mobile)
       requestAnimationFrame(() => {
-        window.scrollTo(0, 0);
-        document.documentElement.scrollTop = 0;
-        document.body.scrollTop = 0;
+        forceScrollToTop();
       });
     });
+    
+    // For mobile, add one more frame to ensure scroll is at top
+    if (isMobile) {
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          forceScrollToTop();
+        });
+      });
+    }
     
     // Restore original scroll behavior after a short delay
     setTimeout(() => {
@@ -52,7 +72,11 @@ const BlogPost = () => {
   }, [location.pathname]);
 
   // Also ensure scroll position stays at top after render
+  // Optimized for both desktop and mobile
   useEffect(() => {
+    // Detect mobile device
+    const isMobile = window.innerWidth < 1024 || /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+    
     // Override CSS scroll-behavior temporarily
     const originalHtmlScrollBehavior = document.documentElement.style.scrollBehavior;
     const originalBodyScrollBehavior = document.body.style.scrollBehavior;
@@ -60,11 +84,19 @@ const BlogPost = () => {
     document.body.style.scrollBehavior = 'auto';
     
     // Continuously check and force scroll to top
+    // Enhanced for mobile compatibility
     const forceScrollToTop = () => {
-      if (window.pageYOffset !== 0 || document.documentElement.scrollTop !== 0 || document.body.scrollTop !== 0) {
+      const currentScroll = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
+      
+      if (currentScroll !== 0) {
         window.scrollTo(0, 0);
         document.documentElement.scrollTop = 0;
         document.body.scrollTop = 0;
+        
+        // For iOS Safari and mobile browsers, use scrollIntoView as fallback
+        if (isMobile && document.documentElement.scrollIntoView) {
+          document.documentElement.scrollIntoView({ behavior: 'auto', block: 'start' });
+        }
       }
     };
     
@@ -72,17 +104,24 @@ const BlogPost = () => {
     forceScrollToTop();
     
     // Force after multiple delays to catch any browser restoration
+    // More timeouts for mobile to ensure it works
     const timeout1 = setTimeout(forceScrollToTop, 0);
     const timeout2 = setTimeout(forceScrollToTop, 10);
     const timeout3 = setTimeout(forceScrollToTop, 50);
     const timeout4 = setTimeout(forceScrollToTop, 100);
     const timeout5 = setTimeout(forceScrollToTop, 200);
     
+    // Additional timeout for mobile devices
+    let timeout6 = null;
+    if (isMobile) {
+      timeout6 = setTimeout(forceScrollToTop, 300);
+    }
+    
     // Restore original scroll behavior after ensuring scroll is at top
     setTimeout(() => {
       document.documentElement.style.scrollBehavior = originalHtmlScrollBehavior;
       document.body.style.scrollBehavior = originalBodyScrollBehavior;
-    }, 300);
+    }, isMobile ? 400 : 300);
     
     return () => {
       clearTimeout(timeout1);
@@ -90,6 +129,7 @@ const BlogPost = () => {
       clearTimeout(timeout3);
       clearTimeout(timeout4);
       clearTimeout(timeout5);
+      if (timeout6) clearTimeout(timeout6);
     };
   }, [location.pathname]);
 
