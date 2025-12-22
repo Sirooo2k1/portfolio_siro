@@ -1,5 +1,5 @@
-import React, { useLayoutEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import React, { useLayoutEffect, useEffect } from "react";
+import { useParams, useNavigate, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
 import { blogPosts, experiences } from "../constants";
 import { useLanguage } from "../utils/language";
@@ -8,17 +8,90 @@ import { t } from "../utils/translations";
 const BlogPost = () => {
   const { slug } = useParams();
   const navigate = useNavigate();
+  const location = useLocation();
   const { language } = useLanguage();
   const post = blogPosts.find((p) => p.slug === slug);
 
-  // Scroll to top instantly before render (no animation, no delay)
+  // Force scroll to top instantly before render (no animation, no delay)
   useLayoutEffect(() => {
-    window.scrollTo(0, 0);
-    // Also set scroll position directly to ensure it's at top
-    if (window.pageYOffset !== 0) {
-      window.scrollTo(0, 0);
+    // Disable browser scroll restoration to prevent automatic scrolling
+    if ('scrollRestoration' in window.history) {
+      window.history.scrollRestoration = 'manual';
     }
-  }, [slug]);
+    
+    // Override CSS scroll-behavior temporarily
+    const originalHtmlScrollBehavior = document.documentElement.style.scrollBehavior;
+    const originalBodyScrollBehavior = document.body.style.scrollBehavior;
+    document.documentElement.style.scrollBehavior = 'auto';
+    document.body.style.scrollBehavior = 'auto';
+    
+    // Immediately set scroll position to 0 before any rendering
+    window.scrollTo(0, 0);
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+    
+    // Force immediate scroll without any delay - multiple times to ensure it works
+    requestAnimationFrame(() => {
+      window.scrollTo(0, 0);
+      document.documentElement.scrollTop = 0;
+      document.body.scrollTop = 0;
+      
+      // Force again in next frame
+      requestAnimationFrame(() => {
+        window.scrollTo(0, 0);
+        document.documentElement.scrollTop = 0;
+        document.body.scrollTop = 0;
+      });
+    });
+    
+    // Restore original scroll behavior after a short delay
+    setTimeout(() => {
+      document.documentElement.style.scrollBehavior = originalHtmlScrollBehavior;
+      document.body.style.scrollBehavior = originalBodyScrollBehavior;
+    }, 100);
+  }, [location.pathname]);
+
+  // Also ensure scroll position stays at top after render
+  useEffect(() => {
+    // Override CSS scroll-behavior temporarily
+    const originalHtmlScrollBehavior = document.documentElement.style.scrollBehavior;
+    const originalBodyScrollBehavior = document.body.style.scrollBehavior;
+    document.documentElement.style.scrollBehavior = 'auto';
+    document.body.style.scrollBehavior = 'auto';
+    
+    // Continuously check and force scroll to top
+    const forceScrollToTop = () => {
+      if (window.pageYOffset !== 0 || document.documentElement.scrollTop !== 0 || document.body.scrollTop !== 0) {
+        window.scrollTo(0, 0);
+        document.documentElement.scrollTop = 0;
+        document.body.scrollTop = 0;
+      }
+    };
+    
+    // Force immediately
+    forceScrollToTop();
+    
+    // Force after multiple delays to catch any browser restoration
+    const timeout1 = setTimeout(forceScrollToTop, 0);
+    const timeout2 = setTimeout(forceScrollToTop, 10);
+    const timeout3 = setTimeout(forceScrollToTop, 50);
+    const timeout4 = setTimeout(forceScrollToTop, 100);
+    const timeout5 = setTimeout(forceScrollToTop, 200);
+    
+    // Restore original scroll behavior after ensuring scroll is at top
+    setTimeout(() => {
+      document.documentElement.style.scrollBehavior = originalHtmlScrollBehavior;
+      document.body.style.scrollBehavior = originalBodyScrollBehavior;
+    }, 300);
+    
+    return () => {
+      clearTimeout(timeout1);
+      clearTimeout(timeout2);
+      clearTimeout(timeout3);
+      clearTimeout(timeout4);
+      clearTimeout(timeout5);
+    };
+  }, [location.pathname]);
 
   // Map slug to blog post card ID
   const getBlogCardId = () => {
@@ -245,7 +318,10 @@ const BlogPost = () => {
   const category = getLocalizedCategory();
 
   return (
-    <div className="min-h-screen bg-[#FAFCC6]">
+    <div 
+      className="min-h-screen bg-[#FAFCC6]"
+      style={{ scrollBehavior: 'auto' }}
+    >
       {/* Header */}
       <div className="bg-white border-b border-[#F2E8C6] sticky top-0 z-10">
         <div className="max-w-4xl mx-auto px-4 md:px-5 lg:px-6 py-3 md:py-3.5 lg:py-4">
