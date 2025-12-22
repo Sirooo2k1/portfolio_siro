@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useLayoutEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { blogPosts, experiences } from "../constants";
@@ -11,9 +11,13 @@ const BlogPost = () => {
   const { language } = useLanguage();
   const post = blogPosts.find((p) => p.slug === slug);
 
-  // Scroll to top instantly when component mounts
-  useEffect(() => {
+  // Scroll to top instantly before render (no animation, no delay)
+  useLayoutEffect(() => {
     window.scrollTo(0, 0);
+    // Also set scroll position directly to ensure it's at top
+    if (window.pageYOffset !== 0) {
+      window.scrollTo(0, 0);
+    }
   }, [slug]);
 
   // Map slug to blog post card ID
@@ -44,7 +48,7 @@ const BlogPost = () => {
     return `blog-${categoryId}-${experienceIndex}`;
   };
 
-  // Smooth scroll helper function
+  // Scroll helper function (instant, no animation)
   const smoothScrollToElement = (element, offset = 0) => {
     if (!element) return;
     
@@ -58,10 +62,8 @@ const BlogPost = () => {
     // Calculate target position: element top + hash-span offset (100px) - navbar height - additional offset
     const targetPosition = elementTop + 100 - navbarHeight - offset;
 
-    window.scrollTo({
-      top: Math.max(0, targetPosition),
-      behavior: "smooth",
-    });
+    // Scroll instantly without animation
+    window.scrollTo(0, Math.max(0, targetPosition));
   };
 
   // Handle back to blog section (top left button)
@@ -155,10 +157,8 @@ const BlogPost = () => {
     // Scroll to target post with navbar offset (same calculation as Navbar's blog dropdown)
     const targetOffset = targetPostTop - navbarHeight - 20;
     
-    window.scrollTo({
-      top: Math.max(0, targetOffset),
-      behavior: 'smooth'
-    });
+    // Scroll instantly without animation
+    window.scrollTo(0, Math.max(0, targetOffset));
   };
   
   // Helper function to scroll to the first blog post
