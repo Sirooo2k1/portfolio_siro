@@ -160,9 +160,17 @@ const ExperienceCard = ({ experience, index }) => {
                 to={`/blog/${slug}`}
                 onClick={() => {
                   // Force scroll to top immediately when clicking the link
+                  // Optimized for both desktop and mobile
+                  const isMobile = window.innerWidth < 1024 || /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+                  
                   window.scrollTo(0, 0);
                   document.documentElement.scrollTop = 0;
                   document.body.scrollTop = 0;
+                  
+                  // For mobile, also use scrollIntoView for better compatibility
+                  if (isMobile && document.documentElement.scrollIntoView) {
+                    document.documentElement.scrollIntoView({ behavior: 'auto', block: 'start' });
+                  }
                 }}
                 className='flex items-center gap-1.5 md:gap-2 px-3 py-1.5 md:px-4 md:py-2 lg:px-5 lg:py-2.5 xl:px-6 xl:py-3 bg-[#F3F0EB] hover:bg-[#E8E3DC] transition-colors rounded-lg text-black font-semibold text-sm md:text-base lg:text-[17px] xl:text-[18px] tracking-wide'
               >
