@@ -53,9 +53,6 @@ const Hero = () => {
     
     gsap.registerPlugin(ScrollTrigger);
 
-    // Hero chỉ quản lý màu khi ở trong Hero section
-    // Khi rời khỏi Hero, để logic scroll chung quản lý màu
-    // Chỉ chạy một lần khi mount, không phụ thuộc vào language
     const heroTrigger = gsap.timeline({
       scrollTrigger: {
         trigger: heroRef.current,
@@ -63,7 +60,6 @@ const Hero = () => {
         end: "bottom top",
         scrub: false,
         onEnterBack: () => {
-          // Chỉ đổi màu về đen khi quay lại Hero (scrollTop <= 100)
           setCurrentBG("#050816");
         },
       },
@@ -77,7 +73,6 @@ const Hero = () => {
         }
       });
     };
-    // Chỉ chạy một lần khi mount, không phụ thuộc vào language hoặc setCurrentBG
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
