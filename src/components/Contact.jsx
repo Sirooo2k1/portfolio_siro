@@ -17,15 +17,24 @@ const Contact = () => {
   const contactRef = useRef(null)
   const textRef = useRef(null)
 
-  // EmailJS Configuration
-  const EMAILJS_SERVICE_ID = "VITE_EMAILJS_SERVICE_ID"; // Service ID
-  const EMAILJS_TEMPLATE_ID = "VITE_EMAILJS_TEMPLATE_ID"; // Template ID
-  const EMAILJS_PUBLIC_KEY = "VITE_EMAILJS_PUBLIC_KEY"; // Public Key
-  const YOUR_EMAIL = "VITE_YOUR_EMAIL"; // Email để nhận thư
+  // EmailJS Configuration - Load from environment variables
+  const EMAILJS_SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+  const EMAILJS_TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+  const EMAILJS_PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+  const YOUR_EMAIL = import.meta.env.VITE_YOUR_EMAIL;
+
+  // Validate environment variables
+  useEffect(() => {
+    if (!EMAILJS_SERVICE_ID || !EMAILJS_TEMPLATE_ID || !EMAILJS_PUBLIC_KEY || !YOUR_EMAIL) {
+      console.error('EmailJS environment variables are missing. Please check your .env file.');
+    }
+  }, []);
 
   // Initialize EmailJS khi component mount
   useEffect(() => {
-    emailjs.init(EMAILJS_PUBLIC_KEY);
+    if (EMAILJS_PUBLIC_KEY) {
+      emailjs.init(EMAILJS_PUBLIC_KEY);
+    }
   }, []);
 
   useEffect(() => {
