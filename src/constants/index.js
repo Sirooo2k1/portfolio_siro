@@ -73,7 +73,7 @@ export const navMedia = [
   {
     id: "Email",
     image: outlook,
-    link: "mailto:REDACTED_EMAIL",
+    link: "mailto:24849318@hagoromo.ac.jp",
   },
 ];
 
