@@ -11,6 +11,17 @@ import { useLanguage } from "../utils/language";
 import { t } from "../utils/translations";
 import { gsap, ScrollTrigger} from "gsap/all";
 
+// EmailJS configuration from environment variables
+const EMAILJS_SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+const EMAILJS_TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+const YOUR_EMAIL = import.meta.env.VITE_YOUR_EMAIL;
+const EMAILJS_PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+
+// Validate environment variables
+if (!EMAILJS_SERVICE_ID || !EMAILJS_TEMPLATE_ID || !YOUR_EMAIL || !EMAILJS_PUBLIC_KEY) {
+  console.warn('EmailJS environment variables are missing. Please check your .env file.');
+}
+
 const Contact = () => {
   const {setCurrentBG} = useBackgroundContext()
   const { language } = useLanguage();
