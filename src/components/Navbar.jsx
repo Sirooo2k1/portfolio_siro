@@ -15,6 +15,7 @@ const Navbar = () => {
   const [toggle, setToggle] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [blogDropdownOpen, setBlogDropdownOpen] = useState(false);
+  const [isInHero, setIsInHero] = useState(true);
 
   // Smooth scroll helper - scroll closer to headings with improved smoothness for mobile/iPad
   // Uses native smooth scroll for better performance on both desktop and mobile
@@ -49,14 +50,30 @@ const Navbar = () => {
   };
 
   useEffect(() => {
+    let ticking = false;
+
     const handleScroll = () => {
-      const scrollTop = window.scrollY;
-      if (scrollTop > 100) {
-        setScrolled(true);
-      } else {
-        setScrolled(false);
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const scrollTop = window.scrollY;
+          
+          if (scrollTop > 100) {
+            setScrolled(true);
+            setIsInHero(false);
+          } else {
+            setScrolled(false);
+            setIsInHero(true);
+          }
+          
+          ticking = false;
+        });
+        
+        ticking = true;
       }
     };
+
+    // Check initial position
+    handleScroll();
 
     window.addEventListener("scroll", handleScroll, { passive: true });
 
@@ -66,26 +83,57 @@ const Navbar = () => {
   return (
     <nav
       className={`pl-4 pr-3 sm:pl-6 sm:pr-4 md:pl-6 md:pr-6 lg:pl-16 lg:pr-16 w-full flex items-center h-[80px] fixed top-0 z-20 overflow-visible transition-all duration-300 ${
-        scrolled ? "bg-[#FAFCC6] shadow-md" : "bg-transparent"
+        isInHero 
+          ? "bg-transparent" 
+          : "bg-[#FAFCC6] shadow-md"
       }`}
     >
       <div className='w-full flex justify-between items-center max-w-7xl mx-auto overflow-visible min-w-0 gap-2 sm:gap-3 md:gap-4 lg:gap-5 xl:gap-6'>
         <Link
           to='/'
-          className='flex items-center flex-shrink-0 overflow-visible'
+          className='flex items-center justify-center flex-shrink-0 overflow-hidden relative h-[80px]'
           onClick={() => {
             setActive("");
             window.scrollTo(0, 0);
           }}
         >
-          <img
-            src={logo}
-            alt='logo'
-            className='h-[75px] w-auto sm:h-[80px] md:h-[85px] lg:h-[160px] xl:h-[175px] object-contain transition-all duration-300'
-            style={{
-              maxWidth: 'min(calc(100vw - 230px), 210px)',
-            }}
-          />
+          {isInHero ? (
+            <img
+              src="/sirolg-removebg.png"
+              alt='logo'
+              className='h-[80px] w-auto sm:h-[82px] md:h-[85px] lg:h-[88px] xl:h-[90px] object-contain transition-all duration-300 relative z-10'
+              style={{
+                imageRendering: 'high-quality',
+                filter: 'brightness(1.2) contrast(1.15) saturate(1.05)',
+                opacity: 1,
+                display: 'block',
+                lineHeight: 0,
+                margin: 0,
+                padding: 0,
+                clipPath: 'inset(0 0 4% 0)',
+                objectPosition: 'center center',
+                maxHeight: '90px',
+              }}
+            />
+          ) : (
+            <img
+              src="/sirolg-removebg.png"
+              alt='logo'
+              className='h-[80px] w-auto sm:h-[82px] md:h-[85px] lg:h-[88px] xl:h-[90px] object-contain transition-all duration-300 relative z-10'
+              style={{
+                imageRendering: 'high-quality',
+                filter: 'brightness(1.15) contrast(1.1) saturate(1.0)',
+                opacity: 1,
+                display: 'block',
+                lineHeight: 0,
+                margin: 0,
+                padding: 0,
+                clipPath: 'inset(0 0 4% 0)',
+                objectPosition: 'center center',
+                maxHeight: '90px',
+              }}
+            />
+          )}
         </Link>
 
         <ul className='list-none hidden lg:flex flex-row gap-2 lg:gap-2.5 xl:gap-4 2xl:gap-6 flex-1 justify-center items-center min-w-0 flex-shrink'>
@@ -99,8 +147,10 @@ const Navbar = () => {
               >
                 <div
                   className={`${
-                    active === nav.title ? "text-[#1F2937]" : "text-[#374151]"
-                  } hover:text-[#1F2937] text-[11px] lg:text-[12px] xl:text-[15px] 2xl:text-[17px] font-medium cursor-pointer flex items-center gap-1 whitespace-nowrap transition-colors duration-200`}
+                    isInHero 
+                      ? (active === nav.title ? "text-white" : "text-gray-200")
+                      : (active === nav.title ? "text-[#1F2937]" : "text-[#374151]")
+                  } ${isInHero ? "hover:text-white" : "hover:text-[#1F2937]"} text-[11px] lg:text-[12px] xl:text-[15px] 2xl:text-[17px] font-medium cursor-pointer flex items-center gap-1 whitespace-nowrap transition-colors duration-200`}
                   onClick={() => {
                     setActive(nav.title);
                     setBlogDropdownOpen(!blogDropdownOpen);
@@ -243,8 +293,10 @@ const Navbar = () => {
               <li
                 key={nav.id}
                 className={`${
-                  active === nav.title ? "text-[#1F2937]" : "text-[#374151]"
-                } hover:text-[#1F2937] text-[11px] lg:text-[12px] xl:text-[15px] 2xl:text-[17px] font-medium cursor-pointer whitespace-nowrap transition-colors duration-200 flex-shrink-0`}
+                  isInHero 
+                    ? (active === nav.title ? "text-white" : "text-gray-200")
+                    : (active === nav.title ? "text-[#1F2937]" : "text-[#374151]")
+                } ${isInHero ? "hover:text-white" : "hover:text-[#1F2937]"} text-[11px] lg:text-[12px] xl:text-[15px] 2xl:text-[17px] font-medium cursor-pointer whitespace-nowrap transition-colors duration-200 flex-shrink-0`}
                 onClick={() => setActive(nav.title)}
               >
                 <a href={`#${nav.id}`} onClick={(e) => handleAnchorClick(e, nav.id)}>
@@ -297,7 +349,11 @@ const Navbar = () => {
             src={toggle ? close : menu}
             alt='menu'
               className={`w-6 h-6 sm:w-7 sm:h-7 object-contain transition-all duration-200 ${
-              toggle ? 'brightness-0' : ''
+              toggle 
+                ? 'brightness-0' 
+                : isInHero 
+                  ? 'brightness-0 invert' 
+                  : ''
             }`}
           />
           </button>

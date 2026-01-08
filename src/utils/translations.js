@@ -83,6 +83,13 @@ export const translations = {
       softwareEngineer: "Software Engineer",
       generativeAIEngineer: "Generative AI Engineer",
     },
+    // Footer
+    footer: {
+      copyright: "Siro",
+      rights: "All rights reserved",
+      followMe: "Follow Me",
+      madeWith: "Made with ❤️ using React & Three.js",
+    },
   },
   vi: {
     // Navbar
@@ -167,6 +174,13 @@ export const translations = {
       unityDeveloper: "Lập Trình Viên Unity",
       softwareEngineer: "Kỹ Sư Phần Mềm",
       generativeAIEngineer: "Kỹ Sư Trí Tuệ Nhân Tạo",
+    },
+    // Footer
+    footer: {
+      copyright: "Siro",
+      rights: "Bảo lưu mọi quyền",
+      followMe: "Theo Dõi Mình",
+      madeWith: "Được tạo bằng ❤️ sử dụng React & Three.js",
     },
   },
   ja: {
@@ -253,6 +267,13 @@ export const translations = {
       softwareEngineer: "ソフトウェアエンジニア",
       generativeAIEngineer: "AI人工知能エンジニア",
     },
+    // Footer
+    footer: {
+      copyright: "Siro",
+      rights: "全著作権所有",
+      followMe: "フォローしてください",
+      madeWith: "React & Three.jsで❤️を作成しました",
+    },
   },
   zh: {
     // Navbar
@@ -338,6 +359,13 @@ export const translations = {
       softwareEngineer: "软件工程师",
       generativeAIEngineer: "生成式 AI 工程师",
     },
+    // Footer
+    footer: {
+      copyright: "Siro",
+      rights: "版权所有",
+      followMe: "关注我",
+      madeWith: "使用 React & Three.js 用心制作 ❤️",
+    },
   },
   ko: {
     // Navbar
@@ -422,6 +450,13 @@ export const translations = {
       unityDeveloper: "Unity 개발자",
       softwareEngineer: "소프트웨어 엔지니어",
       generativeAIEngineer: "생성형 AI 엔지니어",
+    },
+    // Footer
+    footer: {
+      copyright: "Siro",
+      rights: "모든 권리 보유",
+      followMe: "팔로우하기",
+      madeWith: "React & Three.js로 ❤️ 제작했습니다",
     },
   },
 };

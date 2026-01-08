@@ -10,6 +10,7 @@ import Programs from "./Programs"
 import Contact from "./Contact";
 import CanvasLoader from "./Loader";
 import BlogPost from "./BlogPost";
+import Footer from "./Footer";
 
 
 export {
@@ -24,6 +25,7 @@ export {
   Contact,
   CanvasLoader,
   BlogPost,
+  Footer,
   EarthCanvas, 
   BallCanvas, 
   ComputersCanvas, 

@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useBackgroundContext } from './utils/background.jsx'
-import { About, Contact, Experience, Feedbacks, Programs, Hero, Navbar, Tech, Works, StarsCanvas, BlogPost } from "./components";
+import { About, Contact, Experience, Feedbacks, Programs, Hero, Navbar, Tech, Works, StarsCanvas, BlogPost, Footer } from "./components";
 import { BsArrowUp } from 'react-icons/bs'
 
 const App = () => {
@@ -9,15 +9,27 @@ const App = () => {
   const { appRef } = useBackgroundContext();
 
   useEffect(() => {
+    let ticking = false;
+
     const handleScroll = () => {
-      if (window.scrollY > 300) {
-        setShowBackToTop(true);
-      } else {
-        setShowBackToTop(false);
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const scrollTop = window.scrollY;
+          
+          if (scrollTop > 300) {
+            setShowBackToTop(true);
+          } else {
+            setShowBackToTop(false);
+          }
+          
+          ticking = false;
+        });
+        
+        ticking = true;
       }
     };
 
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
@@ -40,7 +52,7 @@ const App = () => {
           path="/"
           element={
             <>
-              <div className='relative z-0 bg-primary overflow-y-auto' style={{ backgroundColor: '#FAFCC6', WebkitOverflowScrolling: 'touch' }} ref={appRef} >
+              <div className='relative z-0 bg-primary' style={{ backgroundColor: '#FAFCC6' }} ref={appRef} >
                 <div className='bg-hero-pattern bg-cover bg-no-repeat bg-center'>
                   <Navbar />
                   <Hero />
@@ -55,6 +67,7 @@ const App = () => {
                   <Contact />
                   {/* <StarsCanvas /> */}
                 </div>
+                <Footer />
               </div>
 
               {showBackToTop && (

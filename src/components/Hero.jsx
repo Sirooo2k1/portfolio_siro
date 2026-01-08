@@ -81,13 +81,13 @@ const Hero = () => {
       
       <MagicCanvas />
 
-      <div className='absolute xs:bottom-10 bottom-32 md:bottom-12 lg:bottom-10 w-full flex justify-center items-center flex-col z-10 px-4 md:px-6 lg:px-0'>
+      <div className='absolute bottom-16 md:bottom-20 lg:bottom-24 w-full flex justify-center items-center flex-col z-10 px-4 md:px-6 lg:px-0'>
 
-        <div className="w-fit mx-auto flex items-center justify-center gap-3 md:gap-5 lg:gap-6 bg-tertiary px-3 py-1.5 md:px-5 md:py-2.5 lg:px-7 lg:py-3 rounded-lg md:rounded-xl lg:mt-10 mt-4 md:mt-6 lg:mt-5 max-[350px]:hidden select-none">
+        <div className="w-fit mx-auto flex items-center justify-center gap-3 md:gap-5 lg:gap-6 bg-tertiary px-3 py-1.5 md:px-5 md:py-2.5 lg:px-7 lg:py-3 rounded-lg md:rounded-xl mb-4 md:mb-5 lg:mb-6 max-[350px]:hidden select-none">
           <p className='text-black font-semibold text-xs md:text-sm lg:text-base'>{heroText.tryClicking}</p>
         </div>
 
-        <a href='#about' onClick={handleScrollClick} className="w-fit mx-auto flex items-center justify-center gap-3 md:gap-5 lg:gap-6 bg-tertiary px-3 py-1.5 md:px-5 md:py-2.5 lg:px-7 lg:py-3 rounded-lg md:rounded-xl lg:mt-10 mt-3 md:mt-4 lg:mt-5 cursor-pointer max-[350px]:hidden select-none">
+        <a href='#about' onClick={handleScrollClick} className="w-fit mx-auto flex items-center justify-center gap-3 md:gap-5 lg:gap-6 bg-tertiary px-3 py-1.5 md:px-5 md:py-2.5 lg:px-7 lg:py-3 rounded-lg md:rounded-xl cursor-pointer max-[350px]:hidden select-none">
           <div className='w-[28px] h-[50px] md:w-[32px] md:h-[58px] lg:w-[35px] lg:h-[64px] rounded-3xl border-2 md:border-[3px] lg:border-4 border-secondary flex justify-center items-start p-1.5 md:p-2'>
             <motion.div
               animate={{

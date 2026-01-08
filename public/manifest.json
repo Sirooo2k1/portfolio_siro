@@ -1,0 +1,31 @@
+{
+  "name": "Siro | Portfolio",
+  "short_name": "Siro",
+  "description": "Siro is a passionate developer with expertise in software engineering and XR development",
+  "icons": [
+    {
+      "src": "/sirolg-removebg.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/sirolg-removebg.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/sirolg-removebg.png",
+      "sizes": "515x484",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "theme_color": "#FAFCC6",
+  "background_color": "#FAFCC6",
+  "display": "standalone",
+  "start_url": "/",
+  "scope": "/"
+}
+
