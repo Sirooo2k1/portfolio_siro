@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thank You for Contacting Me</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    @media only screen and (max-width: 600px) {
+      .email-container {
+        width: 100% !important;
+        padding: 15px 8px !important;
+      }
+      .email-wrapper {
+        width: 100% !important;
+        max-width: 100% !important;
+        border-radius: 12px !important;
+      }
+      .header-padding {
+        padding: 25px 20px !important;
+        background-size: cover !important;
+        background-position: center !important;
+        background-repeat: no-repeat !important;
+        background-image: linear-gradient(135deg, #fef3c7 0%, #e9d5ff 50%, #fef3c7 100%) !important;
+        position: relative !important;
+        overflow: hidden !important;
+      }
+      .header-padding::before {
+        content: '' !important;
+        position: absolute !important;
+        top: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        bottom: 0 !important;
+        background: linear-gradient(135deg, rgba(254, 243, 199, 0.95) 0%, rgba(233, 213, 255, 0.95) 50%, rgba(254, 243, 199, 0.95) 100%) !important;
+        z-index: 0 !important;
+      }
+      .decorative-circle {
+        display: none !important;
+      }
+      .header-padding table[role="presentation"] {
+        position: relative !important;
+        z-index: 1 !important;
+      }
+      .header-emoji {
+        font-size: 36px !important;
+        margin-bottom: 0 !important;
+        display: block !important;
+        position: relative !important;
+        z-index: 1 !important;
+        visibility: visible !important;
+      }
+      .header-title {
+        font-size: 22px !important;
+        line-height: 1.3 !important;
+        position: relative !important;
+        z-index: 1 !important;
+        padding: 0 5px !important;
+      }
+      .header-subtitle {
+        font-size: 14px !important;
+        line-height: 1.4 !important;
+        position: relative !important;
+        z-index: 1 !important;
+        padding: 0 5px !important;
+      }
+      .content-padding {
+        padding: 25px 18px !important;
+      }
+      .card-padding {
+        padding: 20px 18px !important;
+      }
+      .greeting-text {
+        font-size: 15px !important;
+        line-height: 1.6 !important;
+        margin-bottom: 20px !important;
+      }
+      .thank-you-card p {
+        font-size: 14px !important;
+        line-height: 1.7 !important;
+        margin-bottom: 14px !important;
+      }
+      .message-card-title {
+        font-size: 18px !important;
+        margin-bottom: 15px !important;
+        padding-bottom: 12px !important;
+        line-height: 1.3 !important;
+        margin-top: 0 !important;
+        padding-top: 0 !important;
+        display: inline-block !important;
+        vertical-align: middle !important;
+      }
+      .dot-label-table tr {
+        display: table-row !important;
+      }
+      .dot-label-table td {
+        vertical-align: middle !important;
+        display: table-cell !important;
+      }
+      .dot-label-table tr td:first-child {
+        vertical-align: middle !important;
+        padding: 2px 12px 0 0 !important;
+        width: 20px !important;
+        line-height: 1.3 !important;
+        height: auto !important;
+      }
+      .dot-label-table tr td:last-child {
+        vertical-align: middle !important;
+        padding: 2px 0 0 0 !important;
+        line-height: 1.3 !important;
+        height: auto !important;
+      }
+      .dot-label-table tr td:first-child div {
+        margin: 0 !important;
+        display: block !important;
+        width: 8px !important;
+        height: 8px !important;
+        vertical-align: middle !important;
+      }
+      .dot-label-table tr td:last-child h2 {
+        margin: 0 !important;
+        padding: 0 !important;
+        line-height: 1.3 !important;
+        vertical-align: middle !important;
+        display: block !important;
+      }
+      .info-label {
+        font-size: 11px !important;
+        margin-bottom: 6px !important;
+      }
+      .info-value {
+        font-size: 14px !important;
+        line-height: 1.6 !important;
+      }
+      .message-content {
+        padding: 16px !important;
+        font-size: 14px !important;
+        line-height: 1.7 !important;
+      }
+      .next-steps-card {
+        padding: 20px 18px !important;
+      }
+      .next-steps-emoji {
+        font-size: 28px !important;
+        margin-bottom: 10px !important;
+      }
+      .next-steps-card p {
+        font-size: 14px !important;
+        line-height: 1.6 !important;
+      }
+      .next-steps-card a {
+        font-size: 14px !important;
+        word-break: break-all !important;
+      }
+      .portfolio-card {
+        padding: 20px 18px !important;
+      }
+      .portfolio-card p {
+        font-size: 14px !important;
+        margin-bottom: 12px !important;
+      }
+      .portfolio-button {
+        padding: 11px 24px !important;
+        font-size: 14px !important;
+        width: 100% !important;
+        display: block !important;
+        text-align: center !important;
+        box-sizing: border-box !important;
+      }
+      .footer-padding {
+        padding: 25px 18px !important;
+      }
+      .footer-name {
+        font-size: 15px !important;
+        margin-bottom: 10px !important;
+      }
+      .footer-info {
+        font-size: 12px !important;
+        line-height: 1.6 !important;
+        margin-bottom: 12px !important;
+      }
+      .footer-note {
+        font-size: 11px !important;
+        line-height: 1.5 !important;
+        margin-bottom: 8px !important;
+      }
+      .footer-copyright {
+        font-size: 10px !important;
+        color: #9ca3af !important;
+      }
+      .decorative-top {
+        height: 4px !important;
+      }
+      .decorative-bottom {
+        height: 4px !important;
+      }
+      .footer-decorative {
+        width: 50px !important;
+        height: 3px !important;
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+        position: absolute !important;
+      }
+      .footer-padding {
+        position: relative !important;
+        text-align: center !important;
+      }
+      table[role="presentation"] {
+        width: 100% !important;
+      }
+      td {
+        padding: 12px 0 !important;
+      }
+    }
+  </style>
+</head>
+<body style="margin: 0; padding: 0; font-family: 'Lora', Georgia, 'Times New Roman', serif; background-color: #f5f5f5;">
+  <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="background-color: #f5f5f5; padding: 40px 20px;" class="email-container">
+    <tr>
+      <td align="center">
+        <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="600" style="max-width: 600px; width: 100%; background-color: #F5F1E8; border-radius: 16px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); overflow: hidden;" class="email-wrapper">
+          
+          <!-- Header với gradient và pattern -->
+          <tr>
+            <td style="background: linear-gradient(135deg, #fef3c7 0%, #e9d5ff 50%, #fef3c7 100%); padding: 20px 40px; text-align: center; position: relative; overflow: hidden;" class="header-padding">
+              <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="margin: 0; padding: 0;">
+                <tr>
+                  <td style="padding: 0; text-align: center; vertical-align: middle;">
+                    <!-- Icon/Emoji -->
+                    <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="margin: 0; padding: 0;">
+                      <tr>
+                        <td style="padding: 0 0 8px 0; text-align: center;">
+                          <div style="font-size: 48px; line-height: 1; margin: 0; padding: 0;" class="header-emoji">✨</div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="padding: 0 0 4px 0; text-align: center;">
+                          <h1 style="margin: 0; padding: 0; font-size: 32px; font-weight: 700; color: #1a1a1a; letter-spacing: -0.5px; text-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); line-height: 1.2; font-family: 'Lora', Georgia, 'Times New Roman', serif;" class="header-title">
+                            Thank You for Contacting Me!
+                          </h1>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="padding: 0; text-align: center;">
+                          <p style="margin: 0; padding: 0; font-size: 17px; color: #4a4a4a; font-weight: 400; line-height: 1.5; font-family: 'Lora', Georgia, 'Times New Roman', serif;" class="header-subtitle">
+                            I've received your message and will get back to you soon
+                          </p>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- Main Content -->
+          <tr>
+            <td style="padding: 40px; background-color: #F5F1E8;" class="content-padding">
+              
+              <!-- Greeting -->
+              <div style="margin-bottom: 28px;">
+                <p style="margin: 0; font-size: 17px; line-height: 1.7; color: #1a1a1a; font-weight: 500;" class="greeting-text">
+                  Hello <strong style="color: #5B21B6; font-weight: 600;">{{from_name}}</strong>,
+                </p>
+              </div>
+
+              <!-- Thank You Message Card -->
+              <div style="background: linear-gradient(135deg, #ffffff 0%, #fafafa 100%); border-radius: 16px; border: 2px solid #F2E8C6; padding: 30px; margin-bottom: 28px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);" class="card-padding thank-you-card">
+                <p style="margin: 0 0 18px 0; font-size: 16px; line-height: 1.8; color: #1a1a1a;">
+                  Thank you for reaching out through my portfolio! I'm excited to hear from you and truly appreciate you taking the time to contact me.
+                </p>
+                <p style="margin: 0 0 18px 0; font-size: 16px; line-height: 1.8; color: #1a1a1a;">
+                  I've received your message and will review it carefully. I'll do my best to get back to you within <strong style="color: #5B21B6;">2-3 business days</strong>.
+                </p>
+                <p style="margin: 0; font-size: 16px; line-height: 1.8; color: #1a1a1a;">
+                  Below is a copy of your message for your records.
+                </p>
+              </div>
+
+              <!-- Message Summary Card -->
+              <div style="background: linear-gradient(135deg, #ffffff 0%, #fafafa 100%); border-radius: 16px; border: 2px solid #F2E8C6; padding: 30px; margin-bottom: 28px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);" class="card-padding">
+                <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="margin-bottom: 20px; padding-bottom: 15px; border-bottom: 3px solid #e9d5ff;" class="dot-label-table">
+                  <tr>
+                    <td style="width: 20px; padding: 0 12px 0 0; vertical-align: middle; line-height: 1.3;">
+                      <div style="width: 8px; height: 8px; background: linear-gradient(135deg, #fef3c7 0%, #e9d5ff 100%); border-radius: 50%; margin: 0 auto; display: block;"></div>
+                    </td>
+                    <td style="padding: 0; vertical-align: middle; line-height: 1.3;">
+                      <h2 style="margin: 0; font-size: 20px; font-weight: 700; color: #1a1a1a; letter-spacing: -0.3px; line-height: 1.3;" class="message-card-title">
+                        Your Message
+                      </h2>
+                    </td>
+                  </tr>
+                </table>
+                
+                <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                  <!-- From Email -->
+                  <tr>
+                    <td style="padding: 15px 0; border-bottom: 1px solid #f3f4f6;">
+                      <p style="margin: 0 0 8px 0; font-size: 12px; font-weight: 700; color: #6b7280; text-transform: uppercase; letter-spacing: 1px;" class="info-label">
+                        From Email
+                      </p>
+                      <p style="margin: 0; font-size: 16px; color: #1a1a1a; font-weight: 500; word-break: break-word;" class="info-value">
+                        {{from_email}}
+                      </p>
+                    </td>
+                  </tr>
+                  
+                  <!-- Message Content -->
+                  <tr>
+                    <td style="padding: 15px 0 0 0;">
+                      <p style="margin: 0 0 10px 0; font-size: 12px; font-weight: 700; color: #6b7280; text-transform: uppercase; letter-spacing: 1px;" class="info-label">
+                        Message
+                      </p>
+                      <div style="background: linear-gradient(135deg, #fafafa 0%, #f5f5f5 100%); padding: 20px; border-radius: 12px; border-left: 4px solid #e9d5ff; box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.03);" class="message-content">
+                        <p style="margin: 0; font-size: 15px; line-height: 1.8; color: #1a1a1a; white-space: pre-wrap; word-wrap: break-word; font-family: 'Lora', Georgia, 'Times New Roman', serif;">
+{{message}}
+                        </p>
+                      </div>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+
+              <!-- Next Steps Card -->
+              <div style="background: linear-gradient(135deg, #fef3c7 0%, #faf0dc 100%); border-radius: 16px; border: 2px solid #e9d5ff; padding: 25px; margin-bottom: 28px; text-align: center; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);" class="next-steps-card">
+                <div style="font-size: 32px; margin-bottom: 12px;" class="next-steps-emoji">💌</div>
+                <p style="margin: 0; font-size: 15px; line-height: 1.7; color: #1a1a1a; font-weight: 500;">
+                  I typically respond within <strong style="color: #5B21B6;">2-3 business days</strong>.<br>
+                  For urgent matters, feel free to reach out directly at <a href="mailto:24849318@hagoromo.ac.jp" style="color: #5B21B6; text-decoration: none; font-weight: 600;">24849318@hagoromo.ac.jp</a>
+                </p>
+              </div>
+
+              <!-- Portfolio Link Card -->
+              <div style="background: linear-gradient(135deg, #ffffff 0%, #fafafa 100%); border-radius: 16px; border: 2px solid #F2E8C6; padding: 25px; text-align: center; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);" class="portfolio-card">
+                <p style="margin: 0 0 15px 0; font-size: 15px; color: #6b7280; line-height: 1.6;">
+                  Want to see more of my work?
+                </p>
+                <a href="https://portfoliosiro.com" style="display: inline-block; background: linear-gradient(135deg, #5B21B6 0%, #7c3aed 100%); color: #ffffff; text-decoration: none; padding: 12px 28px; border-radius: 10px; font-weight: 600; font-size: 15px; box-shadow: 0 4px 12px rgba(91, 33, 182, 0.3); transition: all 0.3s ease;" class="portfolio-button">
+                  Visit My Portfolio →
+                </a>
+              </div>
+
+            </td>
+          </tr>
+
+          <!-- Footer -->
+          <tr>
+            <td style="padding: 35px 40px; background: linear-gradient(135deg, #fafafa 0%, #f5f5f5 100%); text-align: center; border-top: 2px solid #F2E8C6; position: relative;" class="footer-padding" align="center">
+              <div style="margin-top: 0; max-width: 100%;">
+                <p style="margin: 0 0 12px 0; font-size: 16px; font-weight: 700; color: #1a1a1a; letter-spacing: -0.3px; text-align: center;" class="footer-name">
+                  Siro
+                </p>
+                <p style="margin: 0 0 15px 0; font-size: 13px; color: #6b7280; line-height: 1.7; text-align: center;" class="footer-info">
+                  Software Developer & Game Developer<br>
+                  Information Systems Student at Hagoromo University
+                </p>
+                <div style="margin: 20px 0 15px 0; padding-top: 20px; border-top: 1px solid #e5e7eb;">
+                  <p style="margin: 0 0 10px 0; font-size: 12px; color: #9ca3af; line-height: 1.6; text-align: center;" class="footer-note">
+                    This is an automated email sent from my portfolio contact form.<br>
+                    You can reply directly to this email to reach me.
+                  </p>
+                  <p style="margin: 0; font-size: 11px; color: #9ca3af; text-align: center;" class="footer-copyright">
+                    © 2025 Siro Portfolio. All rights reserved.
+                  </p>
+                </div>
+              </div>
+            </td>
+          </tr>
+
+          <!-- Decorative Bottom Border -->
+          <tr>
+            <td style="height: 6px; background: linear-gradient(90deg, #fef3c7 0%, #e9d5ff 50%, #fef3c7 100%);" class="decorative-bottom"></td>
+          </tr>
+
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>
+

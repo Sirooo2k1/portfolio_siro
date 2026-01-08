@@ -104,7 +104,7 @@ const Navbar = () => {
               className='h-[80px] w-auto sm:h-[82px] md:h-[85px] lg:h-[88px] xl:h-[90px] object-contain transition-all duration-300 relative z-10'
               style={{
                 imageRendering: 'high-quality',
-                filter: 'brightness(1.2) contrast(1.15) saturate(1.05)',
+                filter: 'brightness(0) invert(1) contrast(1.1)',
                 opacity: 1,
                 display: 'block',
                 lineHeight: 0,
