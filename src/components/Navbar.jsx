@@ -136,7 +136,7 @@ const Navbar = () => {
           )}
         </Link>
 
-        <ul className='list-none hidden lg:flex flex-row gap-2 lg:gap-2.5 xl:gap-4 2xl:gap-6 flex-1 justify-center items-center min-w-0 flex-shrink'>
+        <ul className='list-none hidden lg:flex flex-row gap-[clamp(10px,2vw,26px)] flex-1 justify-between items-center min-w-0 flex-shrink w-full max-w-[640px]'>
           {navLinks.map((nav) => (
             nav.id === "work" ? (
               <li
@@ -150,7 +150,7 @@ const Navbar = () => {
                     isInHero 
                       ? (active === nav.title ? "text-white" : "text-gray-200")
                       : (active === nav.title ? "text-[#1F2937]" : "text-[#374151]")
-                  } ${isInHero ? "hover:text-white" : "hover:text-[#1F2937]"} text-[11px] lg:text-[12px] xl:text-[15px] 2xl:text-[17px] font-medium cursor-pointer flex items-center gap-1 whitespace-nowrap transition-colors duration-200`}
+                  } ${isInHero ? "hover:text-white" : "hover:text-[#1F2937]"} text-[clamp(11px,1.1vw,17px)] font-medium cursor-pointer flex items-center gap-1 whitespace-nowrap transition-colors duration-200`}
                   onClick={() => {
                     setActive(nav.title);
                     setBlogDropdownOpen(!blogDropdownOpen);
@@ -296,7 +296,7 @@ const Navbar = () => {
                   isInHero 
                     ? (active === nav.title ? "text-white" : "text-gray-200")
                     : (active === nav.title ? "text-[#1F2937]" : "text-[#374151]")
-                } ${isInHero ? "hover:text-white" : "hover:text-[#1F2937]"} text-[11px] lg:text-[12px] xl:text-[15px] 2xl:text-[17px] font-medium cursor-pointer whitespace-nowrap transition-colors duration-200 flex-shrink-0`}
+                } ${isInHero ? "hover:text-white" : "hover:text-[#1F2937]"} text-[clamp(11px,1.1vw,17px)] font-medium cursor-pointer whitespace-nowrap transition-colors duration-200 flex-shrink-0`}
                 onClick={() => setActive(nav.title)}
               >
                 <a href={`#${nav.id}`} onClick={(e) => handleAnchorClick(e, nav.id)}>
