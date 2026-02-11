@@ -258,7 +258,7 @@ const Experience = () => {
           {/* Social Media Icons */}
           <div className="flex items-center justify-center gap-4" style={{ marginTop: '-10px' }}>
             <a 
-              href="https://www.instagram.com/ssiiroo09.29/?igsh=emZkOG1neW5hcnht&utm_source=qr#" 
+              href="https://www.instagram.com/__sirooo__?igsh=emZkOG1neW5hcnht&utm_source=qr" 
               target="_blank" 
               rel="noopener noreferrer"
               className="flex items-center justify-center hover:opacity-80 transition-opacity"
@@ -418,7 +418,7 @@ const Experience = () => {
           {/* Social Media Icons */}
           <div className="flex items-center justify-center gap-4" style={{ marginTop: '-10px' }}>
             <a 
-              href="https://www.instagram.com/ssiiroo09.29/?igsh=emZkOG1neW5hcnht&utm_source=qr#" 
+              href="https://www.instagram.com/__sirooo__?igsh=emZkOG1neW5hcnht&utm_source=qr" 
               target="_blank" 
               rel="noopener noreferrer"
               className="flex items-center justify-center hover:opacity-80 transition-opacity"

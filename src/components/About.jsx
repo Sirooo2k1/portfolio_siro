@@ -148,7 +148,7 @@ const About = () => {
           <Tilt>
             <div className="green-pink-gradient p-[1px] rounded-full shadow-lg flex justify-center items-center cursor-pointer select-none overflow-hidden hover:shadow-xl transition-shadow w-[180px] md:w-[190px] lg:w-[180px]">
               <a
-                href="https://www.instagram.com/ssiiroo09.29/?igsh=emZkOG1neW5hcnht&utm_source=qr#"
+                href="https://www.instagram.com/__sirooo__?igsh=emZkOG1neW5hcnht&utm_source=qr"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="block w-full h-full"

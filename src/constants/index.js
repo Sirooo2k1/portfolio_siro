@@ -63,7 +63,7 @@ export const navMedia = [
   {
     id: "Instagram",
     image: instagram,
-    link: "https://www.instagram.com/ssiiroo09.29/?igsh=emZkOG1neW5hcnht&utm_source=qr#",
+    link: "https://www.instagram.com/__sirooo__?igsh=emZkOG1neW5hcnht&utm_source=qr",
   },
   {
     id: "GitHub",
