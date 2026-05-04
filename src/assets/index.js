@@ -1,5 +1,5 @@
-import logo from "./logo/logo hagoromo.png";
-import hagoromo from "./company/hagoromo.png";
+import logo from "./logo/sirolg-removebg.png";
+import hagoromo from "./logo/logoanh.png";
 import menu from "./menu.svg";
 import close from "./close.svg";
 
@@ -40,13 +40,13 @@ import stanford_square from "./company/stanford_square.png";
 import stanfordxr from "./company/stanfordxr.png";
 import minimalism from "./company/logominimalism.jpg";
 import lifestyle from "./company/logolifestyle.png";
-import japan from "./company/logojapan.png";
+import japan from "./logo/logojp.jpg";
 import hanhtrinh from "./company/logohanhtrinh.png";
-import languages from "./company/logolanguages.png";
+import languages from "./company/logoreading.png";
 import reading from "./company/logoreading.png";
 import cooking from "./company/cooking.png";
-import travel from "./company/logotravel.png";
-import swinburne from "./company/logoswinburne.png";
+import travel from "./company/logohanhtrinh.png";
+import swinburne from "./company/stanford_square.png";
 import freecodecamp from "./company/FreeCodeCamp_logo.png";
 import cybersecurity from "./company/logo cybersecurity.png";
 import aws from "./company/awslogo.png";
@@ -71,7 +71,7 @@ import live_logo from "./projects/live_logo.png";
 import live_logo_inverted from "./projects/live_logo_inverted.png";
 import banh_mi_siro from "./projects/Logo_BanhMiSiro.png";
 import facebook from "./projects/Facebook_Logo.png";
-import logovideodemo from "./projects/Logovideodemo.png";
+import logovideodemo from "./projects/live_logo.png";
 
 export {
   logo,
